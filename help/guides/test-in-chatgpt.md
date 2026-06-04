@@ -77,7 +77,7 @@ https://<namespace>.adobeioruntime.net/api/v1/web/llm-apps/mcp
 
 ### 開啟應用程式頁面
 
-在[!DNL ChatGPT]中，移至[!UICONTROL 應用程式&#x200B;]**→的**[!UICONTROL &#x200B;設定]。
+在[!DNL ChatGPT]中，移至[!UICONTROL 應用程式&#x200B;]&#x200B;**→的**&#x200B;[!UICONTROL &#x200B;設定]。
 
 ![ChatGPT — 應用程式頁面](/help/assets/guide-test-chatgpt/chatgpt-apps-page.png)
 
@@ -97,8 +97,8 @@ https://<namespace>.adobeioruntime.net/api/v1/web/llm-apps/mcp
 | **MCP伺服器URL** | 貼上來自[!DNL LLM Apps]的URL |
 | **[!UICONTROL 驗證]** | 選取&#x200B;*無驗證* |
 
-核取&#x200B;**我瞭解並想要繼續**核取方塊 — 這表示已認可MCP伺服器
-尚未由OpenAI檢閱 — 然後按一下[建立]。****
+核取&#x200B;**我瞭解並想要繼續**&#x200B;核取方塊 — 這表示已認可MCP伺服器
+尚未由OpenAI檢閱 — 然後按一下[建立]。**&#x200B;**
 
 ### 確認應用程式已啟用
 
