@@ -1,13 +1,15 @@
 ---
-title: 先決條件
+title: Adobe LLM應用程式的必要條件
 description: 在Adobe LLM應用程式Beta上線工作階段之前需要設定哪些專案。
-source-git-commit: 1ff383dff82068f68746d665d079216375ba523a
+source-git-commit: 98d5590c927bf8ffad54061ee027664452c129c1
 workflow-type: tm+mt
-source-wordcount: '530'
+source-wordcount: '539'
 ht-degree: 2%
 
 ---
 
+
+# Adobe LLM應用程式的必要條件 {#prerequisites-for-adobe-llm-apps}
 
 在使用Adobe上線工作階段之前，請確認您已具備下列條件。 如果可能，請執行以下驗證步驟 — 結果會告訴您哪些人需要待在會議室中，而不是您是否可以繼續。
 

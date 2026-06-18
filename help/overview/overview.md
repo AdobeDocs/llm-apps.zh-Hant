@@ -1,13 +1,15 @@
 ---
-title: 概觀
+title: Adobe LLM應用程式概觀
 description: 瞭解什麼是Adobe LLM應用程式、其運作方式，以及您需要啟動哪些應用程式。
-source-git-commit: f144ccfc0ede6c556ccf4d99173f91d372add6f7
+source-git-commit: 98d5590c927bf8ffad54061ee027664452c129c1
 workflow-type: tm+mt
-source-wordcount: '863'
+source-wordcount: '873'
 ht-degree: 1%
 
 ---
 
+
+# Adobe LLM應用程式 — 概觀 {#adobe-llm-apps-an-overview}
 
 >[!NOTE]
 >
