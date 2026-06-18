@@ -1,9 +1,9 @@
 ---
 title: 撰寫動作處理常式
 description: 瞭解如何為您的Adobe LLM應用程式編寫動作處理常式，包括處理常式合約、structuredContent和使用範例。
-source-git-commit: 483a71f5f1de5caf1bd89b26f4d67d2d5a0aa15a
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
-source-wordcount: '714'
+source-wordcount: '719'
 ht-degree: 0%
 
 ---
@@ -13,9 +13,11 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->**免責宣告：**&#x200B;這是[!DNL LLM Apps]的測試版本。 這裡顯示的功能、工作流程和UI不一定代表應用程式或產品的最終狀態。
+>[!DNL Adobe LLM Apps]目前在Beta中。
+>
+>此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
-在UI中建立動作後，中繼資料會儲存在[!DNL LLM Apps] API中 — 但尚未有程式碼在其後。 本指南會逐步引導您撰寫處理常式函式，當LLM平台（例如[!DNL ChatGPT]或Claude）叫用您的動作時，該函式會執行。
+在[!DNL Adobe LLM Apps] UI中建立動作後，中繼資料會儲存在[!DNL LLM Apps] API中 — 但尚未有任何程式碼。 本指南會逐步引導您撰寫處理常式函式，當LLM平台（例如[!DNL ChatGPT]或Claude）叫用您的動作時，該函式會執行。
 
 如需專案版面配置、本機開發及測試詳細資訊，請參閱[開發](/help/reference/development.md)。
 

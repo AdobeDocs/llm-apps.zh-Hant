@@ -1,9 +1,9 @@
 ---
 title: Adobe LLM應用程式疑難排解
 description: 建置、部署和測試Adobe LLM應用程式時常見問題的解決方案。
-source-git-commit: 98d5590c927bf8ffad54061ee027664452c129c1
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
-source-wordcount: '439'
+source-wordcount: '451'
 ht-degree: 0%
 
 ---
@@ -13,7 +13,11 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->**免責宣告：**&#x200B;這是[!DNL LLM Apps]的測試版本。 這裡顯示的功能、工作流程和UI不一定代表應用程式或產品的最終狀態。
+>[!DNL Adobe LLM Apps]目前在Beta中。
+>
+>此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+
+這會提供使用[!DNL Adobe LLM Apps]時的疑難排解資訊。
 
 ## 常見問題
 

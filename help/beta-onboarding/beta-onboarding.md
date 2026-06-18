@@ -1,9 +1,9 @@
 ---
 title: Adobe LLM應用程式的Beta入門
 description: 以Beta計畫參與者的身分開始使用Adobe LLM應用程式。
-source-git-commit: 98d5590c927bf8ffad54061ee027664452c129c1
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
-source-wordcount: '1551'
+source-wordcount: '1557'
 ht-degree: 0%
 
 ---
@@ -13,13 +13,15 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->**免責宣告：**&#x200B;這是[!DNL LLM Apps]的測試版本。 這裡顯示的功能、工作流程和UI不一定代表應用程式或產品的最終狀態。
+>[!DNL Adobe LLM Apps]目前在Beta中。
+>
+>此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
 >[!NOTE]
 >
 >開始之前，請確定已符合所有[必要條件](/help/beta-onboarding/prerequisites.md)。
 
-作為Beta計畫參與者，您將收到一封電子郵件，其中包含兩個zip封存和一個應用程式設定參考。 請依照下列步驟，讓您的應用程式上線。
+作為[!DNL Adobe LLM Apps]的Beta計畫參與者，您將收到一封包含兩個zip封存和應用程式設定參考的電子郵件。 請依照下列步驟，讓您的應用程式上線。
 
 ## 開始之前
 

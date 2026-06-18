@@ -1,21 +1,23 @@
 ---
 title: Adobe LLM應用程式參考檔案
 description: Adobe LLM應用程式UI中動作設定的欄位層級參考。
-source-git-commit: 98d5590c927bf8ffad54061ee027664452c129c1
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
-source-wordcount: '494'
+source-wordcount: '500'
 ht-degree: 6%
 
 ---
 
 
-# 參照 {#reference}
+# 參考資料 {#reference-material}
 
 >[!IMPORTANT]
 >
->**免責宣告：**&#x200B;這是[!DNL LLM Apps]的測試版本。 這裡顯示的功能、工作流程和UI不一定代表應用程式或產品的最終狀態。
+>[!DNL Adobe LLM Apps]目前在Beta中。
+>
+>此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
-本節提供[!DNL LLM Apps] UI中動作設定的欄位層級參考。
+本節提供[!DNL Adobe LLM Apps] UI中動作設定的欄位層級參考。
 
 ## 動作引數
 
