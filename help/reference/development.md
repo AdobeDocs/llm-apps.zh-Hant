@@ -1,15 +1,15 @@
 ---
-title: 開發
+title: 適用於Adobe LLM應用程式的開發
 description: Adobe LLM應用程式處理常式程式碼的專案結構、本機開發工作流程和測試設定。
-source-git-commit: 483a71f5f1de5caf1bd89b26f4d67d2d5a0aa15a
+source-git-commit: 51ffb31eec82f9639bd7ade9052d61028c262d0e
 workflow-type: tm+mt
-source-wordcount: '314'
+source-wordcount: '318'
 ht-degree: 4%
 
 ---
 
 
-# 開發
+# 開發 {#development}
 
 >[!IMPORTANT]
 >

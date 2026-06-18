@@ -1,13 +1,15 @@
 ---
-title: Beta入門
+title: Adobe LLM應用程式的Beta入門
 description: 以Beta計畫參與者的身分開始使用Adobe LLM應用程式。
-source-git-commit: f144ccfc0ede6c556ccf4d99173f91d372add6f7
+source-git-commit: 98d5590c927bf8ffad54061ee027664452c129c1
 workflow-type: tm+mt
-source-wordcount: '1545'
+source-wordcount: '1551'
 ht-degree: 0%
 
 ---
 
+
+# Beta入門 {#beta-onboarding}
 
 >[!IMPORTANT]
 >
