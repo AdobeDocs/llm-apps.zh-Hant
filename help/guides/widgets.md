@@ -1,9 +1,9 @@
 ---
 title: 設定Widget (EDS)
 description: 瞭解如何設定Edge Delivery Services Widget專案，以及實作區塊合約，以在LLM平台內呈現視覺回應。
-source-git-commit: 483a71f5f1de5caf1bd89b26f4d67d2d5a0aa15a
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
-source-wordcount: '1214'
+source-wordcount: '1226'
 ht-degree: 1%
 
 ---
@@ -13,7 +13,9 @@ ht-degree: 1%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。 此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。
+>[!DNL Adobe LLM Apps]目前在Beta中。
+>
+>此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
 本指南說明如何建立端對端的EDS Widget：從在[!DNL LLM Apps] UI中設定您的動作，到設定您的EDS專案，再到撰寫區塊程式碼以在LLM平台中呈現您的資料。 如需高階概觀，請參閱[核心概念](/help/overview/overview.md#widgets-eds)。
 

@@ -1,7 +1,7 @@
 ---
 title: Adobe LLM應用程式概觀
 description: 瞭解什麼是Adobe LLM應用程式、其運作方式，以及您需要啟動哪些應用程式。
-source-git-commit: 98d5590c927bf8ffad54061ee027664452c129c1
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
 source-wordcount: '873'
 ht-degree: 1%
@@ -11,9 +11,11 @@ ht-degree: 1%
 
 # Adobe LLM應用程式 — 概觀 {#adobe-llm-apps-an-overview}
 
->[!NOTE]
+>[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。 此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>[!DNL Adobe LLM Apps]目前在Beta中。
+>
+>此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
 ## 什麼是[!DNL Adobe LLM Apps]？
 

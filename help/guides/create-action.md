@@ -1,15 +1,21 @@
 ---
 title: 建立動作
 description: 瞭解如何在LLM應用程式UI中定義動作，包括中繼資料、輸入引數和Widget設定。
-source-git-commit: 483a71f5f1de5caf1bd89b26f4d67d2d5a0aa15a
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
-source-wordcount: '868'
+source-wordcount: '900'
 ht-degree: 1%
 
 ---
 
 
 # 建立動作
+
+>[!IMPORTANT]
+>
+>[!DNL Adobe LLM Apps]目前在Beta中。
+>
+>此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
 本指南會逐步引導您定義[!DNL LLM Apps] UI中的動作。 如需動作及其運作方式的背景資訊，請參閱[核心概念](/help/overview/overview.md#actions)。
 

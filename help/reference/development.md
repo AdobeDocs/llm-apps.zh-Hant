@@ -1,9 +1,9 @@
 ---
 title: 適用於Adobe LLM應用程式的開發
 description: Adobe LLM應用程式處理常式程式碼的專案結構、本機開發工作流程和測試設定。
-source-git-commit: 51ffb31eec82f9639bd7ade9052d61028c262d0e
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
-source-wordcount: '318'
+source-wordcount: '324'
 ht-degree: 4%
 
 ---
@@ -13,9 +13,11 @@ ht-degree: 4%
 
 >[!IMPORTANT]
 >
->**免責宣告：**&#x200B;這是[!DNL LLM Apps]的測試版本。 這裡顯示的功能、工作流程和UI不一定代表應用程式或產品的最終狀態。
+>[!DNL Adobe LLM Apps]目前在Beta中。
+>
+>此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
-本節說明處理常式專案結構、本機開發工作流程和測試設定。 如需處理常式合約和範常式式碼，請參閱[撰寫動作處理常式](/help/guides/write-action-handler.md)。
+本節涵蓋[!DNL Adobe LLM Apps]的處理常式專案結構、本機開發工作流程和測試設定。 如需處理常式合約和範常式式碼，請參閱[撰寫動作處理常式](/help/guides/write-action-handler.md)。
 
 ## 專案結構
 

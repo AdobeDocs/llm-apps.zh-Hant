@@ -1,9 +1,9 @@
 ---
 title: 在ChatGPT中測試
 description: 瞭解如何將您部署的Adobe LLM應用程式新增到ChatGPT，並在真實交談中測試。
-source-git-commit: 483a71f5f1de5caf1bd89b26f4d67d2d5a0aa15a
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
-source-wordcount: '798'
+source-wordcount: '804'
 ht-degree: 2%
 
 ---
@@ -13,13 +13,15 @@ ht-degree: 2%
 
 >[!IMPORTANT]
 >
->**免責宣告：**&#x200B;這是[!DNL LLM Apps]的測試版本。 這裡顯示的功能、工作流程和UI不一定代表應用程式或產品的最終狀態。
+>[!DNL Adobe LLM Apps]目前在Beta中。
+>
+>此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
 >[!NOTE]
 >
 >本指南以[!DNL ChatGPT]為例。 一般步驟（註冊MCP伺服器URL和在交談中進行測試）同樣適用於其他LLM平台，不過設定流程和UI會有所不同。
 
-成功部署後，您的應用程式會在[!DNL Adobe I/O Runtime]上執行並公開MCP伺服器URL。 本指南會向您說明如何將其新增到[!DNL ChatGPT]並在真實交談中測試。
+使用[!DNL Adobe LLM Apps]成功部署後，您的應用程式會在[!DNL Adobe I/O Runtime]上執行並公開MCP伺服器URL。 本指南會向您說明如何將其新增到[!DNL ChatGPT]並在真實交談中測試。
 
 ## 計畫需求
 
@@ -77,7 +79,7 @@ https://<namespace>.adobeioruntime.net/api/v1/web/llm-apps/mcp
 
 ### 開啟應用程式頁面
 
-在[!DNL ChatGPT]中，移至[!UICONTROL 應用程式&#x200B;]&#x200B;**→的**&#x200B;[!UICONTROL &#x200B;設定]。
+在[!DNL ChatGPT]中，移至[!UICONTROL 應用程式&#x200B;]**→的**[!UICONTROL &#x200B;設定]。
 
 ![ChatGPT — 應用程式頁面](/help/assets/guide-test-chatgpt/chatgpt-apps-page.png)
 
@@ -97,8 +99,8 @@ https://<namespace>.adobeioruntime.net/api/v1/web/llm-apps/mcp
 | **MCP伺服器URL** | 貼上來自[!DNL LLM Apps]的URL |
 | **[!UICONTROL 驗證]** | 選取&#x200B;*無驗證* |
 
-核取&#x200B;**我瞭解並想要繼續**&#x200B;核取方塊 — 這表示已認可MCP伺服器
-尚未由OpenAI檢閱 — 然後按一下[建立]。**&#x200B;**
+核取&#x200B;**我瞭解並想要繼續**核取方塊 — 這表示已認可MCP伺服器
+尚未由OpenAI檢閱 — 然後按一下[建立]。****
 
 ### 確認應用程式已啟用
 

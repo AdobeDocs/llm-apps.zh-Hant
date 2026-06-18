@@ -1,9 +1,9 @@
 ---
 title: Adobe LLM應用程式的Beta入門
 description: 以Beta計畫參與者的身分開始使用Adobe LLM應用程式。
-source-git-commit: 98d5590c927bf8ffad54061ee027664452c129c1
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
-source-wordcount: '1551'
+source-wordcount: '1557'
 ht-degree: 0%
 
 ---
@@ -13,13 +13,15 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->**免責宣告：**&#x200B;這是[!DNL LLM Apps]的測試版本。 這裡顯示的功能、工作流程和UI不一定代表應用程式或產品的最終狀態。
+>[!DNL Adobe LLM Apps]目前在Beta中。
+>
+>此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
 >[!NOTE]
 >
 >開始之前，請確定已符合所有[必要條件](/help/beta-onboarding/prerequisites.md)。
 
-作為Beta計畫參與者，您將收到一封電子郵件，其中包含兩個zip封存和一個應用程式設定參考。 請依照下列步驟，讓您的應用程式上線。
+作為[!DNL Adobe LLM Apps]的Beta計畫參與者，您將收到一封包含兩個zip封存和應用程式設定參考的電子郵件。 請依照下列步驟，讓您的應用程式上線。
 
 ## 開始之前
 
@@ -91,7 +93,7 @@ git push -u origin main
 
 ![建立應用程式對話方塊](/help/assets/guide-create-app/app-details-1.png)
 
-在&#x200B;**[!UICONTROL Analytics資料區域]**&#x200B;下，選取將儲存分析資料的區域。 應用程式建立後，無法變更此&#x200B;**&#x200B;**。
+在&#x200B;**[!UICONTROL Analytics資料區域]**&#x200B;下，選取將儲存分析資料的區域。 應用程式建立後，無法變更此&#x200B;****。
 
 >[!IMPORTANT]
 >
@@ -122,7 +124,7 @@ git push -u origin main
 
 ### 步驟3.1：將EDS存放庫連線至[!DNL DA.live]
 
-1. 移至[github.com/apps/aem-code-sync](https://github.com/apps/aem-code-sync)。 如果尚未安裝應用程式，請按一下[安裝]。**&#x200B;** 如果已安裝，請按一下&#x200B;**[!UICONTROL 設定]**，然後將`<your-eds-repo>`新增至其可存取的存放庫清單。
+1. 移至[github.com/apps/aem-code-sync](https://github.com/apps/aem-code-sync)。 如果尚未安裝應用程式，請按一下[安裝]。**** 如果已安裝，請按一下&#x200B;**[!UICONTROL 設定]**，然後將`<your-eds-repo>`新增至其可存取的存放庫清單。
 2. 安裝後，您登陸&#x200B;**[!DNL AEM Code Sync]已註冊的**&#x200B;確認頁面。 在「**下一步→建立您的內容**」下，按一下「[!DNL DA.live]」連結。
 3. 在&#x200B;**示範內容**&#x200B;畫面上，選取&#x200B;**無**，然後按一下&#x200B;**製作精彩**。
 4. 您被帶往網站的[!DNL DA.live]作者檢視。
@@ -228,7 +230,7 @@ curl -X POST "https://admin.hlx.page/code/<your-github-org>/<your-eds-repo>/main
 
    ![ChatGPT — 開發人員模式已啟用](/help/assets/guide-test-chatgpt/chatgpt-developer-mode.png)
 
-3. 移至[!UICONTROL 應用程式&#x200B;]&#x200B;**→的**&#x200B;[!UICONTROL &#x200B;設定]並按一下&#x200B;**[!UICONTROL 建立應用程式]**。
+3. 移至[!UICONTROL 應用程式&#x200B;]**→的**[!UICONTROL &#x200B;設定]並按一下&#x200B;**[!UICONTROL 建立應用程式]**。
 
    ![ChatGPT — 建立應用程式對話方塊](/help/assets/guide-test-chatgpt/chatgpt-create-app.png)
 
