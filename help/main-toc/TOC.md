@@ -2,10 +2,10 @@
 user-guide-title: LLM應用程式指南
 breadcrumb-title: LLM應用程式
 user-guide-description: 使用Adobe LLM應用程式在AI助理（例如LLM平台，ChatGPT、Claude）中建置、部署和測量互動式品牌體驗。
-source-git-commit: f144ccfc0ede6c556ccf4d99173f91d372add6f7
+source-git-commit: 344c5457eb79a19b1dae823732a1cd9866dcd9dc
 workflow-type: tm+mt
-source-wordcount: '59'
-ht-degree: 15%
+source-wordcount: '54'
+ht-degree: 11%
 
 ---
 
@@ -13,9 +13,6 @@ ht-degree: 15%
 # [!DNL LLM Apps] 指南 {#using}
 
 + [概觀](/help/overview/overview.md)
-+ Beta 方案 {#beta}
-   + [先決條件](/help/beta-onboarding/prerequisites.md)
-   + [Beta入門](/help/beta-onboarding/beta-onboarding.md)
 + 操作指南 {#guides}
    + [建立應用程式](/help/guides/create-app.md)
    + [建立動作](/help/guides/create-action.md)
