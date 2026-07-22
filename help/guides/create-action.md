@@ -1,7 +1,7 @@
 ---
 title: 建立動作
 description: 瞭解如何在LLM應用程式UI中定義動作，包括中繼資料、輸入引數和Widget設定。
-source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
+source-git-commit: ae2748319b5401555c3a616971f5697c17e74ac3
 workflow-type: tm+mt
 source-wordcount: '900'
 ht-degree: 1%
@@ -154,4 +154,3 @@ Widget可以存取的硬體和瀏覽器API：
 ## 後續步驟
 
 - [指南：設定Widget (EDS)](/help/guides/widgets.md)
-
