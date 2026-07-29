@@ -1,9 +1,9 @@
 ---
-title: Adobe LLM應用程式疑難排解
-description: 建置、部署和測試Adobe LLM應用程式時常見問題的解決方案。
-source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
+title: 疑難排解Adobe LLM應用程式
+description: 解決常見的存放庫、上線、處理常式、Widget、部署和ChatGPT外掛程式問題。
+source-git-commit: eec74b87457bc852d7a8dd0e46c2a4385a93ae0a
 workflow-type: tm+mt
-source-wordcount: '451'
+source-wordcount: '632'
 ht-degree: 0%
 
 ---
@@ -17,47 +17,55 @@ ht-degree: 0%
 >
 >此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
-這會提供使用[!DNL Adobe LLM Apps]時的疑難排解資訊。
+從您看到的症狀開始。 進行疑難排解時，請勿共用認證、權杖、私人MCP URL或敏感處理常式結果。
 
-## 常見問題
+## 應用程式建立和上線
 
-| 症狀 | 可能的原因 | 嘗試什麼 |
-|---------|----------------|-------------|
-| 應用程式未出現在LLM平台中 | 您的LLM平台訂閱不支援自訂MCP應用程式，或未啟用開發人員模式 | 確認您的計畫支援自訂MCP應用程式。 在&#x200B;**設定→應用程式→進階設定**&#x200B;中啟用開發人員模式 |
-| LLM平台中的「無法連線」錯誤 | MCP伺服器URL不正確或部署失敗 | 從「應用程式詳細資料」頁面仔細檢查URL。 檢查部署歷史記錄是否有失敗 |
-| 未叫用動作 | LLM平台無法比對使用者問題和您的動作 | 使用`@YourApp`明確叫用它。 改善動作說明以協助模型比對方式 |
-| Widget未呈現 | EDS Widget URL或CSP網域設定錯誤 | 驗證「建立動作」對話方塊中的指令碼URL和Widget內嵌URL。 檢查CSP資源和連線網域是否包含您的EDS來源 |
-| 空白或錯誤回應 | 處理常式有錯誤或遺失 | 請先使用`npm start`在本機測試。 檢視[本機開發](/help/reference/development.md#local-development) |
-| Widget已載入但未顯示任何資料 | `structuredContent`形狀不符合區塊所預期的形狀 | 在區塊的`decorate`函式中記錄`bridge.toolResult`，並與處理常式輸出進行比較 |
-| 在「複製並建置」時部署失敗 | 您的存放庫中有`npm install`或webpack建置錯誤 | 在本機執行`npm install && npm run build`以重現錯誤 |
-| 部署在「收集認證」失敗 | 存放庫未連結或Developer Console專案設定錯誤 | 確認存放庫已連結至「應用程式詳細資料」設定頁面 |
-| 載入Widget時發生CORS錯誤 | EDS網站缺少`access-control-allow-origin`標頭 | 透過`admin.hlx.page`設定CORS標頭 |
-| 儲存CORS標題時，HTTP標題編輯器傳回`404 Error updating config: config not found` | 網站設定遺失`headers`區段 | 請參閱下方的[初始化EDS網站設定標頭區段](#initialize-the-eds-site-config-headers-section) |
-| Widget會在預覽中呈現，但不會在LLM平台中呈現 | 區塊在預覽模式中回覆為範例資料，但因即時資料而失敗 | 使用MCP檢查器或CURL以實際`structuredContent`進行測試 |
+| 症狀 | 嘗試什麼 |
+|---------|-------------|
+| 新存放庫未出現 | 選取&#x200B;**在GitHub上管理存放庫**、授予Adobe LLM應用程式GitHub應用程式存取這兩個存放庫的許可權、返回對話方塊，並重新整理清單 |
+| EDS存放庫需要AEM程式碼同步 | 為EDS存放庫安裝AEM Code Sync，然後返回「建立LLM應用程式」對話方塊 |
+| EDS驗證顯示您不是管理員 | 選取&#x200B;**開啟AEM Live Admin**，將自己新增為EDS網站的管理員，然後重新整理存放庫 |
+| 上線仍在產生中 | 大約需要15分鐘。 您可以離開頁面，稍後再返回 |
+| 上線報告失敗 | 確認兩個存放庫皆可存取，且網站是透過HTTPS公開，然後聯絡Beta團隊並提供可見的錯誤訊息 |
 
-## 初始化EDS網站設定標題區段
+## 動作和處理常式
 
-如果HTTP標題編輯器傳回`404 Error updating config: config not found`，則網站設定遺失`headers`區段。 手動修正：
+| 症狀 | 嘗試什麼 |
+|---------|-------------|
+| 未叫用動作 | 附加ChatGPT外掛程式，確認&#x200B;**公開至AI模型**&#x200B;已啟用、改善動作描述，並重新部署中繼資料變更 |
+| 空白或錯誤回應 | 執行`npm test`，然後使用MCP檢查程式或`curl`呼叫處理常式。 檢視[本機處理常式開發與測試](/help/reference/development.md) |
+| 處理常式在本機運作，但在部署後無法運作 | 確認已推送最新的認可、執行階段設定存在，且動作程式碼識別碼符合`actions/<code-identifier>/index.js` |
+| 無法將產生的動作標示為已檢閱 | 確認處理常式和Widget產生成功。 檢查產生的提取要求是否發生合併衝突，重新載入動作，然後再次選取&#x200B;**標示為已檢閱** |
 
-1. 移至[tools.aem.live/tools/headers-edit/index.html](https://tools.aem.live/tools/headers-edit/index.html)，輸入您的組織和網站，然後按一下&#x200B;**[!UICONTROL 擷取]**。
-2. 開啟瀏覽器DevTools （[網路]索引標籤），並從擷取要求中複製`x-auth-token`標頭的值。
-3. 擷取目前的網站設定：
+## Widget
 
-   ```bash
-   curl -H "x-auth-token: $TOKEN" \
-     https://admin.hlx.page/config/<your-github-org>/sites/<your-eds-repo>.json > config.json
-   ```
+| 症狀 | 嘗試什麼 |
+|---------|-------------|
+| Widget未呈現 | 驗證指令碼URL、Widget URL、HTTPS、EDS出版物、CSP網域和CORS標頭 |
+| Widget會呈現但未顯示任何資料 | 使用MCP檢查器呼叫處理常式，並將其`structuredContent`圖形與從`bridge.toolResult`讀取的欄位進行比較 |
+| Widget可在直接預覽中運作，但無法在ChatGPT中使用 | 直接預覽可能會使用範例資料。 測試已部署的處理常式結果，並驗證CORS和CSP允許EDS來源 |
+| 已封鎖瀏覽器請求 | 僅將所需來源新增至正確的CSP欄位並重新部署 |
+| HTTP標題編輯器無法儲存設定 | 使用[AEM組態服務](https://aem.live/docs/config-service-setup)或要求EDS系統管理員初始化站台標頭組態 |
 
-4. 開啟`config.json`並將`"headers": {}`新增至JSON物件。
-5. 將更新的設定發佈回：
+當完整的`bridge.toolResult`值可能包含個人或敏感資料時，請勿記錄這些值。
 
-   ```bash
-   curl -X POST \
-     -H "x-auth-token: $TOKEN" \
-     -H "Content-Type: application/json" \
-     -d @config.json \
-     "https://admin.hlx.page/config/<your-github-org>/sites/<your-eds-repo>.json"
-   ```
+## 部署
 
-6. 重新載入標題編輯器並正常儲存`Access-Control-Allow-Origin`標題。
+| 症狀 | 嘗試什麼 |
+|---------|-------------|
+| 在&#x200B;**準備**&#x200B;期間部署失敗 | 確認處理常式存放庫已連結，且您的Adobe Developer Console存取權仍然有效 |
+| 在&#x200B;**建置應用程式**&#x200B;期間部署失敗 | 在本機執行`npm install`、`npm test`和`npm run build`。 修正相依性、語法或測試失敗，並推送變更 |
+| 部署成功，但缺少變更 | 確認預期的認可已推送並重新部署到相同環境 |
+| 動作仍為&#x200B;**未部署** | 在檢閱動作或變更其中繼資料後再次部署 |
 
+## ChatGPT增效模組
+
+| 症狀 | 嘗試什麼 |
+|---------|-------------|
+| 外掛程式未出現 | 啟用開發人員模式、開啟[chatgpt.com/plugins](https://chatgpt.com/plugins)、驗證外掛程式是否存在，並選取&#x200B;**連線** |
+| 外掛程式建立失敗 | 確認開發人員模式已啟用，從&#x200B;**測試應用程式**&#x200B;再次複製MCP伺服器URL，並使用&#x200B;**伺服器URL**&#x200B;搭配&#x200B;**無驗證** |
+| 外掛程式會連線，但無法叫用動作 | 確認外掛程式已附加至聊天、動作已公開至模型，且已部署最新版本 |
+| 外掛程式使用錯誤的環境 | 使用預期的階段或生產MCP伺服器URL編輯或重新建立外掛程式 |
+
+如果問題持續發生，在聯絡Beta團隊之前，先記錄應用程式名稱、環境、失敗的步驟、時間以及顯示的錯誤訊息。 請勿包含機密或敏感的客戶資料。

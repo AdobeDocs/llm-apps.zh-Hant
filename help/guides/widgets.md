@@ -1,15 +1,15 @@
 ---
-title: 設定Widget (EDS)
-description: 瞭解如何設定Edge Delivery Services Widget專案，以及實作區塊合約，以在LLM平台內呈現視覺回應。
-source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
+title: 自訂產生的EDS Widget
+description: 瞭解並自訂Adobe LLM應用程式自動建立的Edge Delivery Services Widget。
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '1226'
-ht-degree: 1%
+source-wordcount: '646'
+ht-degree: 0%
 
 ---
 
 
-# 設定Widget (EDS)
+# 自訂產生的Widget {#customize-generated-widget}
 
 >[!IMPORTANT]
 >
@@ -17,290 +17,183 @@ ht-degree: 1%
 >
 >此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
-本指南說明如何建立端對端的EDS Widget：從在[!DNL LLM Apps] UI中設定您的動作，到設定您的EDS專案，再到撰寫區塊程式碼以在LLM平台中呈現您的資料。 如需高階概觀，請參閱[核心概念](/help/overview/overview.md#widgets-eds)。
+>[!NOTE]
+>
+>本指南假設您已基本熟悉Adobe Edge Delivery Services (EDS)。 如果您是EDS的新手，請先閱讀[EDS開發人員教學課程](https://www.aem.live/developer/tutorial)和[探索區塊](https://www.aem.live/docs/exploring-blocks)以瞭解基本知識（區塊、`decorate`函式和EDS專案結構），然後再自訂Widget。
 
-## [!DNL LLM Apps] SDK
+平台會為每個產生的動作建立EDS Widget。 Widget已接收動作結果、轉譯範例資料、套用主機樣式，並連結至[!DNL LLM Apps]中的動作。
 
-所有內容都以[`@adobe/llmapps-sdk`](https://www.npmjs.com/package/@adobe/llmapps-sdk) npm套件開始。 SDK是JavaScript程式庫，可支援Widget與LLM主機之間的雙向通訊通道。
+首先，測試產生的Widget。 然後自訂其資料合約、互動和視覺化設計。
 
-SDK也提供`aem-embed.js` — EDS專用的進入點，可將SDK插入標準EDS區塊管道。 當您`npm install @adobe/llmapps-sdk`時，安裝後指令碼會自動將兩個檔案複製到您的專案中：
+**歷程：**&#x200B;尋找產生的區塊→調整其資料合約→安全地自訂→在本機預覽→進行部署和測試。
 
+## 尋找產生的Widget
+
+開啟您建立應用程式時選取的EDS存放庫。 每個產生的Widget都是一個EDS區塊：
+
+```text
+blocks/
+└── <action-name>/
+    ├── <action-name>.js
+    └── <action-name>.css
 ```
+
+- JavaScript檔案會讀取動作結果並建置介面。
+- CSS檔案可控制版面、回應式行為和視覺化設計。
+- 產生的提取請求會顯示為該動作建立的精確檔案。
+
+平台也會設定Widget URL和支援的SDK檔案。 您不需要建立第二個EDS專案或重新輸入這些值，即可自訂產生的Widget。
+
+## LLM應用程式SDK如何連線Widget
+
+`@adobe/llmapps-sdk`套件會將EDS Widget連線到LLM主機。 產生的EDS存放庫包括：
+
+```text
 scripts/
-└── llm-apps/
-    ├── aem-embed.js     ← EDS widget entry point, ships with the SDK
-    └── llmapps-sdk.js   ← core SDK, loaded internally by aem-embed.js
+├── aem-embed.js
+└── llmapps-sdk.js
 ```
 
-在EDS專案中，**您絕對不會在區塊代碼中直接使用SDK。** `aem-embed.js`會建立和管理SDK連線，並將完全連線的`LLMApp`執行個體傳遞至您的區塊，做為`decorate(block, bridge)`中的`bridge`引數。 `bridge`上有完整的SDK API可用 — 不需要匯入。
-
-如果您正在建立不含EDS **（標準套件組合器或TypeScript專案）的Widget**，可以直接使用SDK：
+`aem-embed.js`建立主機連線、載入EDS頁面，並呼叫您的區塊：
 
 ```javascript
-import { LLMApp } from '@adobe/llmapps-sdk';
-
-const app = new LLMApp({ appInfo: { name: 'MyWidget', version: '1.0.0' } });
-await app.connect();
-
-const { structuredContent } = await app.toolResult;
-```
-
-## 整合方式
-
-當AI呼叫您的動作且處理常式傳回`structuredContent`時，LLM平台會在交談中呈現互動式Widget。 三件事讓此共同運作：
-
-**[!DNL LLM Apps] UI** — 當您建立動作時，請在Widget中繼資料標籤中輸入&#x200B;**[!UICONTROL 指令碼URL]**&#x200B;和&#x200B;**[!UICONTROL Widget URL]**。 指令碼URL指向`aem-embed.js` — SDK隨附的檔案，且位於`scripts/llm-apps/aem-embed.js`的EDS存放庫中。 這會告訴LLM平台叫用動作時要載入的指令碼。
-
-**`aem-embed.js`** — LLM平台將此指令碼載入沙箱Widget表面。 `aem-embed.js`是自訂HTML元素(`<aem-embed>`)，可作為您的Widget的EDS感知進入點。 它會使用SDK與LLM主機執行交握、隱藏正常的EDS頁面管道（無頁首/頁尾）、從Widget URL擷取您的EDS頁面內容、執行EDS區塊管道，並將即時`bridge`物件傳送至每個區塊的`decorate()`函式。
-
-**您的區塊代碼** — 您編寫了匯出`decorate(block, bridge)`函式的標準EDS區塊。 `bridge`是連線的SDK執行個體 — 它為您提供動作的結構化結果，並讓您傳回訊息至交談。
-
-## 新增至現有的EDS專案
-
-如果您已有EDS專案，則只有兩個步驟才能開始寫入區塊。
-
-1. 安裝`@adobe/llmapps-sdk`。 安裝後指令碼將`aem-embed.js`和`llmapps-sdk.js`複製到`scripts/llm-apps/`：
-
-   ```bash
-   npm install @adobe/llmapps-sdk
-   ```
-
-2. 設定CORS標頭，讓LLM平台可以跨原始載入您的Widget頁面和指令碼 — 請參閱下方的[設定CORS標頭](#configure-cors-headers)。
-
-然後依照[`decorate(block, bridge)`合約](#the-decorateblock-bridge-contract)建立您的區塊、編寫Widget頁面，並在「建立動作」對話方塊中輸入URL。
-
-## 設定新的EDS專案
-
-### 建立存放庫
-
-1. 根據[AEM範本](https://github.com/adobe/aem-boilerplate)範本建立新的[!DNL GitHub]存放庫。
-2. 將[AEM程式碼同步GitHub應用程式](https://github.com/apps/aem-code-sync)新增至存放庫。
-3. 安裝本機開發的AEM CLI： `npm install -g @adobe/aem-cli`。
-4. 安裝`@adobe/llmapps-sdk`。 安裝後指令碼將`aem-embed.js`和`llmapps-sdk.js`複製到`scripts/llm-apps/`：
-
-   ```bash
-   npm install @adobe/llmapps-sdk
-   ```
-
-如需EDS專案的完整指南，請參閱[AEM開發人員教學課程](https://www.aem.live/developer/tutorial)和[專案剖析](https://www.aem.live/developer/anatomy-of-a-project)。
-
-設定後，您的EDS網站將可在此取得：
-
-- **預覽：**`https://main--<repo>--<owner>.aem.page/`
-- **即時：**`https://main--<repo>--<owner>.aem.live/`
-
-### 存放庫結構
-
-```
-my-brand-eds/
-├── scripts/
-│   ├── llm-apps/
-│   │   ├── aem-embed.js           # Widget entry point — copied by post-install
-│   │   └── llmapps-sdk.js         # Core SDK — copied by post-install
-│   ├── aem.js                     # AEM core library
-│   └── scripts.js                 # Site-level decoration and loading
-├── blocks/
-│   └── search-products/           # One folder per widget block
-│       ├── search-products.js
-│       └── search-products.css
-├── styles/
-│   └── styles.css
-├── head.html
-└── package.json
-```
-
-### 設定CORS標頭
-
-您的EDS Widget頁面會由LLM平台載入沙箱Widget表面中。 EDS網站必須傳回正確的`access-control-allow-origin`標頭，主機才能跨來源擷取您的Widget內容。
-
-標頭是透過`admin.hlx.page`的AEM管理面板使用[設定服務](https://aem.live/docs/config-service-setup)設定的。 為您的Widget頁面和SDK指令碼上線的路徑新增自訂回應標題：
-
-```json
-{
-  "/<your-widget-pages-path>/**": [
-    { "key": "access-control-allow-origin", "value": "*" }
-  ],
-  "/scripts/**": [
-    { "key": "access-control-allow-origin", "value": "*" }
-  ]
+export default async function decorate(block, bridge) {
+  // Customize the widget here.
 }
 ```
 
->[!NOTE]
->
->使用`*`作為原始值對於`.aem.live`網域上的公用Widget內容是可接受的。 如果您的網站包含受保護的內容，請將來源限製為特定網域。
+您不會匯入區塊中的SDK。 已自動提供連線的`bridge`。 它可讓介面工具集：
 
-### 建立Widget頁面
+- 讀取含有`bridge.toolResult`的處理常式結果。
+- 使用`bridge.applyHostStyles()`套用主機樣式。
+- 繼續與`bridge.sendMessage()`的交談。
+- 使用`bridge.callTool()`叫用另一個動作。
+- 保持其大小與`bridge.autoResize()`同步。
 
-在您的EDS編寫工具中建立頁面，並將您的區塊新增到其中。 頁面URL會變成您在動作中設定的&#x200B;**[!UICONTROL Widget URL]** — 這是動作和區塊之間的唯一連線。 您的區塊與動作名稱之間沒有命名需求。
+本指南說明常見的橋接器方法。 如需完整API，請參閱[`@adobe/llmapps-sdk`套件](https://www.npmjs.com/package/@adobe/llmapps-sdk)。
 
-![EDS編寫 — 區塊已新增至Widget頁面](/help/assets/guide-widget/aem-author.png)
+## 瞭解資料合約
 
-### 在建立動作對話方塊中輸入URL
-
-設定EDS存放庫後，在建立動作時移至&#x200B;**Widget中繼資料→範本URL**：
-
-**[!UICONTROL 指令碼URL]** — 指向您EDS存放庫中的`aem-embed.js`。 對於相同EDS專案中的每個動作，這是相同的值：
-
-```
-https://main--<repo>--<owner>.aem.live/scripts/llm-apps/aem-embed.js
-```
-
-**[!UICONTROL Widget URL]** — 您為此Widget建立之EDS頁面的URL。 每個動作不重複：
-
-```
-https://main--<repo>--<owner>.aem.live/<path-to-your-widget-page>
-```
-
-LLM平台從指令碼URL載入`aem-embed.js`。 然後`aem-embed.js`會從Widget URL擷取`.plain.html`以取得您的區塊內容。
-
-## 資料流程
-
-從您的處理常式到轉譯Widget的完整路徑：
-
-1. **動作處理常式**&#x200B;傳回`structuredContent`：
+動作處理常式傳回`structuredContent`，區塊從`bridge.toolResult`讀取它。
 
 ```javascript
-// actions/search-products/index.js
+// Handler result
 return {
-  structuredContent: {
-    products: [
-      { id: 'COF-001', name: 'Single Origin Ethiopian Coffee', price: '$18', rating: 4.7 },
-      { id: 'COF-002', name: 'Colombia Huila Natural', price: '$22', rating: 4.5 },
-    ],
-    total: 2,
-    category: 'coffee'
-  }
+  content: [{ type: 'text', text: `Found ${products.length} products.` }],
+  structuredContent: { products, total: products.length }
 };
 ```
 
-1. **LLM平台**&#x200B;會開啟Widget介面，並從指令碼URL載入`aem-embed.js`。
-
-1. **`aem-embed.js`**&#x200B;透過SDK連線至主機、從Widget URL擷取`.plain.html`、執行EDS區塊管道，以及在您的區塊上呼叫`decorate(block, bridge)`。
-
-1. **您的區塊**&#x200B;會從`bridge.toolResult`讀取資料並轉譯UI。
-
-1. **使用者互動**&#x200B;會觸發`bridge.sendMessage(...)`或`bridge.callTool(...)`，傳送後續資訊到交談中。
-
-## `decorate(block, bridge)`合約
-
-每個EDS Widget區塊都應該匯出預設的`decorate`函式。 這是標準EDS區塊簽章，以第二個引數擴充 — 連線的`bridge`，也就是具有完整API可用的[`LLMApp`](https://www.npmjs.com/package/@adobe/llmapps-sdk) SDK執行個體：
-
 ```javascript
+// EDS block
 export default async function decorate(block, bridge) {
-  // ...
+  const result = bridge ? await bridge.toolResult : null;
+  const products = result?.structuredContent?.products ?? [];
+  // Render products.
 }
 ```
 
-只有在LLM平台Widget表面內執行時，`bridge`才會出現。 請一律保護您的橋接呼叫，這樣當您的區塊直接在瀏覽器或本機開發伺服器中預覽時，也會轉譯。
+當您變更`structuredContent`時，請一併更新處理常式和Widget。 請參閱[自訂產生的處理常式](/help/guides/customize-handler.md)，以取得完整的傳回合約。
 
-### 從動作結果轉譯資料
+## 安全地呈現外部資料
 
-`bridge.toolResult`是Promise，會以您的處理常式傳回的完整結果解析，包括`structuredContent`。
+將處理常式輸出視為不受信任的資料。 偏好使用`textContent`之類的DOM API，而非將回應值插入`innerHTML`。
 
 ```javascript
-const SAMPLE_PRODUCTS = [
-  { id: 'COF-001', name: 'Single Origin Ethiopian Coffee', price: '$18', rating: 4.7 },
-];
+function createProductCard(product, bridge) {
+  const card = document.createElement('article');
+  card.className = 'product-card';
 
-export default async function decorate(block, bridge) {
-  let products = SAMPLE_PRODUCTS;
+  const title = document.createElement('h3');
+  title.textContent = String(product.name ?? 'Product');
 
-  if (bridge) {
-    const result = await bridge.toolResult;
-    products = result?.structuredContent?.products ?? [];
-  }
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.textContent = 'Tell me more';
+  button.addEventListener('click', () => {
+    if (bridge && product.id) {
+      bridge.sendMessage(`Show me details for product ${String(product.id)}`);
+    }
+  });
 
-  block.innerHTML = products.map(p => `
-    <div class="product-card">
-      <h3>${p.name}</h3>
-      <p class="price">${p.price}</p>
-      <button data-id="${p.id}">Tell me more</button>
-    </div>
-  `).join('');
+  card.append(title, button);
+  return card;
 }
 ```
 
-### 套用主機主題
+將URL指派給`href`或`src`之前，請先驗證URL，並僅允許體驗所需的通訊協定。
 
-在`decorate`中及早呼叫`bridge.applyHostStyles()`，將主機的CSS變數和字型（淺色/深色主題、印刷樣式）插入Widget。 這可讓您的Widget視覺上與周圍的LLM平台UI保持一致。
+## 使用主機橋接器
 
-```javascript
-export default async function decorate(block, bridge) {
-  if (bridge) {
-    bridge.applyHostStyles();
-  }
-  // ...
-}
-```
+EDS將連線的橋接器傳遞至`decorate(block, bridge)`。 保護橋接器呼叫，以便在直接EDS預覽期間也呈現區塊。
 
-在執行階段對主題變更做出反應（例如，當使用者在淺色和深色模式之間切換時）：
+### 套用主機樣式
 
 ```javascript
 if (bridge) {
-  bridge.onContextChange(ctx => {
-    block.dataset.theme = ctx.theme; // 'light' | 'dark'
-  });
+  bridge.applyHostStyles();
 }
 ```
+
+這會套用主機印刷樣式和主題變數。 您的Widget CSS應同時支援淺色和深色主機主題。
 
 ### 傳送後續追蹤訊息
 
-`bridge.sendMessage(text)`將使用者訊息插入交談中。 這是Widget觸發進一步AI互動的主要方式，例如，當使用者按一下產品卡詢問詳細資訊時。
+```javascript
+await bridge.sendMessage('Show me similar products.');
+```
+
+當互動應繼續交談時，請使用`sendMessage`。
+
+### 呼叫其他動作
 
 ```javascript
-block.querySelectorAll('button[data-id]').forEach(btn => {
-  btn.addEventListener('click', () => {
-    bridge.sendMessage(`Show me details for product ${btn.dataset.id}`);
-  });
+const result = await bridge.callTool('get-product-details', {
+  id: product.id
 });
 ```
 
-### 直接呼叫另一個動作
+針對需要其他動作結果的明確互動，請使用`callTool`。 僅傳遞驗證的值並處理失敗，而不會公開內部詳細資訊。
 
-`bridge.callTool(name, args)`會從Widget內叫用另一個動作，而不需檢視使用者訊息。 用於隨選載入相關資料。
-
-```javascript
-btn.addEventListener('click', async () => {
-  const result = await bridge.callTool('get-product-details', { id: product.id });
-  renderDetails(result.structuredContent);
-});
-```
-
-### 自動調整Widget大小
-
-LLM平台會根據您報告的內容調整介面工具集的大小。 使用`bridge.autoResize(element)`可讓您在內容變更時保持Widget高度同步 — 它在內部使用`ResizeObserver`。 在初始轉譯後呼叫它：
+### 保持Widget大小同步
 
 ```javascript
-export default async function decorate(block, bridge) {
-  // ... render content ...
-
-  if (bridge) {
-    bridge.autoResize(block);
-  }
+if (bridge) {
+  bridge.autoResize(block);
 }
 ```
 
-或手動報告固定大小：
+在初始轉譯後呼叫`autoResize`，讓主機可以回應內容變更。
 
-```javascript
-bridge.reportSize(block.offsetWidth, block.offsetHeight);
-```
+## 預覽您的變更
 
-### 預覽模式和本機開發
+產生的區塊應包含範例資料，以便在`bridge`無法使用時直接預覽。
 
-直接在瀏覽器或本機開發伺服器上預覽EDS頁面時，`bridge`是`undefined`。 使用上述範例資料遞補模式，讓您的區塊立即呈現，而不需要即時處理常式。
-
-若要啟動本機開發伺服器：
+若要在本機預覽EDS專案：
 
 ```bash
 npm install -g @adobe/aem-cli
 aem up
 ```
 
-這會開啟`http://localhost:3000`，您可在此導覽至您的Widget頁面，並檢視使用範例資料呈現的區塊。 封鎖JS和CSS的變更會立即反映出來。
+在`http://localhost:3000`開啟產生的Widget頁面。 驗證：
 
-## 後續步驟
+- 空白、載入、成功和錯誤狀態。
+- 長文字和缺少選用欄位。
+- 鍵盤導覽和顯示焦點。
+- 淺色和深色主題。
+- 窄而寬的版面。
 
-- [指南：撰寫動作處理常式](/help/guides/write-action-handler.md)
+然後將應用程式部署到暫存環境，並在LLM平台中使用即時`structuredContent`進行測試。
 
+## 發佈自訂
+
+1. 認可並推播EDS變更。
+2. 如果您變更了資料形狀，請認可並推播相符的處理常式變更。
+3. 將應用程式部署至測試環境。
+4. 在[!DNL ChatGPT]中測試動作和Widget。
+5. 將驗證的版本升級至生產環境。
+
+## 其他EDS設定
+
+如果您未自動建置應用程式或想要整合現有的EDS網站，請參閱[自備EDS專案](/help/guides/bring-your-own-eds.md)。

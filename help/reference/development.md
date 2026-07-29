@@ -1,15 +1,15 @@
 ---
-title: 適用於Adobe LLM應用程式的開發
-description: Adobe LLM應用程式處理常式程式碼的專案結構、本機開發工作流程和測試設定。
-source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
+title: 本機處理常式開發與測試
+description: Adobe LLM應用程式的處理常式專案結構、本機伺服器命令、MCP測試和單元測試。
+source-git-commit: eec74b87457bc852d7a8dd0e46c2a4385a93ae0a
 workflow-type: tm+mt
-source-wordcount: '324'
-ht-degree: 4%
+source-wordcount: '280'
+ht-degree: 1%
 
 ---
 
 
-# 開發 {#development}
+# 本機處理常式開發與測試 {#development}
 
 >[!IMPORTANT]
 >
@@ -17,7 +17,13 @@ ht-degree: 4%
 >
 >此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
-本節涵蓋[!DNL Adobe LLM Apps]的處理常式專案結構、本機開發工作流程和測試設定。 如需處理常式合約和範常式式碼，請參閱[撰寫動作處理常式](/help/guides/write-action-handler.md)。
+在本機開發處理常式時，請使用此參考。 如需處理常式結果合約，請參閱[自訂產生的處理常式](/help/guides/customize-handler.md)。
+
+## 要求
+
+- Node.js 24或更新版本。
+- npm.
+- 連結的處理常式存放庫的本機複製。
 
 ## 專案結構
 
@@ -27,15 +33,11 @@ ht-degree: 4%
 your-llm-app/
 ├── entry.js                   # Webpack entry — do not modify
 ├── actions/                   # One folder per action
-│   ├── search-products/
-│   │   └── index.js           # Handler (async function)
-│   ├── get-product-details/
-│   │   └── index.js
 │   └── echo/
-│       └── index.js
+│       └── index.js           # Example handler
 ├── test/
 │   ├── actions/
-│   │   └── search-products.test.js
+│   │   └── echo.test.js
 │   ├── fixtures/
 │   │   └── actions.json
 │   ├── html-transform.js
@@ -43,7 +45,7 @@ your-llm-app/
 │   └── server.test.js
 ├── server/
 │   └── local.js               # Local dev server (port 9080)
-├── actions.json               # Gitignored — local copy of UI metadata
+├── actions.json               # Gitignored — optional local metadata
 ├── app.config.yaml            # Adobe I/O Runtime config
 ├── webpack.config.js
 └── package.json
@@ -52,7 +54,7 @@ your-llm-app/
 要點：
 
 - **`entry.js`**&#x200B;是webpack進入點。 在建置時，它會發現每個`actions/*/index.js`檔案，並將它們整合到單一`dist/index.js`中。 請勿修改。
-- **`actions.json`**&#x200B;已授權。 從UI的「動作」頁面下載，以進行本機開發。 對於部署，管道會自動從API寫入它。
+- **`actions.json`**&#x200B;已授權。 部署管道會自動從[!DNL LLM Apps]中的動作中繼資料寫入它。
 - **測試**&#x200B;在`test/actions/`下存放，**不在`actions/`內**。 Webpack將`actions/`底下的所有專案整合到已部署的成品中 — 共同定位測試會將它們傳送到[!DNL Adobe I/O Runtime]。
 
 ## 本機開發
@@ -66,11 +68,11 @@ npm run dev:local
 
 這會使用webpack建置專案，並在`http://localhost:9080`上啟動純Node.js HTTP伺服器。 伺服器會在`actions/`下自動發現您的處理常式檔案，並將它們註冊為MCP工具。
 
-### 下載`actions.json`
+### 本機中繼資料行為
 
-若要讓本機伺服器知道您的動作中繼資料（名稱、說明、輸入結構描述），請從[!DNL LLM Apps] UI的[動作]頁面下載`actions.json`，並將其放在存放庫根目錄。 如果沒有它，伺服器會探索您的處理常式，但使用最少的中繼資料註冊它們。
+目前的UI不提供`actions.json`下載。 您可以在不使用此檔案的情況下執行本機伺服器；它會在`actions/`下探索處理常式，並以最少的中繼資料進行註冊。
 
-您也可以複製`actions.example.json`至`actions.json`作為起點。
+如果沒有`actions.json`，本機動作引數將不會針對UI輸入結構描述進行驗證。 單位和整合測試使用`test/fixtures/actions.json`作為代表性中繼資料。
 
 ### 使用curl測試
 
@@ -81,11 +83,11 @@ curl -sX POST "http://localhost:9080" \
   -H 'accept: application/json;q=1.0, text/event-stream;q=0.5' \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/list","params":{}}'
 
-# Call the search-products action
+# Call the boilerplate echo action
 curl -sX POST "http://localhost:9080" \
   -H 'content-type: application/json' \
   -H 'accept: application/json;q=1.0, text/event-stream;q=0.5' \
-  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"search-products","arguments":{"category":"bagged-coffee"}}}'
+  -d '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"echo","arguments":{"message":"hello"}}}'
 ```
 
 ### 使用MCP檢查器測試
@@ -101,30 +103,17 @@ npx @modelcontextprotocol/inspector
 處理常式單元測試在`test/actions/`下存放，並反映`actions/`配置：
 
 ```javascript
-// test/actions/search-products.test.js
-const handler = require('../../actions/search-products/index.js')
+// test/actions/echo.test.js
+const handler = require('../../actions/echo/index.js')
 
-test('returns all products when no filter is given', async () => {
+test('echoes the message', async () => {
+  const result = await handler({ message: 'hello' })
+  expect(result.content[0].text).toBe('Echo: hello')
+})
+
+test('always returns content parts', async () => {
   const result = await handler({})
-  expect(result.content[0].text).toContain('product')
-  expect(result.structuredContent.products.length).toBeGreaterThan(0)
-})
-
-test('filters by category', async () => {
-  const result = await handler({ category: 'bagged-coffee' })
-  expect(result.structuredContent.products.every(
-    (p) => p.category === 'bagged-coffee'
-  )).toBe(true)
-})
-
-test('filters by query', async () => {
-  const result = await handler({ query: 'dark-roast' })
-  expect(result.structuredContent.products.length).toBeGreaterThan(0)
-})
-
-test('returns empty result for unknown category', async () => {
-  const result = await handler({ category: 'nonexistent' })
-  expect(result.structuredContent.products).toHaveLength(0)
+  expect(Array.isArray(result.content)).toBe(true)
 })
 ```
 
@@ -132,20 +121,8 @@ test('returns empty result for unknown category', async () => {
 
 ```bash
 npm test                                      # all tests
-npx jest test/actions/search-products        # one action only
+npx jest test/actions/echo                   # one action only
 ```
 
-## 部署
-
-您不會手動建立或部署。 如需部署管道的完整逐步說明，請參閱[部署您的應用程式](/help/guides/deploy-your-app.md)。
-
-您的日常工作流程為：
-
-| 步驟 | 動作 |
-|------|--------|
-| &#x200B;1. 寫入或編輯處理常式 | `actions/<name>/index.js` |
-| &#x200B;2. 下載中繼資料 | 動作頁面→ **下載動作.json** |
-| &#x200B;3. 本機測試 | `npm run dev:local` |
-| &#x200B;4. 推送程式碼 | `git push` |
-| &#x200B;5. 部署 | **[!UICONTROL 部署]**→應用程式詳細資料頁面 |
+本機測試通過後，推送變更並遵循[部署變更](/help/guides/deploy-your-app.md)。
 
