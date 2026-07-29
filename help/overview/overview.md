@@ -1,9 +1,9 @@
 ---
 title: Adobe LLM應用程式概觀
 description: 瞭解什麼是Adobe LLM應用程式、其運作方式，以及您需要啟動哪些應用程式。
-source-git-commit: 8b4027d0fd73b8134a7478a5044f992e6cf03024
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '972'
+source-wordcount: '970'
 ht-degree: 1%
 
 ---
@@ -34,17 +34,13 @@ ht-degree: 1%
 
 ## 為什麼[!DNL LLM Apps]重要
 
-LLM互動與傳統搜尋截然不同。 平均[!DNL ChatGPT]工作階段的持續時間是傳統搜尋工作階段的四倍。 超過40%的消費者仰賴AI工具做出複雜的購買決策。 如果沒有[!DNL LLM Apps]，您可能會贏得提及但失去客戶。 [!DNL LLM Apps]可確保您的品牌不僅可見，而且可在使用者準備要決定的確切時刻操作。
+LLM互動與傳統搜尋截然不同。 平均LLM工作階段的長度是傳統搜尋工作階段的四倍。 超過40%的消費者仰賴AI工具做出複雜的購買決策。 如果沒有[!DNL LLM Apps]，您可能會贏得提及但失去客戶。 [!DNL LLM Apps]可確保您的品牌不僅可見，而且可在使用者準備要決定的確切時刻操作。
 
 ## 重要概念 {#key-concepts}
 
 ### LLM應用程式
 
 您的品牌助理，使用者可在[!DNL ChatGPT]或其他LLM平台內互動。 它將您所有的動作組成群組，並以單一單元進行部署。
-
-### 入門代理程式
-
-引導式應用程式建置工作流程由&#x200B;**[!UICONTROL 自動建置我的應用程式]**&#x200B;啟動。 它會分析您的網站、建議動作，並為每個動作產生處理常式和Widget。
 
 ### 動作 {#actions}
 
@@ -133,23 +129,23 @@ LLM互動與傳統搜尋截然不同。 平均[!DNL ChatGPT]工作階段的持�
 
 ### 網站
 
-您需要公開HTTPS網站，以代表應用程式應支援的產品、服務或工作。 入門代理程式會分析此網站以建議動作並建立代表性範例資料。
+您需要公開HTTPS網站，以代表應用程式應支援的產品、服務或工作。 該平台會分析此網站，以建議動作並建立代表性範例資料。
 
 請勿使用公開機密或存取控制資訊的網站。
 
-### [!DNL ChatGPT]以進行測試
+### [!DNL ChatGPT]或[!DNL Claude]以進行測試
 
-若要完成快速入門教學課程，請使用支援的[!DNL ChatGPT]計畫並啟用開發人員模式。 Workspace管理員可以限制存取權。 檢視ChatGPT中的[測試](/help/guides/test-in-chatgpt.md#plan-requirements)。
+若要完成快速入門教學課程，請使用已啟用開發人員模式的支援[!DNL ChatGPT]計畫，或已啟用自訂聯結器的支援[!DNL Claude]計畫。 Workspace或組織管理員可限制存取權。 檢視ChatGPT中的[測試](/help/guides/test-in-chatgpt.md#plan-requirements)或Claude中的[測試](/help/guides/test-in-claude.md#plan-requirements)。
 
 ## 選擇您的歷程 {#choose-your-journey}
 
 ### &#x200B;1. 建置並啟動您的第一個應用程式
 
-從[建置並啟動您的第一個應用程式](/help/guides/create-app.md)開始。 此歷程從兩個空的存放庫開始，以測試為[!DNL ChatGPT]外掛程式的生產就緒應用程式結束。
+從[建置並啟動您的第一個應用程式](/help/guides/create-app.md)開始。 此歷程從兩個空白存放庫開始，並以在受支援的LLM平台（例如[!DNL ChatGPT]）中作為外掛程式測試的生產就緒應用程式結束。
 
 ### &#x200B;2. 自訂產生的應用程式
 
-當上線代理程式建立應用程式且您想要取代範例行為時，請選擇此歷程：
+當平台自動建立應用程式且您想要取代範例行為時，請選擇此歷程：
 
 1. [自訂產生的處理常式](/help/guides/customize-handler.md)以連線您的API並定義每個動作傳回的資料。
 2. [自訂產生的Widget](/help/guides/widgets.md)以使用該資料，並套用您的互動和設計。
@@ -160,7 +156,7 @@ LLM互動與傳統搜尋截然不同。 平均[!DNL ChatGPT]工作階段的持�
 
 ### &#x200B;4. 連線現有的EDS專案
 
-若您已有EDS網站或未使用入門代理程式，請選擇[連線現有的EDS專案](/help/guides/bring-your-own-eds.md)。
+當您已經有EDS網站或未自動建立應用程式時，請選擇[連線現有的EDS專案](/help/guides/bring-your-own-eds.md)。
 
-每個歷程都使用共用的[部署](/help/guides/deploy-your-app.md)和[ChatGPT外掛程式測試](/help/guides/test-in-chatgpt.md)步驟。
+每個歷程都使用共用的[部署](/help/guides/deploy-your-app.md)步驟，然後[ChatGPT外掛程式測試](/help/guides/test-in-chatgpt.md)或[Claude聯結器測試](/help/guides/test-in-claude.md)。
 

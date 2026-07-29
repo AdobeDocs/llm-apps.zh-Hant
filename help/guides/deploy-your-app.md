@@ -1,9 +1,9 @@
 ---
 title: 部署您的應用程式
 description: 瞭解如何使用LLM應用程式UI將您的Adobe LLM應用程式部署到測試環境和生產環境。
-source-git-commit: eec74b87457bc852d7a8dd0e46c2a4385a93ae0a
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '309'
+source-wordcount: '322'
 ht-degree: 0%
 
 ---
@@ -19,11 +19,11 @@ ht-degree: 0%
 
 撰寫處理常式程式碼並將其推送至連結的存放庫後，您就可以從[!DNL LLM Apps] UI部署應用程式。
 
-這是每個歷程的共用步驟。 部署後，繼續[測試ChatGPT外掛程式](/help/guides/test-in-chatgpt.md)。
+這是每個歷程的共用步驟。 部署後，繼續[測試ChatGPT外掛程式](/help/guides/test-in-chatgpt.md)或[測試Claude聯結器](/help/guides/test-in-claude.md)。
 
 ## 開始部署
 
-開啟[應用程式詳細資料]頁面，並選取[部署]。**&#x200B;**
+開啟[應用程式詳細資料]頁面，並選取[部署]。****
 
 選取目標環境，然後選取&#x200B;**[!UICONTROL 部署]**。
 
@@ -58,10 +58,11 @@ ht-degree: 0%
 
 ![部署歷史記錄](/help/assets/guide-deploy/deployment-history.png)
 
-每一列會顯示目標&#x200B;**環境** （中繼或生產）、**狀態** （成功或失敗）以及&#x200B;**部署於**&#x200B;日期。 您可以使用此表格來追蹤部署的發生時間，並驗證
+每一列會顯示目標&#x200B;**環境** （中繼或生產）、**狀態** （成功或失敗）以及&#x200B;**部署於**日期。 您可以使用此表格來追蹤部署的發生時間，並驗證
 最新部署成功。
 
 ## 下一步
 
-[將部署的應用程式測試為ChatGPT外掛程式](/help/guides/test-in-chatgpt.md)。
+- [將部署的應用程式測試為ChatGPT外掛程式](/help/guides/test-in-chatgpt.md)。
+- [將部署的應用程式測試為Claude聯結器](/help/guides/test-in-claude.md)。
 

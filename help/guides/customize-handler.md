@@ -1,9 +1,9 @@
 ---
 title: 自訂產生的動作處理常式
 description: 瞭解Adobe LLM應用程式處理常式合約、取代產生的範例資料，並讓處理常式輸出符合其Widget。
-source-git-commit: eec74b87457bc852d7a8dd0e46c2a4385a93ae0a
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '542'
+source-wordcount: '541'
 ht-degree: 0%
 
 ---
@@ -17,7 +17,7 @@ ht-degree: 0%
 >
 >此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
-入門代理程式會為每個產生的動作建立工作處理常式。 處理常式一開始會傳回範例資料，讓您測試完整的體驗。
+平台會為每個產生的動作建立工作處理常式。 處理常式一開始會傳回範例資料，讓您測試完整的體驗。
 
 使用本指南瞭解處理常式合約，並將範例資料取代為API或資料來源。
 

@@ -1,5 +1,5 @@
 ---
-source-git-commit: eec74b87457bc852d7a8dd0e46c2a4385a93ae0a
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
 source-wordcount: '398'
 ht-degree: 0%
@@ -39,7 +39,7 @@ Source檔案名稱不需要符合最終檔案名稱。 技能會根據可見的U
 
 - 狀態：上線時的動作頁面為作用中。
 - 包括：進度訊息和產生步驟。
-- 替代文字： `Actions — Onboarding Agent generating recommendations`
+- 替代文字： `Actions — generating recommendations`
 
 ### `actions-ready-for-review.png`
 
@@ -103,7 +103,7 @@ Source檔案名稱不需要符合最終檔案名稱。 技能會根據可見的U
 ### `chatgpt-plugin-connect.png`
 
 - 狀態：建立外掛程式後確認。
-- 包含： **新增 <plugin> 至ChatGPT &#x200B;** 和**&#x200B;連線&#x200B;**。
+- 包含： **新增 <plugin> 至ChatGPT **和**&#x200B;連線&#x200B;**。
 - 遮罩：瀏覽器URL和聯結器識別碼。
 - 替代文字： `ChatGPT — connect the new plugin`
 

@@ -1,7 +1,7 @@
 ---
-source-git-commit: eec74b87457bc852d7a8dd0e46c2a4385a93ae0a
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '695'
+source-wordcount: '696'
 ht-degree: 0%
 
 ---
@@ -76,7 +76,7 @@ EDS repo: llm-apps-docs-<YYYYMMDD>-eds
 1. 在GitHub連線之前建立應用程式。
 2. GitHub應用程式存放庫存取權選取專案。
 3. **自動建立我的應用程式**，並選取兩個存放庫。
-4. 應用程式建立或入門代理程式啟動。
+4. 應用程式建立或自動應用程式建置啟動。
 5. 正在產生動作。
 6. 產生的動作已準備好審查。
 7. 一個代表動作的中繼資料、處理常式和Widget。

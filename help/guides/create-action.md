@@ -1,9 +1,9 @@
 ---
 title: 從頭開始建立動作
 description: 定義動作中繼資料、實作其處理常式、連線EDS Widget、測試它，以及使用Adobe LLM應用程式進行部署。
-source-git-commit: 4c259a4587c0a84bb634a9a56c043dfe1cfc31fb
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '1141'
+source-wordcount: '1137'
 ht-degree: 0%
 
 ---
@@ -21,11 +21,11 @@ ht-degree: 0%
 >
 >本指南假設您已基本熟悉Adobe Edge Delivery Services (EDS)。 如果您是EDS的新手，請先閱讀[EDS開發人員教學課程](https://www.aem.live/developer/tutorial)和[探索區塊](https://www.aem.live/docs/exploring-blocks)以瞭解基本知識（區塊、`decorate`函式和EDS專案結構），然後再連線Widget。
 
-使用本指南新增上線代理程式未建立的功能。 您將在[!DNL LLM Apps]中定義動作、在連結的存放庫中寫入其處理常式、視需要新增Widget、測試並部署它。
+使用本指南新增平台未建立的功能。 您將在[!DNL LLM Apps]中定義動作、在連結的存放庫中寫入其處理常式、視需要新增Widget、測試並部署它。
 
 **歷程：**&#x200B;規劃動作→建立其中繼資料，→寫入處理常式→連線Widget→在本機測試→部署並測試外掛程式。
 
-對於您的第一個應用程式，從[使用上線代理程式建立您的第一個應用程式](/help/guides/create-app.md)開始。
+針對您的第一個應用程式，從[自動建立您的第一個應用程式](/help/guides/create-app.md)開始。
 
 ## 開始之前
 

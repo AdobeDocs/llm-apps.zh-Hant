@@ -1,15 +1,15 @@
 ---
-title: 使用入門代理程式建立您的第一個LLM應用程式
-description: 從您的網站建立Adobe LLM應用程式、檢閱產生的動作、將其部署，並在ChatGPT中測試。
-source-git-commit: b9242903f930aa1770a999a2665e1e80d64d56b6
+title: 自動建立您的第一個LLM應用程式
+description: 從您的網站建立Adobe LLM應用程式、檢閱產生的動作、將其部署，並在支援的LLM平台（例如ChatGPT）中進行測試。
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '1219'
+source-wordcount: '1217'
 ht-degree: 0%
 
 ---
 
 
-# 使用入門代理程式建立您的第一個應用程式 {#create-first-app}
+# 自動建立您的第一個應用程式 {#create-first-app}
 
 >[!IMPORTANT]
 >
@@ -17,9 +17,9 @@ ht-degree: 0%
 >
 >此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
-入門代理程式可將您的網站轉換為運作中的應用程式支架。 它會建議動作、寫入處理常式程式碼和測試、建立EDS Widget，並將產生的檔案傳送到您擁有的兩個[!DNL GitHub]存放庫。
+平台可將您的網站轉換為運作中的應用程式支架。 它會建議動作、寫入處理常式程式碼和測試、建立EDS Widget，並將產生的檔案傳送到您擁有的兩個[!DNL GitHub]存放庫。
 
-產生約需15分鐘。 在本教學課程結束時，您將會有部署的應用程式，可以在[!DNL ChatGPT]中測試。
+產生約需15分鐘。 在本教學課程結束時，您將會有已部署的應用程式，您可以在支援的LLM平台（例如[!DNL ChatGPT]）中進行測試。
 
 **歷程：**&#x200B;確認建立兩個存放庫→建立應用程式→檢閱產生的動作→部署→中繼環境→測試外掛程式→連線生產系統的需求。
 
@@ -31,14 +31,14 @@ ht-degree: 0%
 
 ## 建立兩個空白的存放庫
 
-入門代理程式需要兩個空白的存放庫。 在相同的[!DNL GitHub]帳戶或組織下建立兩者：
+平台需要兩個空白的存放庫。 在相同的[!DNL GitHub]帳戶或組織下建立兩者：
 
 - **處理常式存放庫** — 儲存動作處理常式與測試。 例如，`my-brand-llm-app`。
 - **EDS存放庫** — 儲存產生的Widget區塊和樣式。 例如，`my-brand-llm-app-eds`。
 
 前往每個存放庫的[github.com/new](https://github.com/new)。
 
-請勿使用README、`.gitignore`或授權初始化存放庫。 入門代理程式會準備所需的專案結構。
+請勿使用README、`.gitignore`或授權初始化存放庫。 平台會準備所需的專案結構。
 
 >[!TIP]
 >
@@ -55,7 +55,7 @@ ht-degree: 0%
    >應用程式建立後，就無法變更Analytics區域。
 
 4. 在&#x200B;**[!UICONTROL 建立我的應用程式]**&#x200B;中，選取&#x200B;**[!UICONTROL 自動建立我的應用程式]**。
-5. 在&#x200B;**[!UICONTROL 您的網站]**&#x200B;中，輸入包含`https://`通訊協定的網站URL。 入門代理程式會分析此網站，以判斷有用的動作和代表性範例結果。
+5. 在&#x200B;**[!UICONTROL 您的網站]**&#x200B;中，輸入包含`https://`通訊協定的網站URL。 平台會分析此網站，以判斷有用的動作和代表性範例結果。
 
 ![建立LLM應用程式 — 應用程式詳細資料及建置我的應用程式已啟用](/help/assets/guide-onboarding-agent/app-details-onboarding.png)
 
@@ -118,13 +118,13 @@ Adobe LLM Apps [!DNL GitHub]應用程式會提供[!DNL LLM Apps]存取您選取�
 
 3. 返回[!DNL LLM Apps]，重新整理EDS存放庫，然後再次選取&#x200B;**[!UICONTROL 建立應用程式]**。
 
-存放庫和管理員檢查通過後，[!DNL LLM Apps]會建立應用程式並啟動入門代理程式。
+存放庫和管理員檢查通過後，[!DNL LLM Apps]會建立應用程式並開始產生動作。
 
 ## 等待動作產生
 
 從左側移至&#x200B;**[!UICONTROL 動作]**&#x200B;頁面。 代理程式分析網站並產生應用程式時，「動作」頁面會顯示&#x200B;**探索您對話式體驗的動作**。 產生通常需要大約15分鐘。 您可以離開此頁面，稍後再返回。
 
-![動作 — 正在上線代理程式產生建議](/help/assets/guide-onboarding-agent/actions-generating.png)
+![動作 — 產生建議](/help/assets/guide-onboarding-agent/actions-generating.png)
 
 產生期間，[!DNL LLM Apps]：
 
@@ -180,7 +180,7 @@ Adobe LLM Apps [!DNL GitHub]應用程式會提供[!DNL LLM Apps]存取您選取�
 
 ## 在[!DNL ChatGPT]中測試
 
-請依照ChatGPT[&#128279;](/help/guides/test-in-chatgpt.md)中的測試，使用暫存MCP伺服器URL建立外掛程式。
+請依照ChatGPT](/help/guides/test-in-chatgpt.md)中的[測試，使用暫存MCP伺服器URL建立外掛程式。
 
 提出符合其中一個產生之動作的問題。 確認：
 
@@ -205,5 +205,5 @@ Adobe LLM Apps [!DNL GitHub]應用程式會提供[!DNL LLM Apps]存取您選取�
 6. **在Stage**&#x200B;中驗證 — 透過[!DNL ChatGPT]外掛程式重新部署並測試每個動作。
 7. **部署至生產環境** — 中繼測試成功後，請部署至生產環境，並使用生產MCP伺服器URL建立或更新外掛程式。
 
-若要新增上線代理程式未建立的功能，請參閱[從頭開始建立動作](/help/guides/create-action.md)。
+若要新增平台未建立的功能，請參閱[從頭開始建立動作](/help/guides/create-action.md)。
 

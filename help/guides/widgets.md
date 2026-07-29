@@ -1,9 +1,9 @@
 ---
 title: 自訂產生的EDS Widget
-description: 瞭解並自訂Adobe LLM應用程式上線代理程式建立的Edge Delivery Services Widget。
-source-git-commit: 4c259a4587c0a84bb634a9a56c043dfe1cfc31fb
+description: 瞭解並自訂Adobe LLM應用程式自動建立的Edge Delivery Services Widget。
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '650'
+source-wordcount: '646'
 ht-degree: 0%
 
 ---
@@ -21,7 +21,7 @@ ht-degree: 0%
 >
 >本指南假設您已基本熟悉Adobe Edge Delivery Services (EDS)。 如果您是EDS的新手，請先閱讀[EDS開發人員教學課程](https://www.aem.live/developer/tutorial)和[探索區塊](https://www.aem.live/docs/exploring-blocks)以瞭解基本知識（區塊、`decorate`函式和EDS專案結構），然後再自訂Widget。
 
-入門代理程式會為每個產生的動作建立EDS Widget。 Widget已接收動作結果、轉譯範例資料、套用主機樣式，並連結至[!DNL LLM Apps]中的動作。
+平台會為每個產生的動作建立EDS Widget。 Widget已接收動作結果、轉譯範例資料、套用主機樣式，並連結至[!DNL LLM Apps]中的動作。
 
 首先，測試產生的Widget。 然後自訂其資料合約、互動和視覺化設計。
 
@@ -42,7 +42,7 @@ blocks/
 - CSS檔案可控制版面、回應式行為和視覺化設計。
 - 產生的提取請求會顯示為該動作建立的精確檔案。
 
-入門代理程式也會設定Widget URL和支援的SDK檔案。 您不需要建立第二個EDS專案或重新輸入這些值，即可自訂產生的Widget。
+平台也會設定Widget URL和支援的SDK檔案。 您不需要建立第二個EDS專案或重新輸入這些值，即可自訂產生的Widget。
 
 ## LLM應用程式SDK如何連線Widget
 
@@ -196,4 +196,4 @@ aem up
 
 ## 其他EDS設定
 
-如果您未使用入門代理程式或想要整合現有的EDS網站，請參閱[自備EDS專案](/help/guides/bring-your-own-eds.md)。
+如果您未自動建置應用程式或想要整合現有的EDS網站，請參閱[自備EDS專案](/help/guides/bring-your-own-eds.md)。
