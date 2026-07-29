@@ -1,15 +1,15 @@
 ---
 title: 部署您的應用程式
 description: 瞭解如何使用LLM應用程式UI將您的Adobe LLM應用程式部署到測試環境和生產環境。
-source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
+source-git-commit: eec74b87457bc852d7a8dd0e46c2a4385a93ae0a
 workflow-type: tm+mt
-source-wordcount: '359'
+source-wordcount: '309'
 ht-degree: 0%
 
 ---
 
 
-# 部署您的應用程式
+# 部署您的應用程式 {#deploy-your-app}
 
 >[!IMPORTANT]
 >
@@ -19,26 +19,24 @@ ht-degree: 0%
 
 撰寫處理常式程式碼並將其推送至連結的存放庫後，您就可以從[!DNL LLM Apps] UI部署應用程式。
 
+這是每個歷程的共用步驟。 部署後，繼續[測試ChatGPT外掛程式](/help/guides/test-in-chatgpt.md)。
+
 ## 開始部署
 
-導覽至「應用程式詳細資料」頁面。 按一下右上角的&#x200B;**[!UICONTROL 部署]**&#x200B;按鈕：
+開啟[應用程式詳細資料]頁面，並選取[部署]。****
 
-![應用程式詳細資料 — 準備部署](/help/assets/guide-deploy/app-detail-deploy-ready.png)
+選取目標環境，然後選取&#x200B;**[!UICONTROL 部署]**。
 
-這樣會開啟部署對話方塊。 從下拉式清單中選取目標環境：
+![部署 — 選取目標環境](/help/assets/guide-onboarding-agent/deploy-stage.png)
 
-![部署對話方塊 — 選取目標環境](/help/assets/guide-deploy/deploy-pipeline-dropdown.png)
+部署會執行四個步驟：
 
-按一下&#x200B;**[!UICONTROL 部署]**&#x200B;以啟動管道。 四個步驟為：
+1. **正在準備** — 擷取部署應用程式所需的設定。
+2. **開始部署** — 開始背景部署程式。
+3. **建置應用程式** — 安裝相依性並建置最新的存放庫程式碼。
+4. **發佈** — 將應用程式發佈至[!DNL Adobe I/O Runtime]。
 
-1. **收集認證** — 讀取應用程式中繼資料、產生[!DNL GitHub]權杖，以及從主控台API擷取執行階段認證。
-2. **觸發組建管道** — 傳送所有引數到組建管道。
-3. **複製並建置** — 管道會複製您的存放庫、從UI中繼資料產生`actions.json`、執行`npm install`並執行Webpack以產生`dist/index.js`。
-4. **部署至執行階段** — 將套件組合部署至應用程式的[!DNL Adobe I/O Runtime]名稱空間。
-
-管道在啟動後會自動執行並顯示即時進度：
-
-![部署管道正在執行](/help/assets/guide-deploy/deploy-pipeline-deploying.png)
+![部署 — 部署管道正在執行](/help/assets/guide-onboarding-agent/deploy-running.png)
 
 >[!NOTE]
 >
@@ -46,20 +44,24 @@ ht-degree: 0%
 
 ## 成功部署後
 
-完成所有步驟後，對話方塊會顯示&#x200B;**部署成功**&#x200B;的確認訊息，其中包含已部署的URL和成品詳細資料：
+完成所有步驟後，對話方塊顯示&#x200B;**部署成功**。
 
-![部署成功](/help/assets/guide-deploy/app-detail-deploy-finish.png)
+![部署 — 成功部署](/help/assets/guide-onboarding-agent/deploy-successful.png)
 
 按一下&#x200B;**關閉**&#x200B;以關閉對話方塊。 向下捲動至「應用程式詳細資料」頁面上的&#x200B;**[!UICONTROL 測試應用程式]**&#x200B;區段：
 
-![測試應用程式 — 已部署的URL](/help/assets/guide-deploy/test-app-deployed.png)
+![應用程式詳細資料 — 複製MCP伺服器URL](/help/assets/guide-onboarding-agent/app-mcp-url.png)
 
-每個環境（**暫存**&#x200B;和&#x200B;**生產**）都會在[!DNL Adobe I/O Runtime]上顯示MCP伺服器URL。 這是您在註冊應用程式時提供給LLM平台的URL。 按一下&#x200B;**複製URL**&#x200B;以將其複製到剪貼簿。
+每個已部署環境都會顯示一個MCP伺服器URL。 選取「**[!UICONTROL 複製URL]**」，並使用該網址在目標LLM平台中建立外掛程式。
 
-以下&#x200B;**部署歷史記錄**&#x200B;區段會保留跨環境每個部署的完整記錄：
+**部署歷史記錄**&#x200B;區段會顯示最後10個部署：
 
 ![部署歷史記錄](/help/assets/guide-deploy/deployment-history.png)
 
-每一列會顯示目標&#x200B;**環境** （中繼或生產）、**狀態** （成功或失敗）以及&#x200B;**部署於**&#x200B;日期。 您可以使用此表格來追蹤部署的發生時間，並驗證
+每一列會顯示目標&#x200B;**環境** （中繼或生產）、**狀態** （成功或失敗）以及&#x200B;**部署於**日期。 您可以使用此表格來追蹤部署的發生時間，並驗證
 最新部署成功。
+
+## 下一步
+
+[將部署的應用程式測試為ChatGPT外掛程式](/help/guides/test-in-chatgpt.md)。
 

@@ -1,15 +1,15 @@
 ---
-title: Adobe LLM應用程式參考檔案
-description: Adobe LLM應用程式UI中動作設定的欄位層級參考。
-source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
+title: 動作和Widget欄位
+description: Adobe LLM應用程式中動作中繼資料、引數、Widget、CSP和許可權的欄位定義。
+source-git-commit: eec74b87457bc852d7a8dd0e46c2a4385a93ae0a
 workflow-type: tm+mt
-source-wordcount: '500'
-ht-degree: 6%
+source-wordcount: '606'
+ht-degree: 5%
 
 ---
 
 
-# 參考資料 {#reference-material}
+# 動作和Widget欄位 {#action-widget-configuration}
 
 >[!IMPORTANT]
 >
@@ -17,11 +17,11 @@ ht-degree: 6%
 >
 >此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
-本節提供[!DNL Adobe LLM Apps] UI中動作設定的欄位層級參考。
+使用此頁面來查閱動作編輯器中的欄位。 如需完整的建立歷程，請參閱[從頭開始建立動作](/help/guides/create-action.md)。
 
 ## 動作引數
 
-輸入引數是LLM平台([!DNL ChatGPT]、Claude)傳送給動作處理常式的值。 模型會從使用者的訊息中擷取這些欄位，並自動將其對應至這些欄位。
+輸入引數是LLM平台傳送給動作處理常式的值。 模型會從使用者的訊息中擷取這些欄位，並將其對應至這些欄位。
 
 | 屬性 | 說明 |
 |----------|-------------|
@@ -32,7 +32,7 @@ ht-degree: 6%
 
 ### 檔案引數
 
-檔案引數攜帶具有`download_url`和`file_id`屬性的檔案物件。 定義當使用者上傳交談中的檔案時應該接收檔案資料的輸入欄位名稱。
+檔案引數是在動作編輯器中設定的輸入欄位名稱。 當使用者上傳檔案時，主機會為這些引數提供檔案物件，通常包括`download_url`和`file_id`。
 
 ## 中繼資料欄位
 
@@ -40,8 +40,10 @@ ht-degree: 6%
 
 | 欄位 | 必要 | 說明 |
 |-------|----------|-------------|
-| **動作名稱** | 是 | 動作的識別碼（例如，*搜尋產品*） |
+| **動作名稱** | 是 | 動作的顯示名稱（例如，*搜尋產品*） |
 | **說明** | 是 | 動作功能的說明 — LLM平台會使用此動作來決定何時叫用 |
+
+建立之後，編輯器也會顯示不可變的&#x200B;**代碼識別碼**。 它將動作對應到處理常式存放庫中的`actions/<code-identifier>/index.js`。
 
 ### 註解
 
@@ -60,6 +62,9 @@ ht-degree: 6%
 |-------|------------|-------------|
 | **正在叫用狀態文字** | 64個字元 | 動作執行時在LLM平台中顯示的訊息（例如，*正在載入產品……* ） |
 | **叫用的狀態文字** | 64個字元 | 動作完成後顯示的訊息（例如，*載入的產品……* ） |
+| **Widget說明** | 512個字元 | 對應至`_meta["openai/widgetDescription"]`；彙總模型的演算元件，並減少重複的旁白 |
+
+動作說明可控制模型何時選取動作。 Widget說明說明會說明元件在呈現之後顯示的內容。
 
 ### 可見度
 
@@ -67,6 +72,14 @@ ht-degree: 6%
 |--------|-------------|
 | **公開給AI模型** | AI模型可在對話期間叫用該動作 |
 | **在應用程式表面顯示為Widget** | 動作會在應用程式中呈現視覺化的Widget |
+
+### 分析
+
+| 欄位 | 說明 |
+|-------|-------------|
+| **收集使用者意圖** | 收集導致分析動作的對話摘要 |
+
+## Widget欄位
 
 ### Widget資訊
 
@@ -80,8 +93,8 @@ ht-degree: 6%
 
 | 欄位 | 說明 |
 |-------|-------------|
-| **[!UICONTROL 指令碼URL]** | 進入點指令碼 — `https://main--<repo>--<owner>.aem.live/scripts/aem-embed.js`。 在所有動作之間共用 |
-| **Widget內嵌URL** | 此動作的EDS頁面 — `https://main--<repo>--<owner>.aem.live/eds-widgets/<action-name>`。 每個動作不重複 |
+| **[!UICONTROL 指令碼URL]** | EDS `scripts/aem-embed.js`進入點的HTTPS URL。 在同一EDS專案中的跨動作共用 |
+| **Widget URL** | 此動作轉譯之EDS頁面的HTTPS URL。 產生的動作會自動設定此專案 |
 
 ## CSP設定
 
