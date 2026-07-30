@@ -1,9 +1,9 @@
 ---
 title: 自動建立您的第一個LLM應用程式
 description: 從您的網站建立Adobe LLM應用程式、檢閱產生的動作、將其部署，並在支援的LLM平台（例如ChatGPT）中進行測試。
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: f91bb73a39cc5aacf44979ee55dd0ab5f69d4c81
 workflow-type: tm+mt
-source-wordcount: '1217'
+source-wordcount: '1272'
 ht-degree: 0%
 
 ---
@@ -17,7 +17,7 @@ ht-degree: 0%
 >
 >此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
-平台可將您的網站轉換為運作中的應用程式支架。 它會建議動作、寫入處理常式程式碼和測試、建立EDS Widget，並將產生的檔案傳送到您擁有的兩個[!DNL GitHub]存放庫。
+平台可將您的網站變成功能完善的應用程式。 它會建議動作、寫入處理常式程式碼和測試、建立EDS Widget，並將產生的檔案傳送到您擁有的兩個[!DNL GitHub]存放庫。
 
 產生約需15分鐘。 在本教學課程結束時，您將會有已部署的應用程式，您可以在支援的LLM平台（例如[!DNL ChatGPT]）中進行測試。
 
@@ -103,6 +103,11 @@ Adobe LLM Apps [!DNL GitHub]應用程式會提供[!DNL LLM Apps]存取您選取�
 
 1. 在EDS存放庫下方的訊息中，選取&#x200B;**[!UICONTROL 安裝AEM程式碼同步]**。
 2. 在[!DNL GitHub]上安裝AEM Code Sync，並授與它對EDS存放庫的存取權。
+
+   在&#x200B;**AEM Code Sync已註冊**&#x200B;確認頁面的&#x200B;**[!UICONTROL 網站使用者]**&#x200B;底下，選取&#x200B;**[!UICONTROL +新增使用者]**，並新增您用來以&#x200B;**[!UICONTROL 管理員]**&#x200B;角色登入[!DNL LLM Apps]的電子郵件地址。 然後選取頁面底部的&#x200B;**[!UICONTROL 完成設定]**。
+
+   ![已註冊AEM程式碼同步 — 請將您新增為具有管理員角色的網站使用者](/help/assets/guide-onboarding-agent/aem-code-sync-site-users-admin.png)
+
 3. 返回「建立LLM應用程式」對話方塊。
 
 ![建立LLM應用程式 — 已初始化空的EDS存放庫且需要AEM程式碼同步](/help/assets/guide-onboarding-agent/install-aem-code-sync.png)
@@ -191,7 +196,7 @@ Adobe LLM Apps [!DNL GitHub]應用程式會提供[!DNL LLM Apps]存取您選取�
 
 ![ChatGPT — 產生的LLM應用程式外掛程式回應](/help/assets/guide-onboarding-agent/chatgpt-generated-app.png)
 
-您現在擁有正常運作的端對端架構。
+您現在擁有功能齊全且運作正常的端對端應用程式。
 
 ## 讓應用程式生產就緒
 

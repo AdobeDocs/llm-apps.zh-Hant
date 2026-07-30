@@ -1,9 +1,9 @@
 ---
 title: Adobe LLM應用程式概觀
 description: 瞭解什麼是Adobe LLM應用程式、其運作方式，以及您需要啟動哪些應用程式。
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: 1d677c4e21963d1b126abb6287fccedfc1933c1a
 workflow-type: tm+mt
-source-wordcount: '970'
+source-wordcount: '938'
 ht-degree: 1%
 
 ---
@@ -109,23 +109,20 @@ LLM互動與傳統搜尋截然不同。 平均LLM工作階段的長度是傳統�
 
 ### [!DNL GitHub]
 
-您需要一個[!DNL GitHub]帳戶，該帳戶可以：
+您需要&#x200B;**可以**&#x200B;執行下列動作的[!DNL GitHub]帳戶。 這是許可權檢查 — 尚未安裝任何專案：
 
 - 在擁有應用程式的帳戶或組織中建立兩個存放庫。
-- 安裝或要求安裝Adobe LLM Apps [!DNL GitHub]應用程式。
-- 安裝或要求為EDS存放庫安裝AEM Code Sync。
+- 稍後在設定程式中安裝[!DNL GitHub]應用程式，或擁有可以核准這些應用程式的組織管理員。
 
 若要驗證存放庫建立存取權，請開啟[github.com/new](https://github.com/new)，並確認預期的帳戶或組織出現在&#x200B;**擁有者**&#x200B;之下。
 
 ![GitHub — 選取存放庫擁有者](/help/assets/overview/github-repo-owner-dropdown.png)
 
-針對組織擁有的存放庫，組織管理員可能需要核准[!DNL GitHub]應用程式。 僅將每個應用程式存取權授與LLM應用程式使用的存放庫。
+針對組織擁有的存放庫，組織管理員可能需要核准[!DNL GitHub]應用程式。
 
-### AEM Sites與Edge Delivery Services
-
-您的組織需要包含Edge Delivery Services (EDS)的Adobe Experience Manager Sites授權。 您還需要具有從Widget存放庫建立之EDS網站的管理員存取權。
-
-若要驗證存取權，請開啟[EDS使用者管理工具](https://tools.aem.live/tools/user-admin/index.html)，輸入組織名稱，然後擷取使用者。 確認您的帳戶具有&#x200B;**管理員**&#x200B;徽章。
+>[!NOTE]
+>
+>這是許可權檢查，不是設定步驟。 尚未安裝任何[!DNL GitHub]應用程式 — [自動建立您的第一個應用程式](/help/guides/create-app.md)會逐步引導您安裝每個應用程式，並在需要的位置設定您建立的確切存放庫範圍。
 
 ### 網站
 
