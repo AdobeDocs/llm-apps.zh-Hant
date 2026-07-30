@@ -185,7 +185,7 @@ Adobe LLM Apps [!DNL GitHub]應用程式會提供[!DNL LLM Apps]存取您選取�
 
 ## 在[!DNL ChatGPT]中測試
 
-請依照ChatGPT](/help/guides/test-in-chatgpt.md)中的[測試，使用暫存MCP伺服器URL建立外掛程式。
+請依照ChatGPT[&#128279;](/help/guides/test-in-chatgpt.md)中的測試，使用暫存MCP伺服器URL建立外掛程式。
 
 提出符合其中一個產生之動作的問題。 確認：
 
