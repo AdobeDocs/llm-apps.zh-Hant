@@ -1,9 +1,8 @@
 ---
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: 03c918b1643d9c4e8ebee40fd67694acb6751a14
 workflow-type: tm+mt
-source-wordcount: '696'
+source-wordcount: '703'
 ht-degree: 0%
-
 ---
 # 生產熒幕擷圖程式
 
@@ -102,7 +101,7 @@ EDS repo: llm-apps-docs-<YYYYMMDD>-eds
    - 敏感資訊；
    - 與檔案衝突的生產行為。
 6. 請勿編輯來源擷取。
-7. 針對每個接受的影像，在`help/assets/guide-onboarding-agent/`下建立具穩定資訊清單檔案名稱的已清理復本。
+7. 對於每個接受的影像，在其資訊清單區段宣告的輸出目錄下，使用穩定的資訊清單檔案名稱建立經過清理的復本。
 8. 只有在周圍的UI沒有新增任何有用的內容時，才能裁切。
 9. 遮罩敏感值。 如果無法進行安全遮罩，請要求重新擷取。
 10. 更新文章和替代文字以符合擷取的工作流程。

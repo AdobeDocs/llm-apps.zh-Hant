@@ -1,13 +1,11 @@
 ---
 title: 以克勞德聯結器測試您的LLM應用程式
 description: 從您的Adobe LLM應用程式MCP伺服器URL建立Claude聯結器，並在交談中測試。
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: fd41dbcabc4db0cae766de19cb042d7c85d8b7aa
 workflow-type: tm+mt
-source-wordcount: '399'
-ht-degree: 1%
-
+source-wordcount: '448'
+ht-degree: 0%
 ---
-
 
 # 將您的LLM應用程式測試為[!DNL Claude]聯結器 {#test-in-claude}
 
@@ -20,6 +18,8 @@ ht-degree: 1%
 部署後，您的LLM應用程式會公開MCP伺服器URL。 將此URL新增至[!DNL Claude]作為自訂聯結器，然後測試產生的動作和Widget。
 
 這是建置、自訂或擴充應用程式後的最終驗證步驟。
+
+本指南假設應用程式的動作是公開的。 如果應用程式已啟用一般使用者驗證，[!DNL Claude]會要求您先使用應用程式的身分提供者登入，您才能使用聯結器，而且在此之前不會列出任何工具。 請參閱[使用您自己的身分提供者來驗證一般使用者](/help/guides/authentication.md)。
 
 ## 計畫需求
 

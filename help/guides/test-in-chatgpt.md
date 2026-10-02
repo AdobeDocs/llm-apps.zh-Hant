@@ -1,13 +1,11 @@
 ---
 title: 將您的LLM應用程式測試為ChatGPT外掛程式
 description: 從您的Adobe LLM應用程式MCP伺服器URL建立ChatGPT外掛程式，並在交談中測試。
-source-git-commit: b7199fbb387d91a5c77deac47a2bc883381931c1
+source-git-commit: fd41dbcabc4db0cae766de19cb042d7c85d8b7aa
 workflow-type: tm+mt
-source-wordcount: '335'
+source-wordcount: '378'
 ht-degree: 1%
-
 ---
-
 
 # 將您的LLM App測試為[!DNL ChatGPT]外掛程式 {#test-in-chatgpt}
 
@@ -54,8 +52,13 @@ Pro、Plus、Business、Enterprise和Education帳戶可使用開發人員模式�
    - **[!UICONTROL 描述]** — 選擇性。
    - **[!UICONTROL 連線]** — 選取&#x200B;**[!UICONTROL 伺服器URL]**&#x200B;並貼上MCP伺服器URL。
    - **[!UICONTROL 驗證]** — 選取&#x200B;**[!UICONTROL 無驗證]**。
+
+   >[!NOTE]
+   >
+   >**[!UICONTROL 應用程式上的每一個動作都是公開的，則不會套用任何驗證]**。 如果您已開啟一般使用者驗證，請在每個動作設定為&#x200B;**[!UICONTROL 必要]**&#x200B;時，選取&#x200B;**[!UICONTROL OAuth]**，若為任何其他組合，則選取&#x200B;**[!UICONTROL 混合]** — 請參閱[使用您自己的身分識別提供者來驗證一般使用者](/help/guides/authentication.md)。
+
 4. 選取&#x200B;**[!UICONTROL 我瞭解並想要繼續]**。
-5. 選擇 **[!UICONTROL 建立]**。
+5. 選取「**[!UICONTROL 建立]**」。
 
    ![ChatGPT — 使用MCP伺服器URL](/help/assets/guide-onboarding-agent/chatgpt-new-plugin.png)建立外掛程式
 
