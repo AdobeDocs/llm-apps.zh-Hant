@@ -1,13 +1,11 @@
 ---
 title: 自訂產生的動作處理常式
 description: 瞭解Adobe LLM應用程式處理常式合約、取代產生的範例資料，並讓處理常式輸出符合其Widget。
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: 2d8f44f4f258bf217992131de9d9450a4023560d
 workflow-type: tm+mt
-source-wordcount: '541'
+source-wordcount: '537'
 ht-degree: 0%
-
 ---
-
 
 # 自訂產生的處理常式 {#customize-generated-handler}
 
@@ -15,7 +13,7 @@ ht-degree: 0%
 >
 >[!DNL Adobe LLM Apps]目前在Beta中。
 >
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件給`llm-apps-beta@adobe.com`。
 
 平台會為每個產生的動作建立工作處理常式。 處理常式一開始會傳回範例資料，讓您測試完整的體驗。
 
