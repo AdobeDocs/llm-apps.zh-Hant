@@ -1,7 +1,7 @@
 ---
-source-git-commit: 03c918b1643d9c4e8ebee40fd67694acb6751a14
+source-git-commit: 41bd4b6239171c7a3af7dc6349eaa3cbb880449c
 workflow-type: tm+mt
-source-wordcount: '1080'
+source-wordcount: '1279'
 ht-degree: 0%
 ---
 # 熒幕擷圖資訊清單
@@ -14,7 +14,7 @@ Source檔案名稱不需要符合最終檔案名稱。 技能會根據可見的U
 
 下面的每個指南都宣告自己的輸出目錄。 使用擷取所屬的區段。
 
-&#x200B;# 入門指南
+# 入門指南
 
 輸出目錄： `help/assets/guide-onboarding-agent/`
 
@@ -106,7 +106,7 @@ Source檔案名稱不需要符合最終檔案名稱。 技能會根據可見的U
 ### `chatgpt-plugin-connect.png`
 
 - 狀態：建立外掛程式後確認。
-- 包含： **新增 <plugin> 至ChatGPT &#x200B;** 和**&#x200B;連線&#x200B;**。
+- 包含： **新增 <plugin> 至ChatGPT **和**&#x200B;連線&#x200B;**。
 - 遮罩：瀏覽器URL和聯結器識別碼。
 - 替代文字： `ChatGPT — connect the new plugin`
 
@@ -127,13 +127,13 @@ Source檔案名稱不需要符合最終檔案名稱。 技能會根據可見的U
 
 請勿為已用散文清除的靜態欄位清單新增熒幕擷取畫面。
 
-&#x200B;# 驗證指南
+# 驗證指南
 
 輸出目錄： `help/assets/guide-authentication/`
 
 由[authentication.md](../../../help/guides/authentication.md)參考。
 
-**[!UICONTROL 複製資源識別碼]**&#x200B;步驟會重複使用入門指南的
+**[!UICONTROL 複製資源識別碼]**步驟會重複使用入門指南的
 `app-mcp-url.png`. 不要再擷取它。
 
 此段落中的每一個擷取都會顯示安全性組態。 儲存前遮罩：
@@ -157,8 +157,8 @@ Source檔案名稱不需要符合最終檔案名稱。 技能會根據可見的U
 - 替代文字： `Authentication — enable authentication and complete the core settings`
 
 擷取2026-08-25。 裁剪以放置空白畫布；不需要遮罩，因為
-產品中的&#x200B;**[!UICONTROL 簽發者]**&#x200B;設定為`https://auth.example.com`，早於
-capture. 偏好使用於之後編輯影像。 **[!UICONTROL 支援的領域]**&#x200B;保留
+產品中的**[!UICONTROL 簽發者]**&#x200B;設定為`https://auth.example.com`，早於
+capture. 偏好使用於之後編輯影像。 **[!UICONTROL 支援的領域]**保留
 一個範圍(`read:all`)；兩個可以更好地說明欄位，但這不值得
 自行重新擷取。
 
@@ -174,12 +174,12 @@ capture. 偏好使用於之後編輯影像。 **[!UICONTROL 支援的領域]**&#
 **[!UICONTROL 領域]**&#x200B;儲存格，以及&#x200B;**[!UICONTROL 需要驗證其中的所有動作]**
 不確定的狀態，以`Test Action 1/2/3`作為夾具名稱。
 
-裁切&#x200B;**內部**&#x200B;設定面板自己的容器邊框 — 每個都有一個全高1px規則
+裁切&#x200B;**內部**設定面板自己的容器邊框 — 每個都有一個全高1px規則
 在擷取的一側，將其中一個保留在框架中時，會讀為邊緣下方的雜散線。
 影像。
 
 產品本身關於每個聯結器套用驗證[!DNL Claude]的警告為
-在兩個擷取回合&#x200B;**中在此索引標籤上未觀察到**，因此此處不需要它。 此
+在兩個擷取回合**中在此索引標籤上未觀察到**，因此此處不需要它。 此
 指南會改用散文說明該行為。 如果警告確實存在於之後的組建中，
 將其擷取為`auth-claude-warning.png`並新增專案。
 
@@ -195,14 +195,14 @@ capture. 偏好使用於之後編輯影像。 **[!UICONTROL 支援的領域]**&#
 卡片。
 
 擷取2026-08-25 （光模式），以符合檔案中的所有其他擷取。 此
-下拉式清單會包含&#x200B;**[!UICONTROL 伺服器URL]**&#x200B;欄位，所以MCP URL無法辨識 — 但是
+下拉式清單會包含**[!UICONTROL 伺服器URL]**欄位，所以MCP URL無法辨識 — 但是
 它的半透明材質讓該欄位內容的模糊影像流過
 選項。 三個未反白的列會以面板填色及其標籤重新上色
 重新呈現，這會將其移除。 透過取樣驗證，而不是透過眼睛驗證：出血的模糊程度足以讓
 遺漏，而且是MCP伺服器URL。
 
-請注意，即時控制項提供&#x200B;**4**&#x200B;個值 — **[!UICONTROL OAuth]**， **存取權
-權杖/ API金鑰&rbrack;**、**&#x200B;[!UICONTROL 沒有驗證]&#x200B;**&#x200B;和&#x200B;**&#x200B;[!UICONTROL 混合]**。 指南的對應
+請注意，即時控制項提供&#x200B;**4**&#x200B;個值 — **[!UICONTROL OAuth]**， **[!UICONTROL 存取權
+權杖/ API金鑰]**、**[!UICONTROL 沒有驗證]**&#x200B;和&#x200B;**[!UICONTROL 混合]**。 指南的對應
 表格僅涵蓋應用程式的驗證模式可對應的三種（正確但未涵蓋）
 將下拉式清單描述為有三個選項。
 
@@ -214,3 +214,51 @@ capture. 偏好使用於之後編輯影像。 **[!UICONTROL 支援的領域]**&#
 - 對話中間登入提示會引發&#x200B;**[!UICONTROL 選擇性]**&#x200B;動作。 平台擁有的UI經常變更，且已有散文說明。
 
 不要擷取識別提供者自己的登入頁面。 它可識別本檔案未列出的廠商。
+
+# 應用程式變數指南
+
+輸出目錄： `help/assets/guide-app-variables/`
+
+由[app-variables.md](../../../help/guides/app-variables.md)參考。
+
+在&#x200B;**[!UICONTROL 階段]**&#x200B;工作區中使用值為`Good day`的夾具變數`GREETING_PREFIX`。 變數值會顯示在表格中，因此切勿擷取實際設定。
+
+## 必要的擷取
+
+### `variables-empty.png`
+
+- 狀態： **[!UICONTROL 設定]** > **[!UICONTROL 變數和密碼]**，在&#x200B;**[!UICONTROL 階段]**&#x200B;中沒有變數。
+- 包含：設定導覽、**[!UICONTROL Workspace]**&#x200B;選擇器和&#x200B;**[!UICONTROL 新增]**。
+- 替代文字： `Variables & Secrets — empty Stage workspace with the Add button`
+
+擷取2026-10-05。 已裁剪以放置空白畫布；沒有可遮罩的專案。
+
+### `add-variable-dialog.png`
+
+- 狀態： **[!UICONTROL 新增變數或密碼]**&#x200B;對話方塊在儲存前已填入。
+- 包含：尚未支援&#x200B;*密碼*&#x200B;通知、**[!UICONTROL 名稱]** `GREETING_PREFIX`、**[!UICONTROL 型別]** **[!UICONTROL 變數]**&#x200B;和&#x200B;**[!UICONTROL 值]** `Good day`。
+- 替代文字： `Add Variable or Secret — GREETING_PREFIX set to Good day`
+
+擷取2026-10-05。 已裁切到對話方塊下方；沒有遮色片。
+
+### `variable-added.png`
+
+- 狀態：儲存後的變數表格，具有一個`GREETING_PREFIX`列。
+- 包含： **[!UICONTROL 名稱]**、**[!UICONTROL 型別]**、**[!UICONTROL 值]**、**[!UICONTROL 上次更新時間]**，以及複製、編輯和刪除控制項。
+- 替代文字： `Variables & Secrets — GREETING_PREFIX saved in the Stage workspace`
+
+擷取2026-10-05。 已裁剪以放置空白畫布；沒有可遮罩的專案。
+
+### `update-variable-dialog.png`
+
+- 狀態： **[!UICONTROL 使用**[!UICONTROL &#x200B;目前值&#x200B;]**`Good day`和**[!UICONTROL &#x200B;新值&#x200B;]**`Howdy`更新GREETING_PREFIX]**&#x200B;對話方塊。
+- 替代文字： `Update GREETING_PREFIX — change the value from Good day to Howdy`
+
+擷取2026-10-05。 裁剪對話方塊下方的裁剪頁面標題和空白覆蓋圖；`Howdy`之後的文字脫字元已繪製完畢。 沒有可遮罩的專案。
+
+### `delete-variable-dialog.png`
+
+- 狀態： **[!UICONTROL 刪除GREETING_PREFIX？]** 確認對話方塊。
+- 替代文字： `Delete GREETING_PREFIX — confirm the permanent deletion`
+
+擷取2026-10-05。 裁切對話方塊下方的空白覆蓋圖；沒有遮色片。
