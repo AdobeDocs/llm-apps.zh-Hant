@@ -1,9 +1,9 @@
 ---
 title: 自訂產生的動作處理常式
 description: 瞭解Adobe LLM應用程式處理常式合約、取代產生的範例資料，並讓處理常式輸出符合其Widget。
-source-git-commit: 2d8f44f4f258bf217992131de9d9450a4023560d
+source-git-commit: d9fb493c0b1708e4566e93a4f883e99bb4166e18
 workflow-type: tm+mt
-source-wordcount: '537'
+source-wordcount: '581'
 ht-degree: 0%
 ---
 
@@ -215,6 +215,8 @@ module.exports = async ({ query = '' } = {}) => {
 ```
 
 在處理常式中保留受保護的網路存取。 切勿將API憑證放入Widget JavaScript或原始檔控制中。
+
+如需您的處理常式所需的非敏感設定（例如服務URL），請參閱[設定應用程式變數和密碼](/help/guides/app-variables.md)。 變數會根據環境進行設定，並在下次部署時生效。 尚未提供秘密支援；請勿使用變數儲存API認證。
 
 ## 處理預期狀態
 

@@ -1,7 +1,7 @@
 ---
-source-git-commit: 03c918b1643d9c4e8ebee40fd67694acb6751a14
+source-git-commit: 41bd4b6239171c7a3af7dc6349eaa3cbb880449c
 workflow-type: tm+mt
-source-wordcount: '1080'
+source-wordcount: '1279'
 ht-degree: 0%
 ---
 # 熒幕擷圖資訊清單
@@ -214,3 +214,51 @@ capture. 偏好使用於之後編輯影像。 **[!UICONTROL 支援的領域]**&#
 - 對話中間登入提示會引發&#x200B;**[!UICONTROL 選擇性]**&#x200B;動作。 平台擁有的UI經常變更，且已有散文說明。
 
 不要擷取識別提供者自己的登入頁面。 它可識別本檔案未列出的廠商。
+
+&#x200B;# 應用程式變數指南
+
+輸出目錄： `help/assets/guide-app-variables/`
+
+由[app-variables.md](../../../help/guides/app-variables.md)參考。
+
+在&#x200B;**[!UICONTROL 階段]**&#x200B;工作區中使用值為`Good day`的夾具變數`GREETING_PREFIX`。 變數值會顯示在表格中，因此切勿擷取實際設定。
+
+## 必要的擷取
+
+### `variables-empty.png`
+
+- 狀態： **[!UICONTROL 設定]** > **[!UICONTROL 變數和密碼]**，在&#x200B;**[!UICONTROL 階段]**&#x200B;中沒有變數。
+- 包含：設定導覽、**[!UICONTROL Workspace]**&#x200B;選擇器和&#x200B;**[!UICONTROL 新增]**。
+- 替代文字： `Variables & Secrets — empty Stage workspace with the Add button`
+
+擷取2026-10-05。 已裁剪以放置空白畫布；沒有可遮罩的專案。
+
+### `add-variable-dialog.png`
+
+- 狀態： **[!UICONTROL 新增變數或密碼]**&#x200B;對話方塊在儲存前已填入。
+- 包含：尚未支援&#x200B;*密碼*&#x200B;通知、**[!UICONTROL 名稱]** `GREETING_PREFIX`、**[!UICONTROL 型別]** **[!UICONTROL 變數]**&#x200B;和&#x200B;**[!UICONTROL 值]** `Good day`。
+- 替代文字： `Add Variable or Secret — GREETING_PREFIX set to Good day`
+
+擷取2026-10-05。 已裁切到對話方塊下方；沒有遮色片。
+
+### `variable-added.png`
+
+- 狀態：儲存後的變數表格，具有一個`GREETING_PREFIX`列。
+- 包含： **[!UICONTROL 名稱]**、**[!UICONTROL 型別]**、**[!UICONTROL 值]**、**[!UICONTROL 上次更新時間]**，以及複製、編輯和刪除控制項。
+- 替代文字： `Variables & Secrets — GREETING_PREFIX saved in the Stage workspace`
+
+擷取2026-10-05。 已裁剪以放置空白畫布；沒有可遮罩的專案。
+
+### `update-variable-dialog.png`
+
+- 狀態： **[!UICONTROL 使用**&#x200B;[!UICONTROL &#x200B;目前值&#x200B;]&#x200B;**`Good day`和**&#x200B;[!UICONTROL &#x200B;新值&#x200B;]&#x200B;**`Howdy`更新GREETING_PREFIX]**&#x200B;對話方塊。
+- 替代文字： `Update GREETING_PREFIX — change the value from Good day to Howdy`
+
+擷取2026-10-05。 裁剪對話方塊下方的裁剪頁面標題和空白覆蓋圖；`Howdy`之後的文字脫字元已繪製完畢。 沒有可遮罩的專案。
+
+### `delete-variable-dialog.png`
+
+- 狀態： **[!UICONTROL 刪除GREETING_PREFIX？]** 確認對話方塊。
+- 替代文字： `Delete GREETING_PREFIX — confirm the permanent deletion`
+
+擷取2026-10-05。 裁切對話方塊下方的空白覆蓋圖；沒有遮色片。

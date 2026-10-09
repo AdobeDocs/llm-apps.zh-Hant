@@ -1,13 +1,11 @@
 ---
 title: 部署您的應用程式
 description: 瞭解如何使用LLM應用程式UI將您的Adobe LLM應用程式部署到測試環境和生產環境。
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: 4e447562c5d38f68c209ded7370e9d384a7c9701
 workflow-type: tm+mt
-source-wordcount: '322'
+source-wordcount: '352'
 ht-degree: 0%
-
 ---
-
 
 # 部署您的應用程式 {#deploy-your-app}
 
@@ -26,6 +24,8 @@ ht-degree: 0%
 開啟[應用程式詳細資料]頁面，並選取[部署]。**&#x200B;**
 
 選取目標環境，然後選取&#x200B;**[!UICONTROL 部署]**。
+
+如果您的處理常式使用[應用程式變數](/help/guides/app-variables.md)，請在部署之前先為目標環境設定這些變數。 新增、更新或刪除的變數會在此部署中生效；「中繼」和「生產」都有獨立的值。
 
 ![部署 — 選取目標環境](/help/assets/guide-onboarding-agent/deploy-stage.png)
 
@@ -65,4 +65,3 @@ ht-degree: 0%
 
 - [將部署的應用程式測試為ChatGPT外掛程式](/help/guides/test-in-chatgpt.md)。
 - [將部署的應用程式測試為Claude聯結器](/help/guides/test-in-claude.md)。
-
