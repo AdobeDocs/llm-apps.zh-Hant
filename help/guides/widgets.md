@@ -1,13 +1,11 @@
 ---
 title: 自訂產生的EDS Widget
 description: 瞭解並自訂Adobe LLM應用程式自動建立的Edge Delivery Services Widget。
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
 workflow-type: tm+mt
-source-wordcount: '646'
+source-wordcount: '1065'
 ht-degree: 0%
-
 ---
-
 
 # 自訂產生的Widget {#customize-generated-widget}
 
@@ -19,34 +17,36 @@ ht-degree: 0%
 
 >[!NOTE]
 >
->本指南假設您已基本熟悉Adobe Edge Delivery Services (EDS)。 如果您是EDS的新手，請先閱讀[EDS開發人員教學課程](https://www.aem.live/developer/tutorial)和[探索區塊](https://www.aem.live/docs/exploring-blocks)以瞭解基本知識（區塊、`decorate`函式和EDS專案結構），然後再自訂Widget。
+>本指南假設您已基本熟悉Adobe Edge Delivery Services (EDS)。 如果您是EDS的新手，請先閱讀[EDS開發人員教學課程](https://www.aem.live/developer/tutorial)和[探索區塊](https://www.aem.live/docs/exploring-blocks)，然後再自訂Widget。 這些資源涵蓋區塊、`decorate`函式和EDS專案結構。
 
-平台會為每個產生的動作建立EDS Widget。 Widget已接收動作結果、轉譯範例資料、套用主機樣式，並連結至[!DNL LLM Apps]中的動作。
+成功產生之後，平台會提供連結至[!DNL LLM Apps]中動作的EDS Widget。 當連線至支援的LLM平台時，Widget會呈現代表性資料以供預覽，並讀取處理常式結果。 在自訂Widget之前，請先檢閱產生的設計和行為。
 
 首先，測試產生的Widget。 然後自訂其資料合約、互動和視覺化設計。
 
-**歷程：**&#x200B;尋找產生的區塊→調整其資料合約→安全地自訂→在本機預覽→進行部署和測試。
+**在本指南中：**&#x200B;瞭解如何尋找產生的Widget，並將其調整為符合您動作的資料和您品牌的設計。 然後，在本機預覽您的變更，並在部署的應用程式中測試它們。
 
 ## 尋找產生的Widget
 
-開啟您建立應用程式時選取的EDS存放庫。 每個產生的Widget都是一個EDS區塊：
+開啟在[基礎結構設定](/help/guides/create-app.md)期間連線的EDS存放庫。 如果您使用Adobe受管基礎架構，請先請求程式碼存取權，然後再繼續。 每個產生的Widget都是一個EDS區塊：
 
 ```text
 blocks/
-└── <action-name>/
-    ├── <action-name>.js
-    └── <action-name>.css
+└── <action-slug>/
+    ├── <action-slug>.js
+    └── <action-slug>.css
 ```
 
 - JavaScript檔案會讀取動作結果並建置介面。
 - CSS檔案可控制版面、回應式行為和視覺化設計。
 - 產生的提取請求會顯示為該動作建立的精確檔案。
 
-平台也會設定Widget URL和支援的SDK檔案。 您不需要建立第二個EDS專案或重新輸入這些值，即可自訂產生的Widget。
+概要(Slug)使用連字型大小：程式碼識別碼為`search_products`的動作使用區塊，例如`blocks/search-products/`。 產生的Widget頁面通常是`/eds-widgets/search-products-demo`；在動作中繼資料中使用實際的&#x200B;**[!UICONTROL Widget URL]**。
+
+平台也會設定Widget URL和支援的SDK檔案。 您不需要建立第二個EDS專案或重新輸入Widget URL來自訂產生的Widget。
 
 ## LLM應用程式SDK如何連線Widget
 
-`@adobe/llmapps-sdk`套件會將EDS Widget連線到LLM主機。 產生的EDS存放庫包括：
+`@adobe/llmapps-sdk`套件會將EDS Widget連線到LLM主機。 它在產生的EDS存放庫中的進入點包括：
 
 ```text
 scripts/
@@ -62,7 +62,7 @@ export default async function decorate(block, bridge) {
 }
 ```
 
-您不會匯入區塊中的SDK。 已自動提供連線的`bridge`。 它可讓介面工具集：
+內嵌會擷取Widget頁面的`.plain.html`內容，並匯入其區塊。 您不會匯入區塊中的SDK。 內嵌會自動提供`bridge`；正常的EDS頁面載入不會提供。 橋接器可讓Widget：
 
 - 讀取含有`bridge.toolResult`的處理常式結果。
 - 使用`bridge.applyHostStyles()`套用主機樣式。
@@ -79,21 +79,31 @@ export default async function decorate(block, bridge) {
 ```javascript
 // Handler result
 return {
-  content: [{ type: 'text', text: `Found ${products.length} products.` }],
-  structuredContent: { products, total: products.length }
+  content: [{ type: 'text', text: `Found ${records.length} products.` }],
+  structuredContent: { arguments: { query: 'coffee' }, records }
 };
 ```
 
 ```javascript
 // EDS block
+const PREVIEW_RESULT = {
+  records: [{ id: 'P-100', name: 'Frescopa House Blend' }]
+};
+
 export default async function decorate(block, bridge) {
-  const result = bridge ? await bridge.toolResult : null;
-  const products = result?.structuredContent?.products ?? [];
-  // Render products.
+  const live = bridge?.isConnected && bridge.hostContext?.preview !== true;
+  const result = live ? await bridge.toolResult : null;
+  const data = live ? result?.structuredContent : PREVIEW_RESULT;
+  const records = Array.isArray(data?.records) ? data.records : [];
+  // Render records or an error state when result?.isError is true.
 }
 ```
 
-當您變更`structuredContent`時，請一併更新處理常式和Widget。 請參閱[自訂產生的處理常式](/help/guides/customize-handler.md)，以取得完整的傳回合約。
+在此範例中，`PREVIEW_RESULT`是區塊的本機範例資料物件。 目前產生的Widget使用`structuredContent.arguments`和`structuredContent.records`；檢查您產生的檔案是否為正確形狀。 切勿以預覽記錄取代空白的即時結果。
+
+`bridge.toolResult`只解析第一個結果。 如果Widget保持已掛接狀態，且必須處理之後的結果，請使用`bridge.onToolResult(callback)`。
+
+當您變更`structuredContent`時，請一併更新處理常式和Widget。 請勿假設在模型中隱藏結構化資料；它是主機動作結果的一部分。 請參閱[自訂產生的處理常式](/help/guides/customize-handler.md)，以取得完整的傳回合約。
 
 ## 安全地呈現外部資料
 
@@ -110,13 +120,20 @@ function createProductCard(product, bridge) {
   const button = document.createElement('button');
   button.type = 'button';
   button.textContent = 'Tell me more';
-  button.addEventListener('click', () => {
-    if (bridge && product.id) {
-      bridge.sendMessage(`Show me details for product ${String(product.id)}`);
+  button.disabled = !bridge?.isConnected;
+  const status = document.createElement('p');
+  status.setAttribute('role', 'status');
+  button.addEventListener('click', async () => {
+    if (bridge?.isConnected && typeof product.id === 'string') {
+      try {
+        await bridge.sendMessage(`Show me details for product ${product.id}`);
+      } catch {
+        status.textContent = 'Unable to send the request. Try again.';
+      }
     }
   });
 
-  card.append(title, button);
+  card.append(title, button, status);
   return card;
 }
 ```
@@ -125,49 +142,54 @@ function createProductCard(product, bridge) {
 
 ## 使用主機橋接器
 
-EDS將連線的橋接器傳遞至`decorate(block, bridge)`。 保護橋接器呼叫，以便在直接EDS預覽期間也呈現區塊。
+內嵌傳遞橋接器給`decorate(block, bridge)`。 保護與`bridge?.isConnected`的互動式呼叫，以便在直接EDS預覽期間也呈現區塊。 橋接器物件可以獨立模式存在，而無需連線；在獨立模式下等待`toolResult`永遠不會解析。 LLM應用程式預覽也設定`bridge.hostContext.preview`讓區塊選擇範例資料。
 
 ### 套用主機樣式
 
 ```javascript
-if (bridge) {
+if (bridge?.isConnected) {
   bridge.applyHostStyles();
 }
 ```
 
-這會套用主機印刷樣式和主題變數。 您的Widget CSS應同時支援淺色和深色主機主題。
+方法會套用可用的主機CSS變數和字型樣式。 套用主機樣式為選用：產生的Widget可以使用自己的設計代號。 內嵌在其陰影主體上維護`.light`和`.dark`類別。 當您的區塊也需要回應主題變更時，請使用`bridge.hostContext.theme`和`bridge.onContextChange(callback)`。
 
 ### 傳送後續追蹤訊息
 
 ```javascript
-await bridge.sendMessage('Show me similar products.');
+if (bridge?.isConnected) {
+  await bridge.sendMessage('Show me similar products.');
+}
 ```
 
-當互動應繼續交談時，請使用`sendMessage`。
+使用`sendMessage`在互動後繼續交談。
 
-### 呼叫其他動作
+### 直接呼叫動作
 
 ```javascript
-const result = await bridge.callTool('get-product-details', {
-  id: product.id
-});
+if (bridge?.isConnected) {
+  const result = await bridge.callTool('search_products', { query: 'coffee' });
+  // Re-render this widget from result.structuredContent, or show result.isError.
+}
 ```
 
-針對需要其他動作結果的明確互動，請使用`callTool`。 僅傳遞驗證的值並處理失敗，而不會公開內部詳細資訊。
+針對需要動作結果的明確互動，請使用`callTool`。 傳遞實際目標動作的程式碼識別碼，而非其區塊資料夾名稱或顯示名稱；`search_products`為範例。 主機必須支援動作呼叫，且目標動作必須允許應用程式可見性。 呼叫動作不會自動重新演算目前的Widget。 僅傳遞驗證的值並處理拒絕的呼叫，而不會公開內部詳細資訊。
+
+如果目標動作的可見度需要變更，請僅在&#x200B;**[!UICONTROL 動作詳細資料]**&#x200B;下編輯該動作、儲存變更，然後重新部署到您正在測試的環境。
 
 ### 保持Widget大小同步
 
 ```javascript
-if (bridge) {
+if (bridge?.isConnected) {
   bridge.autoResize(block);
 }
 ```
 
-在初始轉譯後呼叫`autoResize`，讓主機可以回應內容變更。
+若要讓主機回應內容變更，請在初始轉譯後呼叫`autoResize`。 方法會傳回清除函式，此函式會在Widget移除時停止觀察。
 
 ## 預覽您的變更
 
-產生的區塊應包含範例資料，以便在`bridge`無法使用時直接預覽。
+產生的區塊包含範例資料，可在橋接器遺失、中斷連線或標示為預覽時直接預覽。 將範例資料遞補與即時空白和錯誤狀態分開。
 
 若要在本機預覽EDS專案：
 
@@ -176,7 +198,7 @@ npm install -g @adobe/aem-cli
 aem up
 ```
 
-在`http://localhost:3000`開啟產生的Widget頁面。 驗證：
+從本機伺服器上的動作Widget URL開啟路徑，例如`http://localhost:3000/eds-widgets/search-products-demo`，而不僅僅是網站根目錄。 驗證：
 
 - 空白、載入、成功和錯誤狀態。
 - 長文字和缺少選用欄位。
@@ -184,16 +206,18 @@ aem up
 - 淺色和深色主題。
 - 窄而寬的版面。
 
-然後將應用程式部署到暫存環境，並在LLM平台中使用即時`structuredContent`進行測試。
+直接EDS預覽不會測試主機交握或即時動作資料。 發佈EDS變更，並在支援的LLM平台上使用即時`structuredContent`進行測試。
 
 ## 發佈自訂
 
 1. 認可並推播EDS變更。
-2. 如果您變更了資料形狀，請認可並推播相符的處理常式變更。
-3. 將應用程式部署至測試環境。
-4. 在[!DNL ChatGPT]中測試動作和Widget。
-5. 將驗證的版本升級至生產環境。
+2. 確認Widget頁面和變更的指令碼和樣式可在設定的EDS URL中使用。 透過EDS發佈工作流程發佈內容變更。
+3. 如果您變更了處理常式或動作中繼資料，請推送這些變更並將應用程式部署至中繼環境。
+4. 在支援的LLM平台上測試動作和Widget。 檢視ChatGPT中的[測試](/help/guides/test-in-chatgpt.md)或Claude中的[測試](/help/guides/test-in-claude.md)。
+5. 測試成功後，視需要將處理常式和中繼資料變更部署到生產環境。
+
+EDS出版物與應用程式部署不同。 如果Stage和Production使用相同的EDS URL，則這些URL上的Widget變更會影響這兩個環境；部署到Stage不會建立獨立的Widget副本。
 
 ## 其他EDS設定
 
-如果您未自動建置應用程式或想要整合現有的EDS網站，請參閱[自備EDS專案](/help/guides/bring-your-own-eds.md)。
+如果您自行建立動作，或想要整合相容的現有EDS網站，請參閱[自備EDS專案](/help/guides/bring-your-own-eds.md)。
