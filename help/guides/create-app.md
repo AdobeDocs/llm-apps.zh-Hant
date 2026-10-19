@@ -1,9 +1,9 @@
 ---
 title: 基礎架構設定
 description: 使用Adobe受管理基礎架構建立Adobe LLM應用程式，或提供兩個空白的GitHub存放庫供平台初始化。
-source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
+source-git-commit: 14d94a68dabddd2f2ef2cef65c51d31645d4a958
 workflow-type: tm+mt
-source-wordcount: '1330'
+source-wordcount: '1337'
 ht-degree: 0%
 ---
 
@@ -44,14 +44,14 @@ ht-degree: 0%
 
 | 基礎架構選項 | 在精靈中選取 | 其含義 |
 |---|---|---|
-| **Adobe受管理基礎結構** | **[!UICONTROL 讓我們處理它]** | Adobe會建立並託管存放庫以進行試用設定。 程式碼存取權可依請求提供，您稍後可以移至自己的存放庫。 |
+| **Adobe受管理基礎結構** | **[!UICONTROL 讓我們處理它]** | Adobe會為您的應用程式建立和管理存放庫和連線服務。 程式碼存取權可應要求提供。 |
 | **您自己的存放庫** | **[!UICONTROL 我將自行設定]** | 您提供兩個空白的GitHub存放庫，並透過精靈授與存取權。 平台會分別初始化一個動作處理常式和一個介面工具集。 |
 
 這兩個選項都支援稍後自動產生動作。 這兩個選項都不需要您手動寫入動作。
 
 ## 使用Adobe管理基礎結構 {#adobe-managed-infrastructure}
 
-使用此選項來嘗試應用程式，而不需先建立存放庫或自行安裝[!DNL GitHub]應用程式。
+使用此選項可讓Adobe為您的應用程式設定和管理存放庫和連線服務。 您不需要自行建立存放庫或安裝[!DNL GitHub]個App。
 
 1. 選取&#x200B;**[!UICONTROL 讓我們處理它]**。
 2. 選取&#x200B;**[!UICONTROL 下一步]**。
@@ -91,7 +91,7 @@ ht-degree: 0%
    - 選取&#x200B;**[!UICONTROL 是，我會使用已建立的存放庫]**&#x200B;來連線相容的現有專案或空的存放庫。
    - 選取&#x200B;**[!UICONTROL 我還沒有存放庫]**，然後選取&#x200B;**[!UICONTROL 在GitHub上建立存放庫]**，以建立空的動作存放庫。 之後請返回精靈。
 3. 將存放庫連線至Adobe LLM Apps [!DNL GitHub]應用程式：
-   - 如果未連線任何組織，請選取[在GitHub上安裝]。**&#x200B;**
+   - 如果未連線任何組織，請選取[在GitHub上安裝]。****
    - 如果組織已經連線，請選取&#x200B;**[!UICONTROL 連線存放庫]**&#x200B;並將存放庫新增到該安裝。
 4. 在[!DNL GitHub]上，選擇&#x200B;**[!UICONTROL 僅選取存放庫]**，並僅授與此應用程式使用的存放庫存取權。
 5. 返回精靈。 在&#x200B;**[!UICONTROL 選取存放庫]**&#x200B;下，選擇&#x200B;**[!UICONTROL 組織]**&#x200B;和&#x200B;**[!UICONTROL 存放庫]**。
@@ -100,7 +100,7 @@ ht-degree: 0%
 
 ![動作基礎結構設定 — 選擇GitHub並連線動作存放庫](/help/assets/guide-infrastructure/action-repository.png)
 
-如果組織或存放庫遺失，請使用&#x200B;**[!UICONTROL 連線其他組織]**&#x200B;或在其選擇器中連線其他存放庫&#x200B;**。**&#x200B;在[!DNL GitHub]上變更存取權後，選取&#x200B;**[!UICONTROL 重新整理組織和存放庫]**。
+如果組織或存放庫遺失，請使用&#x200B;**[!UICONTROL 連線其他組織]**&#x200B;或在其選擇器中連線其他存放庫&#x200B;]**。**[!UICONTROL &#x200B;在[!DNL GitHub]上變更存取權後，選取&#x200B;**[!UICONTROL 重新整理組織和存放庫]**。
 
 ### 設定Widget基礎結構
 

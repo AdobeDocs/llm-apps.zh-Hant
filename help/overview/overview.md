@@ -1,9 +1,9 @@
 ---
 title: Adobe LLM應用程式概觀
 description: 瞭解什麼是Adobe LLM應用程式、其運作方式，以及如何開始建立您的應用程式。
-source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
+source-git-commit: 14d94a68dabddd2f2ef2cef65c51d31645d4a958
 workflow-type: tm+mt
-source-wordcount: '621'
+source-wordcount: '606'
 ht-degree: 0%
 ---
 
@@ -50,7 +50,7 @@ LLM平台叫用動作時所執行的伺服器端函式。 使用處理常式來�
 
 ### 小工具 {#widgets-eds}
 
-與LLM回覆一起顯示的視覺回應，例如卡片、輪播或表格。 產生的Widget是[!DNL Edge Delivery Services] (EDS)存放庫中的區塊。 透過Adobe受管基礎架構，Adobe會準備並託管存放庫以進行試用。 或者，連線您自己的存放庫。
+與LLM回覆一起顯示的視覺回應，例如卡片、輪播或表格。 產生的Widget是[!DNL Edge Delivery Services] (EDS)存放庫中的區塊。 透過Adobe受管基礎架構，Adobe可為您準備並託管存放庫。 或者，連線您自己的存放庫。
 
 ### MCP伺服器
 
@@ -76,7 +76,7 @@ LLM平台叫用動作時所執行的伺服器端函式。 使用處理常式來�
 
 建立應用程式和建立其動作是獨立的步驟：
 
-1. [設定基礎結構](/help/guides/create-app.md)。 使用Adobe受管理基礎架構進行試用，或透過建立應用程式精靈提供兩個空白的[!DNL GitHub]存放庫。 平台會分別初始化一個動作處理常式和一個介面工具集。
+1. [設定基礎結構](/help/guides/create-app.md)。 使用Adobe受管理基礎架構進行快速設定，或選擇使用您自己的[!DNL GitHub]存放庫。
 2. [建立您的動作](/help/guides/creating-actions.md)。 請平台分析您的網站並產生動作，或自行建立。
 3. [部署並測試應用程式](/help/guides/deploy-your-app.md)。 檢閱產生的工作、部署至中繼，並在支援的LLM平台中測試。
 
