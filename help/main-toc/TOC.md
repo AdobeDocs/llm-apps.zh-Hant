@@ -2,32 +2,31 @@
 user-guide-title: LLM應用程式指南
 breadcrumb-title: LLM 應用程式
 user-guide-description: 在支援的LLM平台中建置、自訂、部署和測試互動式體驗，例如使用Adobe LLM應用程式的ChatGPT。
-source-git-commit: 4e447562c5d38f68c209ded7370e9d384a7c9701
+source-git-commit: 651c64f0f179b4f2f7a942a39c04551a0f6a065b
 workflow-type: tm+mt
-source-wordcount: '124'
-ht-degree: 4%
+source-wordcount: '109'
+ht-degree: 7%
 ---
 
 # [!DNL LLM Apps] 指南 {#using}
 
 + [概觀](/help/overview/overview.md)
-+ 建置並啟動您的第一個應用程式 {#build-first-app}
-  + [自動建立您的第一個應用程式](/help/guides/create-app.md)
-  + [應用程式如何連線在一起](/help/guides/app-architecture.md)
++ 快速入門 {#build-first-app}
+  + [基礎架構設定](/help/guides/create-app.md)
+  + [建立動作](/help/guides/creating-actions.md)
+  + [應用程式如何連線](/help/guides/app-architecture.md)
 + 自訂產生的應用程式 {#customize-generated-app}
   + [自訂產生的處理常式](/help/guides/customize-handler.md)
   + [自訂產生的Widget](/help/guides/widgets.md)
   + [設定應用程式變數和密碼](/help/guides/app-variables.md)
 + 新增動作 {#add-new-action}
   + [從頭開始建立動作](/help/guides/create-action.md)
-+ 連線現有的EDS專案 {#connect-existing-eds}
-  + [自備EDS專案](/help/guides/bring-your-own-eds.md)
 + 驗證一般使用者 {#authenticate-end-users}
-  + [使用您自己的身分提供者來驗證一般使用者](/help/guides/authentication.md)
+  + [使用您自己的身分提供者驗證一般使用者](/help/guides/authentication.md)
 + 部署和測試 {#deploy-and-test}
   + [部署您的應用程式](/help/guides/deploy-your-app.md)
   + [將您的LLM應用程式測試為ChatGPT外掛程式](/help/guides/test-in-chatgpt.md)
-  + [以Claude聯結器測試您的LLM應用程式](/help/guides/test-in-claude.md)
+  + [以克勞德聯結器測試您的LLM應用程式](/help/guides/test-in-claude.md)
 + 參照 {#reference}
   + [本機處理常式開發與測試](/help/reference/development.md)
   + [動作和Widget欄位](/help/reference/reference-docs.md)

@@ -1,13 +1,11 @@
 ---
 title: Adobe LLM應用程式概觀
-description: 瞭解什麼是Adobe LLM應用程式、其運作方式，以及您需要啟動哪些應用程式。
-source-git-commit: 2f3480b3667a6ab7c4ed65b999eed4638c383edb
+description: 瞭解什麼是Adobe LLM應用程式、其運作方式，以及如何開始建立您的應用程式。
+source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
 workflow-type: tm+mt
-source-wordcount: '969'
-ht-degree: 1%
-
+source-wordcount: '621'
+ht-degree: 0%
 ---
-
 
 # Adobe LLM應用程式 — 概觀 {#adobe-llm-apps-an-overview}
 
@@ -19,9 +17,9 @@ ht-degree: 1%
 
 ## 什麼是[!DNL Adobe LLM Apps]？
 
-[!DNL Adobe LLM Apps]可讓您的品牌在AI助理（例如[!DNL ChatGPT]）內提供有用的動作，例如產品探索、可用性檢查或服務預訂。
+[!DNL Adobe LLM Apps]可讓您的品牌在受支援的AI助理（例如[!DNL ChatGPT]和[!DNL Claude]）內提供有用的動作，例如產品探索、可用性檢查或服務預訂。
 
-[!DNL LLM Apps]可在[experience.adobe.com](https://experience.adobe.com/#/@llmapps/llm-apps/)取得。
+[!DNL LLM Apps]位於[experience.adobe.com/llm-apps](https://experience.adobe.com/llm-apps)。
 
 ## 您可以使用[!DNL LLM Apps]做什麼
 
@@ -29,7 +27,7 @@ ht-degree: 1%
 - **建立互動式LLM Widget** — 建立視覺化UI元件（產品卡、預訂表單、商店位置），在您的[!DNL GitHub]存放庫中管理為AEM元件。
 - **維持集中式品牌控管** — 作者和開發人員可透過AEM管理核准，完整控制LLM平台內公開的所有內容、復本和視覺效果。
 - **部署到中繼和生產環境** — 控制的部署管道可讓您在升級到生產環境之前，先在中繼環境中測試體驗。
-- **動作層級的控制項可見性** — 部署後，可以在不重新部署整個應用程式的情況下開啟或關閉個別動作。
+- **動作層級的控制項可見性** — 啟用或停用個別動作，然後部署應用程式以套用變更。
 - **測量推動決定的因素** — 內建分析（由Adobe Customer Journey Analytics提供技術支援）表面動作觸發計數、成功率、放棄率、熱門使用者提示和可見度分數。
 
 ## 為什麼[!DNL LLM Apps]重要
@@ -44,15 +42,15 @@ LLM互動與傳統搜尋截然不同。 平均LLM工作階段的長度是傳統�
 
 ### 動作 {#actions}
 
-您的應用程式所提供的功能，例如&#x200B;*尋找散發者*&#x200B;或&#x200B;*瀏覽產品*。 當要求符合其描述時，LLM平台會叫用動作。 在[!DNL LLM Apps]中管理動作中繼資料，而其處理常式是您[!DNL GitHub]存放庫中的程式碼。
+您的應用程式所提供的功能，例如&#x200B;*尋找散發者*&#x200B;或&#x200B;*瀏覽產品*。 當要求符合其描述時，LLM平台會叫用動作。 [!DNL LLM Apps]管理動作中繼資料，且[!DNL GitHub]儲存庫儲存處理常式程式碼。
 
 ### 動作處理常式
 
-叫用動作時執行的伺服器端函式。 它可以驗證輸入、呼叫API並傳回文字加上結構化資料。
+LLM平台叫用動作時所執行的伺服器端函式。 使用處理常式來驗證輸入、呼叫API，並傳回文字加上結構化資料。
 
 ### 小工具 {#widgets-eds}
 
-與LLM回覆一起顯示的視覺回應，例如卡片、輪播或表格。 產生的Widget是您擁有的[!DNL Edge Delivery Services] (EDS)存放庫中的區塊。
+與LLM回覆一起顯示的視覺回應，例如卡片、輪播或表格。 產生的Widget是[!DNL Edge Delivery Services] (EDS)存放庫中的區塊。 透過Adobe受管基礎架構，Adobe會準備並託管存放庫以進行試用。 或者，連線您自己的存放庫。
 
 ### MCP伺服器
 
@@ -60,7 +58,7 @@ LLM互動與傳統搜尋截然不同。 平均LLM工作階段的長度是傳統�
 
 ## 運作方式
 
-從高層面來看，會發生三件事：您告訴[!DNL LLM Apps]您的品牌提供什麼，這會使其變成AI助理可以執行的動作，並且您的客戶會得到真正的答案 — 就在聊天中。
+您在[!DNL LLM Apps]中定義您品牌的功能。 平台會將這些功能設為動作，而AI助理會使用這些動作來回應對話中的客戶請求。
 
 ```
 ┌────────────────────┐          ┌────────────────────┐          ┌────────────────────┐
@@ -72,71 +70,14 @@ LLM互動與傳統搜尋截然不同。 平均LLM工作階段的長度是傳統�
 └────────────────────┘          └────────────────────┘          └────────────────────┘
 ```
 
-想要技術細節 — 您建置什麼，以及各個部分如何組合？ 檢視[應用程式如何連線](/help/guides/app-architecture.md)。
+如需建置內容和元件如何共同運作的技術詳細資訊，請參閱[應用程式如何連線](/help/guides/app-architecture.md)。
 
-## 要求 {#requirements}
+## 快速入門 {#choose-your-journey}
 
-請先完成下列所有需求，再建立應用程式。
+建立應用程式和建立其動作是獨立的步驟：
 
-### Adobe Developer Console
+1. [設定基礎結構](/help/guides/create-app.md)。 使用Adobe受管理基礎架構進行試用，或透過建立應用程式精靈提供兩個空白的[!DNL GitHub]存放庫。 平台會分別初始化一個動作處理常式和一個介面工具集。
+2. [建立您的動作](/help/guides/creating-actions.md)。 請平台分析您的網站並產生動作，或自行建立。
+3. [部署並測試應用程式](/help/guides/deploy-your-app.md)。 檢閱產生的工作、部署至中繼，並在支援的LLM平台中測試。
 
-您的Adobe IMS組織必須擁有[[!DNL App Builder]](https://developer.adobe.com/app-builder/docs/intro_and_overview/)的存取權。 您需要&#x200B;**開發人員**&#x200B;或&#x200B;**系統管理員**&#x200B;角色。
-
-若要驗證您的存取權，請開啟[Adobe Developer Console](https://developer.adobe.com/console)。 「快速入門」畫面會確認您具有所需的存取權。
-
-![Adobe Developer Console — 確認開發人員存取的快速入門畫面](/help/assets/overview/dev-console-access-granted.png)
-
-如果您看到&#x200B;**受限存取**，請聯絡您的IMS組織管理員並請求開發人員角色。
-
-![Adobe Developer Console — 限制存取訊息](/help/assets/overview/dev-console-access-denied.png)
-
-### [!DNL GitHub]
-
-您需要&#x200B;**可以**&#x200B;執行下列動作的[!DNL GitHub]帳戶。 這是許可權檢查 — 尚未安裝任何專案：
-
-- 在擁有應用程式的帳戶或組織中建立兩個存放庫。
-- 稍後在設定程式中安裝[!DNL GitHub]應用程式，或擁有可以核准這些應用程式的組織管理員。
-
-若要驗證存放庫建立存取權，請開啟[github.com/new](https://github.com/new)，並確認預期的帳戶或組織出現在&#x200B;**擁有者**&#x200B;之下。
-
-![GitHub — 選取存放庫擁有者](/help/assets/overview/github-repo-owner-dropdown.png)
-
-針對組織擁有的存放庫，組織管理員可能需要核准[!DNL GitHub]應用程式。
-
->[!NOTE]
->
->這是許可權檢查，不是設定步驟。 尚未安裝任何[!DNL GitHub]應用程式 — [自動建立您的第一個應用程式](/help/guides/create-app.md)會逐步引導您安裝每個應用程式，並在需要的位置設定您建立的確切存放庫範圍。
-
-### 網站
-
-您需要公開HTTPS網站，以代表應用程式應支援的產品、服務或工作。 該平台會分析此網站，以建議動作並建立代表性範例資料。
-
-請勿使用公開機密或存取控制資訊的網站。
-
-### [!DNL ChatGPT]或[!DNL Claude]以進行測試
-
-若要完成快速入門教學課程，請使用已啟用開發人員模式的支援[!DNL ChatGPT]計畫，或已啟用自訂聯結器的支援[!DNL Claude]計畫。 Workspace或組織管理員可限制存取權。 檢視ChatGPT中的[測試](/help/guides/test-in-chatgpt.md#plan-requirements)或Claude中的[測試](/help/guides/test-in-claude.md#plan-requirements)。
-
-## 選擇您的歷程 {#choose-your-journey}
-
-### &#x200B;1. 建置並啟動您的第一個應用程式
-
-從[建置並啟動您的第一個應用程式](/help/guides/create-app.md)開始。 此歷程從兩個空白存放庫開始，並以在受支援的LLM平台（例如[!DNL ChatGPT]）中作為外掛程式測試的生產就緒應用程式結束。
-
-### &#x200B;2. 自訂產生的應用程式
-
-當平台自動建立應用程式且您想要取代範例行為時，請選擇此歷程：
-
-1. [自訂產生的處理常式](/help/guides/customize-handler.md)以連線您的API並定義每個動作傳回的資料。
-2. [自訂產生的Widget](/help/guides/widgets.md)以使用該資料，並套用您的互動和設計。
-
-### &#x200B;3. 從頭開始新增動作
-
-選擇[從頭開始新增動作](/help/guides/create-action.md)以定義新的中繼資料、撰寫處理常式、連線Widget、測試及部署動作。
-
-### &#x200B;4. 連線現有的EDS專案
-
-當您已經有EDS網站或未自動建立應用程式時，請選擇[連線現有的EDS專案](/help/guides/bring-your-own-eds.md)。
-
-每個歷程都使用共用的[部署](/help/guides/deploy-your-app.md)步驟，然後[ChatGPT外掛程式測試](/help/guides/test-in-chatgpt.md)或[Claude聯結器測試](/help/guides/test-in-claude.md)。
-
+自動產生可為您提供範例行為的起點。 在將應用程式提供給客戶使用之前，請[將您的處理常式連線至您的系統](/help/guides/customize-handler.md)以及[自訂介面工具集](/help/guides/widgets.md)。

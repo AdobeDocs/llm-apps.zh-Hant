@@ -1,13 +1,11 @@
 ---
 title: 從頭開始建立動作
 description: 定義動作中繼資料、實作其處理常式、連線EDS Widget、測試它，以及使用Adobe LLM應用程式進行部署。
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
 workflow-type: tm+mt
-source-wordcount: '1137'
+source-wordcount: '1453'
 ht-degree: 0%
-
 ---
-
 
 # 從頭開始建立動作 {#create-action-from-scratch}
 
@@ -21,11 +19,11 @@ ht-degree: 0%
 >
 >本指南假設您已基本熟悉Adobe Edge Delivery Services (EDS)。 如果您是EDS的新手，請先閱讀[EDS開發人員教學課程](https://www.aem.live/developer/tutorial)和[探索區塊](https://www.aem.live/docs/exploring-blocks)以瞭解基本知識（區塊、`decorate`函式和EDS專案結構），然後再連線Widget。
 
-使用本指南新增平台未建立的功能。 您將在[!DNL LLM Apps]中定義動作、在連結的存放庫中寫入其處理常式、視需要新增Widget、測試並部署它。
+新增平台未建立的功能。 在[!DNL LLM Apps]中定義動作、在連結的存放庫中寫入其處理常式，並視需要新增Widget。
 
-**歷程：**&#x200B;規劃動作→建立其中繼資料，→寫入處理常式→連線Widget→在本機測試→部署並測試外掛程式。
+**在本指南中：**&#x200B;瞭解如何定義動作、實作其處理常式，以及連線選用的Widget。 在本機測試動作、部署應用程式，然後在支援的LLM平台中嘗試該動作。
 
-針對您的第一個應用程式，從[自動建立您的第一個應用程式](/help/guides/create-app.md)開始。
+針對您的第一個應用程式，從[基礎結構設定](/help/guides/create-app.md)開始，然後[建立動作](/help/guides/creating-actions.md)。 「建立動作」指南說明從網站自動產生和手動建立。
 
 ## 開始之前
 
@@ -33,22 +31,22 @@ ht-degree: 0%
 
 - 現有的LLM應用程式。
 - 連結的處理常式存放庫。
-- 存放庫已在本機複製，並已安裝其相依性。
+- 存放庫的本機複製及其相依性已安裝。
 - EDS專案（如果動作顯示Widget）。
 - 生產結果的清除API或資料來源。
 
 ## 計畫動作
 
-動作應該會執行一個清除的使用者工作。 在開啟UI之前，請定義：
+圍繞一個清除的使用者任務設計每個動作。 在開啟UI之前，請定義：
 
 - **意圖** — 使用者嘗試達到的目的。
-- **描述** — LLM平台應該何時選取此動作。
+- **描述** — 何時選取動作。
 - **輸入** — 使用者需要的最少資訊。
 - **結果** — 處理常式傳回的文字和結構化資料。
 - **行為** — 動作會讀取資料、變更資料或呼叫外部系統。
 - **Widget** — 結果是否需要視覺介面。
 
-例如，**搜尋產品**&#x200B;動作可以使用：
+例如，將此計畫用於&#x200B;**搜尋產品**&#x200B;動作：
 
 ```text
 Intent: Find products matching a category or search phrase
@@ -62,13 +60,13 @@ Behavior: read-only, idempotent, open-world
 Widget: product cards
 ```
 
-將相關但不同的工作分開。 產品搜尋和產品購買不應是一個動作，因為它們有不同的輸入、風險和確認需求。
+將相關但不同的工作分開。 針對產品搜尋和產品購買使用個別動作，因為這些工作具有不同的輸入、風險和確認需求。
 
 ## 建立動作中繼資料
 
 開啟應用程式並選取&#x200B;**[!UICONTROL 動作]**，然後選取&#x200B;**[!UICONTROL 建立動作]**。
 
-編輯器包含&#x200B;**[!UICONTROL 動作]**&#x200B;和&#x200B;**[!UICONTROL Widget中繼資料]**&#x200B;標籤。
+建立對話方塊包含&#x200B;**[!UICONTROL 動作]**&#x200B;和&#x200B;**[!UICONTROL Widget中繼資料]**&#x200B;標籤。 展開每個區段以設定其欄位。
 
 ### 輸入基本資訊
 
@@ -78,6 +76,8 @@ Widget: product cards
 
 - **[!UICONTROL 動作名稱]** — 簡短的工作名稱，例如&#x200B;*搜尋產品*。
 - **[!UICONTROL 描述]** — 說明何時使用動作及其傳回的內容。
+
+對話方塊會從名稱（例如`search-products`）衍生&#x200B;**[!UICONTROL 代碼識別碼]**。 識別碼會在建立後修正，且必須在應用程式內是唯一的。 使用處理常式資料夾的確切識別碼。
 
 有用的說明很具體：
 
@@ -108,19 +108,19 @@ Invoking: Searching products...
 Invoked: Products found
 ```
 
-對於含有Widget的動作，請新增&#x200B;**[!UICONTROL Widget描述]**。 這與動作說明不同：
+對於含有Widget的動作，請新增&#x200B;**[!UICONTROL Widget描述]**。 Widget說明與動作說明不同：
 
 - **動作描述**&#x200B;可協助模型決定何時叫用動作。
 - **Widget描述**&#x200B;對應至`_meta["openai/widgetDescription"]`並摘要呈現的元件所顯示的內容，減少重複的旁白。
 
-[!DNL LLM Apps]將此套用為元件中繼資料。 請勿從處理常式傳回。
+[!DNL LLM Apps]將Widget說明套用為元件中繼資料。 請勿從處理常式傳回說明。
 
 ### 設定可見度
 
 - **[!UICONTROL 公開給AI模型]**&#x200B;可讓模型選取動作。
 - **[!UICONTROL 在應用程式表面顯示為Widget]**&#x200B;會顯示設定的Widget。
 
-當動作僅傳回文字時停用Widget可見性。
+若是純文字動作，請選取&#x200B;**[!UICONTROL Widget中繼資料]** > **[!UICONTROL 型別]**&#x200B;下的&#x200B;**[!UICONTROL 無Widget]**。 可見性控制項不會選擇動作的Widget型別。
 
 ### 新增輸入引數
 
@@ -128,8 +128,8 @@ Invoked: Products found
 
 - **名稱** — 處理常式收到的金鑰。
 - **型別** — 字串、數字、整數或布林值。
-- **描述** — 模型應該如何擷取值。
-- **必要** — 動作是否可以在沒有它的情況下執行。
+- **描述** — 如何擷取值。
+- **必要** — 動作是否需要值。
 
 針對&#x200B;**搜尋產品**：
 
@@ -151,13 +151,15 @@ query
 
 當您想要分析包含導致動作的對話摘要時，啟用&#x200B;**[!UICONTROL 收集使用者意圖]**。
 
+預設會啟用使用者意圖收集。 檢閱&#x200B;**[!UICONTROL 使用者意向描述]**，其中包含要求摘要的指示。 將指示限制在非敏感、匿名的目的，並在您的隱私權原則中說明您的資料收集。 說明最多可接受2,000個字元。
+
 ![建立動作 — 使用者意圖分析](/help/assets/guide-create-action/action-analytics-user-intent.png)
 
 如需完整的欄位定義，請參閱[動作和Widget欄位](/help/reference/reference-docs.md)。
 
 ## 設定Widget
 
-略過本節，進行純文字動作。
+針對純文字動作，請開啟&#x200B;**[!UICONTROL Widget中繼資料]**&#x200B;並將&#x200B;**[!UICONTROL Type]**&#x200B;設定為&#x200B;**[!UICONTROL 無Widget]**。 然後略過其餘的Widget設定。
 
 開啟&#x200B;**[!UICONTROL Widget中繼資料]**。
 
@@ -165,11 +167,16 @@ query
 
 設定：
 
-- **型別** — 選取EDS。
-- **Widget網域** — 主控此Widget的EDS來源。
+- **[!UICONTROL 型別]** — 為互動式Widget選取&#x200B;**[!UICONTROL Edge Delivery Services區塊]**。
+- **[!UICONTROL Widget網域]** — Widget的沙箱來源。 UI會根據應用程式提交和每個應用程式的唯一性來識別它；它與EDS頁面URL不同。
 - **偏好使用邊框** — 要求主機中的邊框容器。
-- **指令碼URL** — EDS Widget進入點。
-- **Widget URL** — 此動作的已發佈EDS頁面。
+
+展開&#x200B;**[!UICONTROL 範本URL]**&#x200B;並輸入：
+
+- **[!UICONTROL 指令碼URL]** — EDS Widget進入點。
+- **[!UICONTROL Widget URL]** — 此動作的已發佈EDS頁面。
+
+![建立新動作 — EDS Widget的指令碼和Widget URL](/help/assets/guide-create-action/widget-template-urls.png)
 
 典型的URL為：
 
@@ -183,7 +190,13 @@ https://main--<repo>--<owner>.aem.live/<widget-page>
 
 僅授予必要的瀏覽器許可權和CSP網域。
 
-![建立動作 — 許可權和CSP](/help/assets/guide-create-action/widget-permissions-csp.png)
+只有在介面工具集需要瀏覽器功能（例如地理位置）時，才展開&#x200B;**[!UICONTROL 許可權（MCP特定）]**。 關閉未使用的許可權。
+
+![建立新動作 — 選擇性的瀏覽器許可權](/help/assets/guide-create-action/widget-permissions.png)
+
+在&#x200B;**[!UICONTROL CSP設定]**&#x200B;底下，新增資產和網路要求所需的來源。 如果CSP不完整，載入外部資源的Widget可能不會呈現。
+
+![建立新動作 — 內容安全性原則網域清單](/help/assets/guide-create-action/widget-csp.png)
 
 如果EDS專案或Widget頁面尚不存在，請完成[自攜EDS專案](/help/guides/bring-your-own-eds.md)，然後返回動作。
 
@@ -191,7 +204,9 @@ https://main--<repo>--<owner>.aem.live/<widget-page>
 
 選取&#x200B;**[!UICONTROL 建立新動作]**。 此動作會顯示在具有&#x200B;**未部署**&#x200B;徽章的「動作」頁面上。
 
-此時，中繼資料已存在，但動作仍需要處理常式。
+儲存會建立中繼資料，但動作仍需要處理常式。
+
+當您重新開啟儲存的動作時，編輯器會有&#x200B;**[!UICONTROL LLM Widget詳細資料]**、**[!UICONTROL 動作詳細資料]**&#x200B;和&#x200B;**[!UICONTROL Analytics]**&#x200B;標籤。 若要儲存稍後的編輯，請選取&#x200B;**[!UICONTROL 儲存變更]**。 建立對話方塊和儲存的動作編輯器具有不同的版面。
 
 ## 實作處理常式
 
@@ -234,7 +249,7 @@ module.exports = async (args) => {
 
 ### 傳回`content`
 
-`content`是LLM平台讀取的文字遞補：
+LLM平台讀取`content`做為文字遞補：
 
 ```javascript
 content: [
@@ -246,7 +261,7 @@ content: [
 
 ### 傳回`structuredContent`
 
-`structuredContent`是Widget使用的純物件：
+Widget會將`structuredContent`視為純物件：
 
 ```javascript
 structuredContent: {
@@ -261,35 +276,43 @@ structuredContent: {
 
 ### 連線API
 
-在伺服器端處理常式中保留受保護的API存取權。 從執行階段環境載入設定，並使用固定的HTTPS來源。
+將API呼叫保留在伺服器端處理常式。 此範例會呼叫公用產品API。 在名為`PRODUCT_API_ORIGIN`的[應用程式變數](/help/guides/app-variables.md)中設定API的HTTPS來源。 此範例接受以上定義的`query`和`category`引數、至少需要一個引數，而且不需要認證。
 
 ```javascript
-const API_ORIGIN = process.env.PRODUCT_API_ORIGIN;
-const API_TOKEN = process.env.PRODUCT_API_TOKEN;
+const { getVariable } = require('@adobe/llm-apps-runtime');
 
-module.exports = async ({ query = '' } = {}) => {
-  const normalizedQuery = String(query).trim();
-  if (!normalizedQuery || normalizedQuery.length > 200) {
+module.exports = async ({ query = '', category = '' } = {}, extra) => {
+  const normalizedQuery = typeof query === 'string' ? query.trim() : '';
+  const normalizedCategory = typeof category === 'string' ? category.trim() : '';
+  if (typeof query !== 'string' || typeof category !== 'string'
+      || (!normalizedQuery && !normalizedCategory)
+      || normalizedQuery.length > 200 || normalizedCategory.length > 100) {
     return {
+      isError: true,
       content: [{ type: 'text', text: 'Enter a valid product search.' }],
       structuredContent: { products: [], total: 0 }
     };
   }
 
-  if (!API_ORIGIN || !API_TOKEN) {
+  const apiOrigin = getVariable(extra, 'PRODUCT_API_ORIGIN');
+  if (!apiOrigin) {
     throw new Error('Product API configuration is unavailable.');
   }
 
-  const origin = new URL(API_ORIGIN);
+  const origin = new URL(apiOrigin);
   if (origin.protocol !== 'https:') {
     throw new Error('Product API configuration must use HTTPS.');
   }
 
   const url = new URL('/v1/products', origin);
-  url.searchParams.set('query', normalizedQuery);
+  if (normalizedQuery) {
+    url.searchParams.set('query', normalizedQuery);
+  }
+  if (normalizedCategory) {
+    url.searchParams.set('category', normalizedCategory);
+  }
 
   const response = await fetch(url, {
-    headers: { Authorization: `Bearer ${API_TOKEN}` },
     signal: AbortSignal.timeout(8000)
   });
 
@@ -325,7 +348,7 @@ module.exports = async ({ query = '' } = {}) => {
 };
 ```
 
-請勿將API認證放入原始程式碼、動作中繼資料、Widget JavaScript、記錄檔或面對使用者的錯誤中。
+請勿將API認證放入原始程式碼、動作中繼資料、Widget JavaScript、記錄檔或面對使用者的錯誤中。 **[!UICONTROL 變數和密碼]** UI目前僅支援不敏感的變數，不支援密碼。 請勿將API權杖儲存在變數中。 如果您的上游API需要認證，請先安排核准的伺服器端認證機制，然後再進行連線。
 
 對於生產程式碼，在將核准的欄位對應到`structuredContent`之前，請先驗證完整的上游回應。
 
@@ -389,9 +412,8 @@ npm run dev:local
 
 1. 認可並推送處理常式和Widget變更。
 2. [將應用程式](/help/guides/deploy-your-app.md)部署到Stage。
-3. [測試ChatGPT外掛程式](/help/guides/test-in-chatgpt.md)。
-4. 驗證應該和不應該叫用動作的提示。
+3. 在[ChatGPT](/help/guides/test-in-chatgpt.md)或[Claude](/help/guides/test-in-claude.md)中測試應用程式。
+4. 使用符合動作的提示和不呼叫動作的無關提示來驗證動作選擇。
 5. 中繼成功後，請部署至生產環境。
 
 如果中繼資料不存在相符的處理常式，部署會使用預設的Stub註冊動作。 在讓使用者能夠使用動作之前，請新增處理常式。
-- [指南：設定Widget (EDS)](/help/guides/widgets.md)

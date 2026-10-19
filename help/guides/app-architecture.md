@@ -1,13 +1,11 @@
 ---
 title: 應用程式如何連線
-description: 更仔細地瞭解您擁有的片段（動作中繼資料、處理常式程式碼和Widget）如何在建置階段和執行階段整合到一個執行中的LLM應用程式中。
-source-git-commit: 2f3480b3667a6ab7c4ed65b999eed4638c383edb
+description: 瞭解LLM應用程式的三個部分、它們在對話中的運作方式，以及在何處進行變更。
+source-git-commit: af83670aebde1e6f73585c89a891bc7f5e92fb3a
 workflow-type: tm+mt
-source-wordcount: '335'
+source-wordcount: '573'
 ht-degree: 0%
-
 ---
-
 
 # 應用程式如何連線 {#app-architecture}
 
@@ -17,69 +15,66 @@ ht-degree: 0%
 >
 >此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
 
-## 在一個句子中
+**LLM應用程式**&#x200B;將您品牌的服務帶入AI對話中。 例如，客戶要求您提供咖啡推薦，您的應用程式找到相符的產品，而助理會顯示結果。
 
-**LLM應用程式**&#x200B;是您發佈至單一端點的一組&#x200B;**動作** （每個動作都是透過&#x200B;**模型內容通訊協定**&#x200B;或&#x200B;**MCP**&#x200B;公開的工具）。 像[!DNL ChatGPT]這樣的聊天主機會探索這些工具、在交談中呼叫這些工具，並轉譯含有結果的&#x200B;**互動式Widget** — 直接在聊天中進行。
+**在本指南中：**&#x200B;瞭解應用程式的每個部分有何作用、在何處進行變更，以及當使用者使用應用程式時，這些部分如何共同運作。
 
-## 整個佈線，建置→執行
+## 應用程式的三個部分
 
-**圖表1 — 建置時間。** 您擁有三個不同的表面；平台會將它們融合成一個可部署的應用程式。
+一個應用程式可群組數個相關動作，例如&#x200B;*瀏覽產品*、*比較產品*&#x200B;和&#x200B;*尋找商店*。 每個動作都有各自的設定、處理常式及選用的Widget。 新增動作不需要其他存放庫配對。
 
-```
-┌─────────────────────┐   ┌─────────────────────┐   ┌─────────────────────┐
-│ 1  LLM Apps UI      │   │ 2  Action Handler   │   │ 3  Widget repo      │
-│                     │   │    repo             │   │                     │
-│ Create, edit, and   │   │                     │   │ Each widget is an   │
-│ manage your action  │   │ Business logic —    │   │ EDS block,          │
-│ definitions here    │   │ built from our      │   │ published to a      │
-│ (metadata)          │   │ boilerplate         │   │ public URL on       │
-│                     │   │                     │   │ *.aem.page          │
-│                     │   │ Returns content     │   │                     │
-│                     │   │ (for the LLM) +     │   │                     │
-│                     │   │ structuredContent   │   │                     │
-│                     │   │ (for the widget)    │   │                     │
-└─────────────────────┘   └─────────────────────┘   └─────────────────────┘
-           │                         │                         │
-           └─────────────────────────┼─────────────────────────┘
-                                     ▼
-                       ┌─────────────────────────────┐
-                       │ LLM Apps deploy pipeline    │
-                       │ Combines the 3 surfaces     │
-                       │ into one running app        │
-                       └─────────────────────────────┘
-                                     │
-                                     ▼
-                 ┌─────────────────────────────────────────┐
-                 │ ONE MCP server on Adobe I/O Runtime     │
-                 │ https://<ns>.adobeioruntime.net/.../mcp │
-                 └─────────────────────────────────────────┘
+具有互動式Widget的應用程式包含三個部分：動作設定、處理常式程式碼和Widget程式碼。 您管理[!DNL LLM Apps]中的設定。 處理常式和Widget程式碼存在於兩個不同的[!DNL GitHub]存放庫中。
+
+```text
+┌───────────────────────┐   ┌───────────────────────┐   ┌───────────────────────┐
+│ 1. LLM Apps UI        │   │ 2. Handler repository │   │ 3. Widget repository  │
+│                       │   │                       │   │                       │
+│ Action descriptions   │   │ Connects to your APIs │   │ Widget layout         │
+│ Required information  │   │ Runs the task         │   │ Branding and styles   │
+│ When to use an action │   │ Returns results       │   │ Interactive controls  │
+└───────────────────────┘   └───────────────────────┘   └───────────────────────┘
+            │                           │                           │
+            └───────────────────────────┼───────────────────────────┘
+                                        ▼
+                    ┌───────────────────────────────────────┐
+                    │ Your app in an AI conversation        │
+                    │ The action runs and the widget        │
+                    │ shows the result.                     │
+                    └───────────────────────────────────────┘
 ```
 
-- **LLM應用程式UI** — 您可在此建立、編輯及管理每個動作的定義：其&#x200B;**程式碼識別碼** （您在此設定一次的固定概要，例如`my_action`，此固定概要將整個UI、處理常式和Widget中的這個相同動作繫結在一起）、說明、輸入結構描述、Widget選擇和CSP/visibility旗標。 沒有程式碼。
-- **動作處理常式存放庫** — 您編寫商業邏輯的伺服器端存放庫（以我們的範本為基礎）。 每個處理常式函式會傳回兩個專案： `content` （LLM *讀取的純文字）和`structuredContent` （* Widget *讀取的資料物件）。*
-- **Widget存放庫** — 每個Widget以區塊形式存在並發佈至公用`*.aem.page` URL的EDS存放庫。 每個區塊都使用[`@adobe/llmapps-sdk`](https://www.npmjs.com/package/@adobe/llmapps-sdk)，這是Widget與主機/伺服器之間的橋接器。 它實作簡單API後面的&#x200B;**MCP應用程式規格** （基礎通訊協定），而且它將LLM主機本身抽象化，因此相同的Widget可在[!DNL ChatGPT]、[!DNL Claude]、Gemini或任何其他MCP主機中不受修改地運作。
+- **動作設定描述工作。** 它們會告知助理何時使用動作以及需要哪些資訊。 對於產品搜尋，該資訊可能是類別或搜尋字詞。
+- **處理常式完成工作。** 它會從您的系統取得資料或執行任務。 例如，產品搜尋處理常式會從您的目錄中擷取相符的產品。
+- **Widget會顯示結果。** 它可控制客戶看見及互動的內容，例如含有名稱、價格和按鈕的產品卡。
 
-**圖表2 — 執行階段。** 一旦該伺服器上線，使用者傳送的每則訊息會發生什麼情況。 以[!DNL ChatGPT]顯示為範例主機 — 任何MCP主機（例如[!DNL Claude]）都會播放相同的順序。
+建議您為每個動作新增Widget。 Widget可讓您控制結果的外觀以及客戶與其互動的方式，而非將簡報交給AI助理。 也支援純文字回應。
 
-```
-┌── ChatGPT  (the MCP host) ──────────────────────────────────────────────┐
-│  1  tools/list  >  sees `my_action` + its description + input schema    │
-│  2  user asks   >  "I need help with …"                                 │
-│  3  model picks >  the description matches -> calls this tool           │
-│  4  tools/call  >  { name: "my_action", arguments: {situation, ...} }   │
-└─────────────────────────────────────────────────────────────────────────┘
-                                     │
-                 routes by CODE IDENTIFIER  ->  my_action
-                                     ▼
-┌── Adobe I/O Runtime ────────────────────────────────────────────────────┐
-│  actions/my_action/index.js  --  your handler runs                      │
-│  returns  { content -> text for the model , structuredContent -> data } │
-└─────────────────────────────────────────────────────────────────────────┘
-                                     │
-                                     ▼
-┌── Rendered inside the conversation ─────────────────────────────────────┐
-│  5  render      >  ChatGPT renders the Widget repo's EDS block          │
-│  The EDS block reads the structuredContent the Action Handler repo      │
-│  returned, and draws the interactive card — live, inside the chat.      │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+## 進行變更的位置
+
+| 您想要變更的內容 | 編輯位置 |
+|---|---|
+| 當助理使用動作時，或動作要求哪些資訊 | LLM應用程式中的[動作設定](/help/reference/reference-docs.md) |
+| 結果來自何處，或動作執行時會發生什麼情況 | [處理常式存放庫中的處理常式程式碼](/help/guides/customize-handler.md) |
+| 結果的外觀，包括版面、品牌和互動 | [Widget存放庫中的Widget程式碼](/help/guides/widgets.md) |
+
+保持這三個部分一致。 例如，如果您變更處理常式傳回的資訊，請更新Widget以顯示新結果。
+
+## 交談中發生的情況
+
+部署後，您的應用程式有一個連線URL，稱為&#x200B;**MCP伺服器URL**。 將此URL新增至支援的AI平台，讓助理可以探索及使用您應用程式的動作。
+
+對於具有產品搜尋動作和Widget的應用程式：
+
+1. 客戶要求助理，*給我看咖啡盒。*
+2. 助理會使用動作的說明來選擇產品搜尋動作。
+3. 處理常式會從目錄中取得相符的產品。
+4. Widget會將產品顯示為交談中的卡片。
+5. 客戶瀏覽結果或提出後續問題。
+
+當應用程式提供資訊或服務時，客戶會繼續參與交談。 Widget支援取決於LLM平台。
+
+## 套用及測試您的變更
+
+先發佈Widget變更和部署動作變更，再測試更新的體驗。 請依照[部署您的應用程式](/help/guides/deploy-your-app.md)以部署至中繼環境，並在支援的LLM平台上測試應用程式。
+
+自動產生的動作會以範例資料開頭。 將處理常式連線至您的實際系統，並在客戶使用應用程式之前先行測試。
