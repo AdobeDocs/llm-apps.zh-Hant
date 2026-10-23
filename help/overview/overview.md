@@ -1,9 +1,9 @@
 ---
 title: Adobe LLM應用程式概觀
 description: 瞭解什麼是Adobe LLM應用程式、其運作方式，以及如何開始建立您的應用程式。
-source-git-commit: 14d94a68dabddd2f2ef2cef65c51d31645d4a958
+source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
 workflow-type: tm+mt
-source-wordcount: '606'
+source-wordcount: '624'
 ht-degree: 0%
 ---
 
@@ -81,3 +81,5 @@ LLM平台叫用動作時所執行的伺服器端函式。 使用處理常式來�
 3. [部署並測試應用程式](/help/guides/deploy-your-app.md)。 檢閱產生的工作、部署至中繼，並在支援的LLM平台中測試。
 
 自動產生可為您提供範例行為的起點。 在將應用程式提供給客戶使用之前，請[將您的處理常式連線至您的系統](/help/guides/customize-handler.md)以及[自訂介面工具集](/help/guides/widgets.md)。
+
+若要在您自己的[!DNL Adobe Analytics]或[!DNL Customer Journey Analytics]中報告您的應用程式，請參閱[設定Adobe Analytics和Customer Journey Analytics](/help/guides/analytics-setup.md)。

@@ -1,9 +1,9 @@
 ---
 title: 部署您的應用程式
 description: 瞭解如何使用LLM應用程式UI將您的Adobe LLM應用程式部署到測試環境和生產環境。
-source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
+source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
 workflow-type: tm+mt
-source-wordcount: '412'
+source-wordcount: '444'
 ht-degree: 0%
 ---
 
@@ -58,11 +58,14 @@ ht-degree: 0%
 
 ## 部署設定變更
 
-動作中繼資料、應用程式頁面的&#x200B;**[!UICONTROL 可見度]**&#x200B;切換、驗證和應用程式變數的變更，會在下次部署至該環境時生效。 儲存設定本身不會更新已部署的MCP伺服器。
+動作中繼資料、應用程式頁面的&#x200B;**[!UICONTROL 可見度]**&#x200B;切換、驗證、應用程式變數和Analytics設定的變更，會在下次部署至該環境時生效。 儲存設定本身不會更新已部署的MCP伺服器。
 
 每次都檢查目標環境。 部署到中繼不會將相同的變更部署到生產環境。
+
+如果您的應用程式不符合Analytics執行階段或SDK需求，請依照[升級現有應用程式](/help/guides/upgrade-existing-app.md)再重新部署。
 
 ## 下一步
 
 - [將部署的應用程式測試為ChatGPT外掛程式](/help/guides/test-in-chatgpt.md)。
 - [將部署的應用程式測試為Claude聯結器](/help/guides/test-in-claude.md)。
+- [將您的應用程式事件傳送到Adobe Analytics或Customer Journey Analytics](/help/guides/analytics-setup.md)。

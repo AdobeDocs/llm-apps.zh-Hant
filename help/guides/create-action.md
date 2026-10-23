@@ -1,9 +1,9 @@
 ---
 title: 從頭開始建立動作
 description: 定義動作中繼資料、實作其處理常式、連線EDS Widget、測試它，以及使用Adobe LLM應用程式進行部署。
-source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
+source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
 workflow-type: tm+mt
-source-wordcount: '1453'
+source-wordcount: '1476'
 ht-degree: 0%
 ---
 
@@ -147,9 +147,11 @@ query
 
 使用穩定的引數名稱。 變更名稱也需要變更處理常式及其測試。
 
-### 設定分析
+### 設定分析 {#configure-analytics}
 
 當您想要分析包含導致動作的對話摘要時，啟用&#x200B;**[!UICONTROL 收集使用者意圖]**。
+
+如果您設定自己的[!DNL Adobe Analytics]或[!DNL Customer Journey Analytics]，使用者意向也會傳送至該處。 請參閱[設定Adobe Analytics和Customer Journey Analytics](/help/guides/analytics-setup.md)。
 
 預設會啟用使用者意圖收集。 檢閱&#x200B;**[!UICONTROL 使用者意向描述]**，其中包含要求摘要的指示。 將指示限制在非敏感、匿名的目的，並在您的隱私權原則中說明您的資料收集。 說明最多可接受2,000個字元。
 

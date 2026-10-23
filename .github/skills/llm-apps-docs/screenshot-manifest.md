@@ -1,7 +1,7 @@
 ---
-source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
+source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
 workflow-type: tm+mt
-source-wordcount: '1052'
+source-wordcount: '1418'
 ht-degree: 1%
 ---
 # 熒幕擷圖資訊清單
@@ -135,6 +135,28 @@ ht-degree: 1%
 熒幕擷取畫面需要目前經過驗證的存取；否則請使用正式廠商
 指示並忽略未驗證的影像。
 
+## Analytics設定
+
+文章： `/help/guides/analytics-setup.md`
+
+輸出目錄： `help/assets/guide-analytics/`
+
+| 檔案名稱 | 狀態與有用的內容 | 建議的替代文字 |
+|---|---|---|
+| `analytics-settings.png` | 應用程式設定， Analytics標籤，啟用Analytics on，空的資料流ID，擴展的需求，停用儲存變更 | 應用程式設定， Analytics標籤 — 啟用Analytics已開啟、空白的資料流ID欄位和展開的需求清單 |
+| `datastream-analytics-service.png` | 資料收集、新增服務、Adobe Analytics已啟用虛擬報表套裝ID | 新增服務 — 以範例報表套裝ID啟用Adobe Analytics |
+| `datastream-platform-service.png` | 資料彙集， Adobe Experience Platform服務，僅選取事件資料集 | Adobe Experience Platform服務 — 已選取事件資料集並清除其他選項 |
+| `datastream-services.png` | 已啟用服務、虛擬資料流ID和對應結構描述的資料流詳細資料 | 資料流詳細資料 — 兩種服務皆已啟用，範例為資料流ID和對應結構描述 |
+
+永遠不要擷取真正的資料串流ID。 不要選取&#x200B;**儲存變更**：儲存後，
+只有管理員可以變更資料流。 顯示Experience Platform、Adobe Analytics、
+和Customer Journey Analytics熒幕，僅顯示下列專案的特定設定：
+LLM應用程式；其他專案皆連結至Experience League。 取代組織
+名稱、報表套裝ID、資料流ID、資料集ID、電子郵件和個人名稱
+具有下列虛擬值： `example-org`、`demo.<suffix>`報表套裝，
+`00000000-0000-0000-0000-000000000000`、`0000…0001`、`user@example.com`和
+`Example User`.
+
 ## 現有的擷取來源
 
 2026-10-19擷取回合使用使用者要求的本機UI，並具有相符的UI/API
@@ -162,3 +184,25 @@ ht-degree: 1%
 保留在編輯器中。 存放庫連結已遮罩，帳戶導覽已遮罩
 已排除。 在此重新整理期間，未儲存、核准、切換或部署任何動作。
 原始擷取： `docs-captures/2026-10-19/remove-enabled/`。
+
+### Analytics設定，2026-10-21
+
+已從使用者提供的重新整理`guide-analytics/analytics-settings.png`
+`Screenshot 2026-10-21 at 11.48.36.png`，不是代理程式驅動的執行。 來源
+環境：未記錄且未顯示在影像上；生產同位檢查未顯示
+已驗證。 視覺審查確認啟用Analytics開啟，資料流ID欄位
+空白，會展開「需求」，且會停用「儲存變更」。 影像是
+複製時不會進行編輯；不會顯示任何識別碼或帳戶詳細資料。
+
+### 資料流熒幕擷取畫面，2026-10-19
+
+已新增`guide-analytics/datastream-analytics-service.png`，
+`datastream-platform-service.png`，以及現有中的`datastream-services.png`
+內部資料收集擷取（2026-07-29和2026-10-19）。 報表套裝ID
+且資料串流ID已取代為虛擬文字重疊(`demo.aem.llm`和
+`00000000-0000-0000-0000-000000000000`)；覆蓋字型是舊金山，所以它
+與產品字型稍微不同。 不需要平台服務影像
+變更。 Analytics服務影像仍會顯示來自
+原始擷取。 OCR透過最終影像時，找不到原始識別碼。
+以下列動作取代這些動作，新擷取會使用在UI中輸入的虛值：
+文章將重新整理。
