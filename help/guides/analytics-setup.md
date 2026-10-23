@@ -60,7 +60,7 @@ ht-degree: 2%
 | 動作呼叫 | `mcp.tool_call` | LLM平台會呼叫應用程式的其中一個動作，包括失敗或傳回登入提示的呼叫。 | 動作的程式碼識別碼以及呼叫是否失敗。 使用者意圖（當動作收集且平台提供意圖時）。 平台提供時：平台名稱、交談ID、平台的使用者ID、地區設定和組織，以及使用者的大致位置。 |
 | Widget互動 | `web.webinteraction.linkClicks` | 有人在Edge Delivery Services Widget中選取連結或按鈕。 | 連結或按鈕標籤，最多100個字元。 當動作呼叫提供時，其交談ID和結束ID。 Adobe Web SDK也會新增Widget框架URL、畫面和瀏覽器視窗大小、當地時間和時區，以及自己的版本。 |
 
-在[!DNL Adobe Analytics]中，每個動作呼叫都會計為名為`mcp:<code identifier>`之頁面的頁面檢視，而每個Widget互動都會計為連結點選。 檢視Adobe Analytics](https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/hit-types)中的[Edge Network事件型別。
+在[!DNL Adobe Analytics]中，每個動作呼叫都會計為名為`mcp:<code identifier>`之頁面的頁面檢視，而每個Widget互動都會計為連結點選。 檢視Adobe Analytics[&#128279;](https://experienceleague.adobe.com/en/docs/analytics/implementation/aep-edge/hit-types)中的Edge Network事件型別。
 
 每個動作呼叫和每個Widget互動都是您[!DNL Experience Platform]資料集裡的一個[!DNL Adobe Analytics]點選和一個事件。 在高流量應用程式中，啟用Analytics之前，請檢查您的合約是否涵蓋此流量。
 
@@ -334,7 +334,7 @@ ht-degree: 2%
 | 資料集未收到任何批次 | 將Analytics設定儲存至測試環境後，您便已部署應用程式。 資料串流ID正確。 資料流有&#x200B;**[!UICONTROL Adobe Experience Platform]**&#x200B;服務與您的資料集。 |
 | 批次失敗 | 結構描述包含[步驟2](#schema)中的所有五個欄位群組。 |
 | [!DNL Adobe Analytics]沒有資料 | 資料流已使用正確的報表套裝ID啟用&#x200B;**[!UICONTROL Adobe Analytics]**&#x200B;服務。 |
-| **頁面**&#x200B;顯示`mcp:<code identifier>`，但&#x200B;**使用者意圖**，而且動作欄位是空的 | 您的處理常式存放庫使用`@adobe/llm-apps-runtime` 1.2.0或更新版本，而且您已在升級後部署。 開始之前](#before-you-begin)請參閱[。 |
+| **頁面**&#x200B;顯示`mcp:<code identifier>`，但&#x200B;**使用者意圖**，而且動作欄位是空的 | 您的處理常式存放庫使用`@adobe/llm-apps-runtime` 1.2.0或更新版本，而且您已在升級後部署。 開始之前[&#128279;](#before-you-begin)請參閱。 |
 | 某些動作的&#x200B;**使用者意圖**&#x200B;是空的 | 來自[步驟4](#processing-rule)的處理規則會使用與所示完全相同的內容資料變數（以小寫字母表示），以及正確的eVar。 此動作已開啟&#x200B;**[!UICONTROL 收集使用者意圖]**。 此規則僅適用於儲存後所收集的資料。 |
 | [!DNL Customer Journey Analytics]顯示的事件比資料集還少 | **[!UICONTROL 匯入所有新資料]**&#x200B;已開啟。 系統會略過沒有主要身分的事件，例如來自未提供使用者ID之平台的動作呼叫。 |
 | 您無法變更資料串流ID或關閉Analytics | 啟用後，這些設定在「應用程式設定」中為唯讀。 請連絡LLM應用程式團隊以取得協助。 若要將資料路由到其他地方，請變更資料流本身的報告套裝或資料集。 |
