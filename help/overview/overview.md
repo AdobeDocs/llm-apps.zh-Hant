@@ -1,7 +1,7 @@
 ---
 title: Adobe LLM應用程式概觀
 description: 瞭解什麼是Adobe LLM應用程式、其運作方式，以及如何開始建立您的應用程式。
-source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
+source-git-commit: d37cb1f4e199d77c94def7a034a55598bd3d8d83
 workflow-type: tm+mt
 source-wordcount: '624'
 ht-degree: 0%
@@ -19,7 +19,10 @@ ht-degree: 0%
 
 [!DNL Adobe LLM Apps]可讓您的品牌在受支援的AI助理（例如[!DNL ChatGPT]和[!DNL Claude]）內提供有用的動作，例如產品探索、可用性檢查或服務預訂。
 
+>[!VIDEO](https://video.tv.adobe.com/v/3504884/?captions=chi_hant&learn=on&enablevpops)
+
 [!DNL LLM Apps]位於[experience.adobe.com/llm-apps](https://experience.adobe.com/llm-apps)。
+
 
 ## 您可以使用[!DNL LLM Apps]做什麼
 
