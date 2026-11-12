@@ -1,9 +1,9 @@
 ---
 title: 疑難排解Adobe LLM應用程式
 description: 解決一般基礎架構、動作產生、處理常式、Widget、部署、驗證和LLM平台連線問題。
-source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
+source-git-commit: 2afae0696de15ec4d0a6596e413dd4851761439e
 workflow-type: tm+mt
-source-wordcount: '1350'
+source-wordcount: '1503'
 ht-degree: 0%
 ---
 
@@ -25,7 +25,9 @@ ht-degree: 0%
 | 沒有可用的AEM程式 | 請要求您的管理員提供程式存取權。 如果載入失敗，請選取&#x200B;**重試載入程式** |
 | 新存放庫未出現 | 使用&#x200B;**連線其他存放庫**&#x200B;來授予Adobe LLM應用程式GitHub應用程式存取權，返回精靈，然後選取&#x200B;**重新整理組織和存放庫** |
 | 動作或Widget存放庫驗證失敗 | 使用相容的現有專案或空的存放庫。 使用個別的存放庫執行動作和Widget，然後再次選取&#x200B;**驗證存放庫** |
-| 未偵測到AEM程式碼同步 | 為Widget存放庫安裝AEM程式碼同步，在確認頁面上新增您為網站管理員，返回精靈，然後選取[驗證AEM程式碼同步安裝]&#x200B;**&#x200B;** |
+| AEM網站設定或存取驗證失敗 | 遵循[設定AEM網站存取權](/help/guides/create-app.md#aem-site-access)。 對於新的Code Sync安裝，請完成其確認頁面精靈。 針對現有網站，請保留安裝，並要求網站管理員透過Adobe使用者管理員授與您的AEM帳戶`admin`存取權。 確認程式碼同步涵蓋Widget存放庫，然後選取&#x200B;**驗證AEM設定** |
+| 需要DA寫入許可權 | 要求DA組織管理員授予LLM應用程式中使用的Adobe帳戶寫入網站所有內容的存取權。 遵循[授予DA寫入存取權](/help/guides/create-app.md#da-write-access)，使用該帳戶登入，然後選取&#x200B;**驗證AEM設定**。 AEM網站角色未授予DA許可權 |
+| 無法驗證AEM或DA存取 | 請再次嘗試&#x200B;**驗證AEM安裝程式**，以暫時驗證失敗。 如果訊息回報存取遭拒，請在重試之前使用上述指示修正AEM或DA許可權 |
 | 建立應用程式時沒有產生動作 | 應用程式建立只會設定基礎結構。 在應用程式頁面上，選取&#x200B;**自動建置動作**，輸入&#x200B;**您的網站**，然後選取&#x200B;**建置我的動作**。 請參閱[建立動作](/help/guides/creating-actions.md) |
 | 動作仍在產生中 | UI預估產生最多需要30分鐘。 在「動作」頁面上追蹤進度，或離開頁面並於稍後返回 |
 | 動作產生報表失敗 | 確認網站是透過HTTPS公開，且對於您自己的存放庫，存放庫存取權仍然有效。 如果問題仍然存在，請聯絡Beta團隊並提供顯示的錯誤訊息 |
@@ -50,6 +52,10 @@ ht-degree: 0%
 | HTTP標題編輯器無法儲存設定 | 使用[AEM組態服務](https://aem.live/docs/config-service-setup)或要求EDS系統管理員初始化站台標頭組態 |
 
 當完整的`bridge.toolResult`值可能包含個人或敏感資料時，請勿記錄這些值。
+
+## ChatGPT擴充功能
+
+有關遺漏的進入點、檔案檢視器問題、無效的圖示URL、顯示設定或撰寫器提及錯誤，請參閱[ChatGPT擴充功能疑難排解](/help/guides/chatgpt-extensions.md#troubleshooting)。 在變更應用程式之前檢查使用者端支援：有效的連線不表示該使用者端支援所有擴充功能。
 
 ## 部署
 

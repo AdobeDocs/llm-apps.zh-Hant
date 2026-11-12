@@ -1,9 +1,9 @@
 ---
 title: 自訂產生的EDS Widget
 description: 瞭解並自訂Adobe LLM應用程式自動建立的Edge Delivery Services Widget。
-source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
+source-git-commit: 74769d0b2eb2d9323a39ae645dc5359404450164
 workflow-type: tm+mt
-source-wordcount: '1065'
+source-wordcount: '1148'
 ht-degree: 0%
 ---
 
@@ -71,6 +71,8 @@ export default async function decorate(block, bridge) {
 - 保持其大小與`bridge.autoResize()`同步。
 
 本指南說明常見的橋接器方法。 如需完整API，請參閱[`@adobe/llmapps-sdk`套件](https://www.npmjs.com/package/@adobe/llmapps-sdk)。
+
+若要讓使用者直接在交談旁開啟準備好的Widget，或作為受支援OpenAI使用者端的檔案檢視器，請參閱[設定ChatGPT副檔名](/help/guides/chatgpt-extensions.md)。 該指南說明UI設定和要求。 檔案處理、選取範圍內容、深層連結和豐富訊息控制項需要Widget實施；啟用擴充功能不會自動新增該行為。 在使用選用的API之前，請檢查主機功能。 單獨的`bridge.chatgpt`廠商API僅在ChatGPT中可用，並在其他位置為`null`；它與標準橋接器API不同。
 
 ## 瞭解資料合約
 

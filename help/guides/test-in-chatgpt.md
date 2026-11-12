@@ -1,9 +1,9 @@
 ---
 title: 將您的LLM應用程式測試為ChatGPT外掛程式
 description: 從您的Adobe LLM應用程式MCP伺服器URL建立ChatGPT外掛程式，並在交談中測試。
-source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
+source-git-commit: 2892acf4b3042c296203377a06bc3ff80fd375a5
 workflow-type: tm+mt
-source-wordcount: '546'
+source-wordcount: '627'
 ht-degree: 0%
 ---
 
@@ -71,6 +71,10 @@ OpenAI擁有設定UI，其配置可能會因帳戶而異。 如果顯示的標�
 - Widget控制項如預期般運作。
 
 此外，測試無效的輸入、空白結果、不相關的不呼叫應用程式的提示，以及變更資料的動作。 檢閱每個確認和驗證提示，而不是事先核准所有請求。
+
+### 測試選擇性擴充功能
+
+如果您已設定[ChatGPT擴充功能](/help/guides/chatgpt-extensions.md)，請嘗試每個選取的進入點、顯示設定和撰寫器搜尋，並將結果與該指南中的預期行為進行比較。 如果有多個入口點使用相同的Widget，請測試每個選取的開啟方式，包括沒有「全域」或「螺紋」的檔案。 連線應用程式或叫用對話中的動作無法驗證這些功能。 請先檢查[使用者端需求](/help/guides/chatgpt-extensions.md#before-you-begin)：檔案輸入點需要案頭，而OpenAI的擴充功能網頁支援不包括傳統ChatGPT。
 
 ## 應用程式變更後重新整理
 
