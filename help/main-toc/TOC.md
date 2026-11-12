@@ -2,9 +2,9 @@
 user-guide-title: LLM應用程式指南
 breadcrumb-title: LLM 應用程式
 user-guide-description: 在支援的LLM平台中建置、自訂、部署和測試互動式體驗，例如使用Adobe LLM應用程式的ChatGPT。
-source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
+source-git-commit: 74769d0b2eb2d9323a39ae645dc5359404450164
 workflow-type: tm+mt
-source-wordcount: '124'
+source-wordcount: '127'
 ht-degree: 6%
 ---
 
@@ -19,6 +19,7 @@ ht-degree: 6%
   + [自訂產生的處理常式](/help/guides/customize-handler.md)
   + [自訂產生的Widget](/help/guides/widgets.md)
   + [設定應用程式變數和密碼](/help/guides/app-variables.md)
+  + [設定ChatGPT擴充功能](/help/guides/chatgpt-extensions.md)
 + 新增動作 {#add-new-action}
   + [從頭開始建立動作](/help/guides/create-action.md)
 + 驗證一般使用者 {#authenticate-end-users}

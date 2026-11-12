@@ -1,9 +1,9 @@
 ---
 title: 從頭開始建立動作
 description: 定義動作中繼資料、實作其處理常式、連線EDS Widget、測試它，以及使用Adobe LLM應用程式進行部署。
-source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
+source-git-commit: 74769d0b2eb2d9323a39ae645dc5359404450164
 workflow-type: tm+mt
-source-wordcount: '1476'
+source-wordcount: '1518'
 ht-degree: 0%
 ---
 
@@ -66,7 +66,9 @@ Widget: product cards
 
 開啟應用程式並選取&#x200B;**[!UICONTROL 動作]**，然後選取&#x200B;**[!UICONTROL 建立動作]**。
 
-建立對話方塊包含&#x200B;**[!UICONTROL 動作]**&#x200B;和&#x200B;**[!UICONTROL Widget中繼資料]**&#x200B;標籤。 展開每個區段以設定其欄位。
+建立對話方塊包含&#x200B;**[!UICONTROL 動作]**、**[!UICONTROL Widget中繼資料]**&#x200B;和&#x200B;**[!UICONTROL ChatGPT擴充功能]**&#x200B;標籤。 展開每個區段以設定其欄位。
+
+選用的&#x200B;**[!UICONTROL ChatGPT擴充功能]**&#x200B;設定可讓使用者直接開啟應用程式、使用自訂檔案檢視器，或在支援使用者端的撰寫器中尋找資源。 在對應動作和Widget行為準備就緒後設定這些專案。 請參閱[設定ChatGPT擴充功能](/help/guides/chatgpt-extensions.md)。
 
 ### 輸入基本資訊
 
