@@ -1,7 +1,7 @@
 ---
-source-git-commit: fa80b7b68e1b905eb22d4789a74b2f0de886d70c
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '1963'
+source-wordcount: '2090'
 ht-degree: 1%
 ---
 # 熒幕擷圖資訊清單
@@ -23,10 +23,19 @@ ht-degree: 1%
 
 | 檔案名稱 | 狀態與有用的內容 | 建議的替代文字 |
 |---|---|---|
-| `setup-choice.png` | 開始使用兩個可見的基礎結構選項 | 建立您的LLM應用程式 — 選擇Adobe管理基礎架構或您自己的存放庫 |
-| `app-details.png` | 應用程式名稱、AEM程式、分析地區和不可變設定警告 | 應用程式詳細資料 — 輸入名稱、選取AEM程式並選擇分析區域 |
-| `action-repository.png` | 已選取GitHub的擁有存放庫路徑以及存放庫連線指示 | 動作基礎結構設定 — 連線空的或相容的動作存放庫 |
-| `provisioning.png` | 核准的Adobe管理設定進行中 | 應用程式設定 — Adobe正在準備基礎結構 |
+| `setup-choice.png` | 開始使用&#x200B;**讓我們處理它**&#x200B;和&#x200B;**使用我的Cloud Manager設定**， callout on the own-repository option | 建立您的LLM應用程式 — 開始使用讓我們來處理，並使用我的Cloud Manager設定 |
+| `action-repository.png` | 已選取Cloud Manager程式和存放庫，**已驗證存放庫** | 動作基礎結構設定 — 已選取Cloud Manager方案和存放庫 |
+| `widget-source.png` | 含有&#x200B;**的Widget來源手動選取Widget存放庫** （Cloud Manager EDS標示為即將推出） | Widget基礎結構設定 — Widget來源 |
+| `widget-repository.png` | 已驗證非GitHub Widget存放庫，**Edge Delivery Services網站**&#x200B;備註 | Widget基礎結構設定 — 已驗證Widget存放庫及其連結的EDS網站 |
+| `app-details.png` | 應用程式名稱，從存放庫設定的AEM程式，「應用程式分析」資料區域 | 應用程式詳細資料 — 名稱、AEM程式和應用程式見解資料區域 |
+| `settings-repositories.png` | 設定>包含Cloud Manager存放庫卡和連結網站的存放庫 | 應用程式設定 — 存放庫區段 |
+| `provisioning.png` | 核准的LLM應用程式管理安裝進行中 | 應用程式設定 — Adobe正在準備基礎結構 |
+
+上次擷取（除了`provisioning.png`和`da-write-permissions.png`以外）： 2026-11-13，階段
+(`experience-stage.adobe.com/llm-apps`)、GitLab動作和Widget存放庫與攜入
+自己的Git。 方案、存放庫、場地和來源值會遮罩；紅色外框是圖說文字。
+未擷取： GitHub Widget路徑（安裝AEM程式碼同步、驗證AEM設定）。 尚未
+已在生產環境中驗證。
 
 排除帳戶詳細資料、組織ID、真實計畫名稱、存放庫
 識別碼和應用程式ID。 使用空白欄位或中性夾具名稱，其中

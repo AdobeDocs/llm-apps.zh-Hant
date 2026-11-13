@@ -1,9 +1,9 @@
 ---
 title: 自訂產生的EDS Widget
 description: 瞭解並自訂Adobe LLM應用程式自動建立的Edge Delivery Services Widget。
-source-git-commit: 74769d0b2eb2d9323a39ae645dc5359404450164
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '1148'
+source-wordcount: '1163'
 ht-degree: 0%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 >[!NOTE]
 >
@@ -27,7 +25,7 @@ ht-degree: 0%
 
 ## 尋找產生的Widget
 
-開啟在[基礎結構設定](/help/guides/create-app.md)期間連線的EDS存放庫。 如果您使用Adobe受管基礎架構，請先請求程式碼存取權，然後再繼續。 每個產生的Widget都是一個EDS區塊：
+開啟在[基礎結構設定](/help/guides/create-app.md)期間連線的EDS存放庫。 如果您使用[!DNL LLM Apps]受管理基礎結構，請先要求程式碼存取權，然後再繼續。 每個產生的Widget都是一個EDS區塊：
 
 ```text
 blocks/
@@ -38,7 +36,7 @@ blocks/
 
 - JavaScript檔案會讀取動作結果並建置介面。
 - CSS檔案可控制版面、回應式行為和視覺化設計。
-- 產生的提取請求會顯示為該動作建立的精確檔案。
+- 產生的提取請求或分支會顯示為該動作建立的精確檔案。
 
 概要(Slug)使用連字型大小：程式碼識別碼為`search_products`的動作使用區塊，例如`blocks/search-products/`。 產生的Widget頁面通常是`/eds-widgets/search-products-demo`；在動作中繼資料中使用實際的&#x200B;**[!UICONTROL Widget URL]**。
 

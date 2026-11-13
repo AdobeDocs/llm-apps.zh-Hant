@@ -1,9 +1,9 @@
 ---
 title: Adobe LLM應用程式概觀
 description: 瞭解什麼是Adobe LLM應用程式、其運作方式，以及如何開始建立您的應用程式。
-source-git-commit: d37cb1f4e199d77c94def7a034a55598bd3d8d83
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '624'
+source-wordcount: '642'
 ht-degree: 0%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 ## 什麼是[!DNL Adobe LLM Apps]？
 
@@ -27,7 +25,7 @@ ht-degree: 0%
 ## 您可以使用[!DNL LLM Apps]做什麼
 
 - **建立品牌擁有的LLM動作** — 定義您要在AI助理內啟用的特定業務流程（例如，*排程測試磁碟機*、*比較產品*、*預約服務*）。
-- **建立互動式LLM Widget** — 建立視覺化UI元件（產品卡、預訂表單、商店位置），在您的[!DNL GitHub]存放庫中管理為AEM元件。
+- **建立互動式LLM Widget** — 在任何支援的Git平台上，建立在Git存放庫中管理為AEM元件的視覺UI元件（產品卡、預訂表單、商店位置）。
 - **維持集中式品牌控管** — 作者和開發人員可透過AEM管理核准，完整控制LLM平台內公開的所有內容、復本和視覺效果。
 - **部署到中繼和生產環境** — 控制的部署管道可讓您在升級到生產環境之前，先在中繼環境中測試體驗。
 - **動作層級的控制項可見性** — 啟用或停用個別動作，然後部署應用程式以套用變更。
@@ -53,7 +51,7 @@ LLM平台叫用動作時所執行的伺服器端函式。 使用處理常式來�
 
 ### 小工具 {#widgets-eds}
 
-與LLM回覆一起顯示的視覺回應，例如卡片、輪播或表格。 產生的Widget是[!DNL Edge Delivery Services] (EDS)存放庫中的區塊。 透過Adobe受管基礎架構，Adobe可為您準備並託管存放庫。 或者，連線您自己的存放庫。
+與LLM回覆一起顯示的視覺回應，例如卡片、輪播或表格。 產生的Widget是[!DNL Edge Delivery Services] (EDS)存放庫中的區塊。 使用[!DNL LLM Apps]受管理基礎架構，Adobe會為您準備並託管存放庫。 或者，連線您自己的存放庫。
 
 ### MCP伺服器
 
@@ -79,7 +77,7 @@ LLM平台叫用動作時所執行的伺服器端函式。 使用處理常式來�
 
 建立應用程式和建立其動作是獨立的步驟：
 
-1. [設定基礎結構](/help/guides/create-app.md)。 使用Adobe受管理基礎架構進行快速設定，或選擇使用您自己的[!DNL GitHub]存放庫。
+1. [設定基礎結構](/help/guides/create-app.md)。 使用[!DNL LLM Apps]受管理基礎架構進行快速設定，或使用您自己的存放庫新增到[!DNL Cloud Manager]。
 2. [建立您的動作](/help/guides/creating-actions.md)。 請平台分析您的網站並產生動作，或自行建立。
 3. [部署並測試應用程式](/help/guides/deploy-your-app.md)。 檢閱產生的工作、部署至中繼，並在支援的LLM平台中測試。
 

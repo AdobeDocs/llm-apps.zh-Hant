@@ -1,9 +1,9 @@
 ---
 title: 本機處理常式開發與測試
 description: Adobe LLM應用程式的處理常式專案結構、本機伺服器命令、MCP測試和單元測試。
-source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '664'
+source-wordcount: '677'
 ht-degree: 0%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 在本機開發處理常式時，請使用此參考。 如需處理常式結果合約，請參閱[自訂產生的處理常式](/help/guides/customize-handler.md)。
 
@@ -23,7 +21,7 @@ ht-degree: 0%
 - npm.
 - 連結的處理常式存放庫的本機複製。
 
-若為Adobe管理基礎結構，請先要求存放庫存取權，再參考本內容。 本機處理常式執行不需要Adobe憑證，但受保護的上游服務仍需要其自己的授權存取權。
+針對[!DNL LLM Apps]受管理基礎結構，請先要求存放庫存取權，然後再按照此參考操作。 本機處理常式執行不需要Adobe憑證，但受保護的上游服務仍需要其自己的授權存取權。
 
 ## 專案結構
 

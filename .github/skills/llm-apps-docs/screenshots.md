@@ -1,7 +1,7 @@
 ---
-source-git-commit: fa80b7b68e1b905eb22d4789a74b2f0de886d70c
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '1179'
+source-wordcount: '1180'
 ht-degree: 0%
 ---
 # 代理程式導向的熒幕擷圖程式
@@ -68,7 +68,7 @@ iframe內的應用程式；請勿採用固定的影格索引。
 
 需要新資源時，請確認目標組織、網站、
 基礎結構選項、AEM程式和夾具名稱。 的
-Adobe管理基礎架構，讓platform建立存放庫。 對於
+LLM應用程式管理基礎架構，讓平台建立存放庫。 對於
 擁有存放庫路徑，使用兩個空白存放庫並在以下情況下取得核准：
 驗證會將其初始化。
 

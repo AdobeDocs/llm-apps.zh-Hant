@@ -1,9 +1,9 @@
 ---
 title: 升級現有應用程式
 description: 在啟用Adobe Analytics或Customer Journey Analytics之前，更新舊版Adobe LLM應用程式的執行階段和EDS SDK。
-source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '793'
+source-wordcount: '803'
 ht-degree: 0%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 只有當您的應用程式使用1.2.0之前的`@adobe/llm-apps-runtime`或其EDS Widget使用0.1.13之前的LLM Apps SDK時，才使用此指南。 已符合兩項需求的應用程式可以直接進入[設定Adobe Analytics和Customer Journey Analytics](/help/guides/analytics-setup.md)。
 
@@ -21,7 +19,7 @@ ht-degree: 0%
 
 ## 開始之前 {#before-you-begin}
 
-您需要存取處理常式存放庫，以及針對具有EDS Widget的應用程式，存取連結至您應用程式的EDS存放庫。 如果您的應用程式使用Adobe受管基礎架構，請在更新之前要求程式碼存取權。 請參閱[使用Adobe受管理基礎結構](/help/guides/create-app.md#adobe-managed-infrastructure)。
+您需要存取處理常式存放庫，以及針對具有EDS Widget的應用程式，存取連結至您應用程式的EDS存放庫。 如果您的應用程式使用[!DNL LLM Apps]受管理基礎架構，請先要求程式碼存取權，再進行更新。 請參閱[使用 [!DNL LLM Apps] 受管理基礎結構](/help/guides/create-app.md#adobe-managed-infrastructure)。
 
 不需要建立其他應用程式。 僅更新支援版本以下的元件。 您可以重複使用符合[Analytics設定需求](/help/guides/analytics-setup.md#setup-checklist)的現有Adobe設定。
 
@@ -63,7 +61,7 @@ ht-degree: 0%
 
 1. 認可相依性更新及其鎖定檔，然後將更新推送並合併至處理常式存放庫的預設分支，通常是`main`。 部署該分支的複製。 僅存在於本機或未合併特徵分支上的更新不會包含在部署中。
 
-   當鎖定檔存在時，部署會安裝具有`npm ci`的相依性，這會使用記錄的版本。 重新部署不會自動升級執行階段。 在重新部署之前，請確認GitHub中預設分支上的升級相依性和解析版本。
+   當鎖定檔存在時，部署會安裝具有`npm ci`的相依性，這會使用記錄的版本。 重新部署不會自動升級執行階段。 在重新部署之前，請確認升級相依性和存放庫預設分支上的解析版本。
 
 ## 檢查並更新LLM應用程式Widget存放庫 {#upgrade-sdk}
 

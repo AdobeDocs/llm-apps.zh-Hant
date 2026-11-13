@@ -1,9 +1,9 @@
 ---
 title: 設定應用程式變數和密碼
 description: 將環境特定的變數新增至您的Adobe LLM應用程式應用程式、在動作處理常式中閱讀這些變數、部署，以及對常見問題進行疑難排解。
-source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '1170'
+source-wordcount: '1184'
 ht-degree: 1%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 1%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 使用變數和密碼來設定應用程式，而不需在其動作處理常式中硬式編碼值。 例如，在不變更處理常式程式碼的情況下，將產品目錄API URL設定為使用Stage中的測試服務和Production中的即時服務。
 

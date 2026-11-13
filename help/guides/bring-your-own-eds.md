@@ -2,9 +2,9 @@
 title: 自備Edge Delivery Services專案
 description: 將現有的Adobe Edge Delivery Services專案連線至Adobe LLM Apps動作。
 hidefromtoc: true
-source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '866'
+source-wordcount: '900'
 ht-degree: 1%
 ---
 
@@ -12,9 +12,7 @@ ht-degree: 1%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 使用本指南連線相容的現有Edge Delivery Services (EDS)專案，或將Widget新增至您自行建立的動作。 現有專案為選用。 如果您設定自己的基礎結構，預設路徑會以兩個空白存放庫開始，平台會在[基礎結構設定](/help/guides/create-app.md)期間初始化。
 
@@ -26,7 +24,7 @@ ht-degree: 1%
 
 您需要：
 
-- 與AEM樣板相容的EDS存放庫，已安裝[AEM Code Sync](https://github.com/apps/aem-code-sync)，且有已設定的內容來源。
+- 具有已設定內容來源的AEM樣板相容EDS存放庫，其程式碼會透過[AEM Code Sync](https://github.com/apps/aem-code-sync) (GitHub)或透過[!DNL Cloud Manager]與[自備Git](https://www.aem.live/developer/byo-git) （其他Git提供者）到達網站。
 - 在該存放庫中新增相依性和建立區塊的許可權。
 - 為EDS網站設定回應標頭的許可權。
 - [!DNL LLM Apps]中的動作，具有傳回`structuredContent`的處理常式。

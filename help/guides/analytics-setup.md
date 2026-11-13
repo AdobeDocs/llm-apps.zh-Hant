@@ -1,9 +1,9 @@
 ---
 title: 設定Adobe Analytics和Customer Journey Analytics
 description: 透過Adobe資料流，將Adobe Experience Platform LLM應用程式事件轉送至您自己的Adobe Analytics報表套裝和Customer Journey Analytics資料檢視。
-source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '2962'
+source-wordcount: '2976'
 ht-degree: 2%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 2%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 將應用程式的事件傳送至[!DNL Adobe Analytics]、[!DNL Customer Journey Analytics]或兩者。 [!DNL LLM Apps]透過您擁有的資料流將事件轉送到[!DNL Adobe Experience Platform] Edge Network。 資料流會將事件路由至您新增的每個服務。
 

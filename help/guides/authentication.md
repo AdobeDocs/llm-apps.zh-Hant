@@ -1,9 +1,9 @@
 ---
 title: 使用您自己的身分提供者驗證一般使用者
 description: 開啟您Adobe LLM應用程式的一般使用者驗證，讓支援的LLM平台在呼叫受保護的動作之前，先將使用者登入您的身分提供者。
-source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '2136'
+source-wordcount: '2150'
 ht-degree: 0%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 依預設，應用程式中的每個動作都是公開的。 任何具有MCP伺服器URL的LLM平台都可以呼叫這些動作，而且您的處理常式無法識別一般使用者。
 
