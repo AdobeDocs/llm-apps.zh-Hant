@@ -1,9 +1,9 @@
 ---
 title: 建立動作
 description: 從公用網站產生Adobe LLM應用程式動作、追蹤產生進度、檢閱產生的工作或選擇手動動作建立。
-source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
+source-git-commit: 0276ae4e4627e49157911ad579a42c0e77045eee
 workflow-type: tm+mt
-source-wordcount: '1039'
+source-wordcount: '1047'
 ht-degree: 0%
 ---
 
@@ -81,9 +81,9 @@ UI預估產生最多需要30分鐘。 離開頁面，並視需要稍後返回。
 5. 當動作就緒時，選取&#x200B;**[!UICONTROL 標籤為已檢閱]**。
 6. 返回動作清單，然後對其餘動作重複此動作。
 
-儲存的動作編輯器會將&#x200B;**[!UICONTROL LLM Widget詳細資料]**、**[!UICONTROL 動作詳細資料]**&#x200B;和&#x200B;**[!UICONTROL Analytics]**&#x200B;分開。 檢閱產生的Widget和處理常式在各自標籤中的變更。
+儲存的動作編輯器會分隔&#x200B;**[!UICONTROL 動作詳細資料]**、**[!UICONTROL LLM Widget詳細資料]**、**[!UICONTROL 應用程式深入分析]**&#x200B;和&#x200B;**[!UICONTROL ChatGPT擴充功能]**。 檢閱產生的Widget和處理常式在各自標籤中的變更。
 
-![產生的動作 — 目前的編輯器索引標籤和標籤為已檢閱，儲存庫連結已隱藏](/help/assets/guide-creating-actions/generated-action-review.png)
+![已產生的動作檢閱 — 已推送分支說明如何合併分支，以及編輯器索引標籤和標籤為已檢閱](/help/assets/guide-creating-actions/generated-action-review.png)
 
 選取&#x200B;**[!UICONTROL 標籤為已檢閱]**&#x200B;會合併產生的變更（若沒有剩餘的合併封鎖程式）：具有[!DNL LLM Apps]受管理基礎結構的提取請求，具有您自己的存放庫的分支。 如果開啟的提取請求封鎖稽核，請解決封鎖程式並重試。 請勿核准具有未解析程式碼產生或合併失敗的實作。
 

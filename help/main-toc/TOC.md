@@ -2,10 +2,10 @@
 user-guide-title: LLM應用程式指南
 breadcrumb-title: LLM 應用程式
 user-guide-description: 在支援的LLM平台中建置、自訂、部署和測試互動式體驗，例如使用Adobe LLM應用程式的ChatGPT。
-source-git-commit: 74769d0b2eb2d9323a39ae645dc5359404450164
+source-git-commit: 34bcdff7db515bf74dae8243b084e439ea2f67a5
 workflow-type: tm+mt
-source-wordcount: '127'
-ht-degree: 6%
+source-wordcount: '136'
+ht-degree: 5%
 ---
 
 # [!DNL LLM Apps] 指南 {#using}
@@ -29,6 +29,8 @@ ht-degree: 6%
   + [將您的LLM應用程式測試為ChatGPT外掛程式](/help/guides/test-in-chatgpt.md)
   + [以克勞德聯結器測試您的LLM應用程式](/help/guides/test-in-claude.md)
   + [升級現有應用程式](/help/guides/upgrade-existing-app.md)
++ 提交您的應用程式 {#submit-your-app}
+  + [準備應用程式以提交ChatGPT](/help/guides/prepare-submission.md)
 + 測量您的應用程式 {#measure-your-app}
   + [設定Adobe Analytics和Customer Journey Analytics](/help/guides/analytics-setup.md)
 + 參照 {#reference}

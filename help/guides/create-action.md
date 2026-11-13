@@ -1,9 +1,9 @@
 ---
 title: 從頭開始建立動作
 description: 定義動作中繼資料、實作其處理常式、連線EDS Widget、測試它，以及使用Adobe LLM應用程式進行部署。
-source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
+source-git-commit: 0276ae4e4627e49157911ad579a42c0e77045eee
 workflow-type: tm+mt
-source-wordcount: '1532'
+source-wordcount: '1582'
 ht-degree: 0%
 ---
 
@@ -64,15 +64,15 @@ Widget: product cards
 
 開啟應用程式並選取&#x200B;**[!UICONTROL 動作]**，然後選取&#x200B;**[!UICONTROL 建立動作]**。
 
-建立對話方塊包含&#x200B;**[!UICONTROL 動作]**、**[!UICONTROL Widget中繼資料]**&#x200B;和&#x200B;**[!UICONTROL ChatGPT擴充功能]**&#x200B;標籤。 展開每個區段以設定其欄位。
+**[!UICONTROL 建立新動作]**&#x200B;對話方塊有四個標籤： **[!UICONTROL 動作詳細資料]**、**[!UICONTROL LLM Widget詳細資料]**、**[!UICONTROL 應用程式深入分析]**&#x200B;以及&#x200B;**[!UICONTROL ChatGPT擴充功能]**。 對話方塊會在&#x200B;**[!UICONTROL 動作詳細資料]**&#x200B;開啟。 儲存的動作編輯器會使用相同的標籤。
 
 選用的&#x200B;**[!UICONTROL ChatGPT擴充功能]**&#x200B;設定可讓使用者直接開啟應用程式、使用自訂檔案檢視器，或在支援使用者端的撰寫器中尋找資源。 在對應動作和Widget行為準備就緒後設定這些專案。 請參閱[設定ChatGPT擴充功能](/help/guides/chatgpt-extensions.md)。
 
-### 輸入基本資訊
+### 輸入動作資訊和輸入引數
 
-![建立動作 — 基本資訊](/help/assets/guide-create-action/action-basic-info.png)
+![建立新動作 — 動作詳細資訊，包含動作名稱、程式碼識別碼、說明和兩個輸入引數](/help/assets/guide-create-action/action-basic-info.png)
 
-輸入：
+在&#x200B;**[!UICONTROL 動作資訊]**&#x200B;下，輸入：
 
 - **[!UICONTROL 動作名稱]** — 簡短的工作名稱，例如&#x200B;*搜尋產品*。
 - **[!UICONTROL 描述]** — 說明何時使用動作及其傳回的內容。
@@ -88,48 +88,12 @@ products with their names, prices, categories, and image URLs.
 
 避免模糊的描述，例如&#x200B;*取得產品資訊*。 LLM平台會使用說明來選擇動作。
 
-### 選取註解
+在&#x200B;**[!UICONTROL 輸入引數]**&#x200B;下，為處理常式接受的每個值選取&#x200B;**[!UICONTROL 新增引數]**&#x200B;一次。 針對每個引數，輸入：
 
-註解會說明動作的行為：
-
-- **破壞性提示** — 動作可以刪除或永久變更資料。
-- **等冪（相同的引數=沒有額外的效果）** — 重複相同的要求會有相同的效果。
-- **開放世界提示** — 動作與外部系統通訊。
-- **唯讀提示** — 動作不會變更資料。
-
-僅選取為真的註解。 例如，產品搜尋通常是唯讀、等冪和開放世界。
-
-### 新增OpenAI中繼資料
-
-輸入動作執行時和完成時顯示的簡短訊息：
-
-```text
-Invoking: Searching products...
-Invoked: Products found
-```
-
-對於含有Widget的動作，請新增&#x200B;**[!UICONTROL Widget描述]**。 Widget說明與動作說明不同：
-
-- **動作描述**&#x200B;可協助模型決定何時叫用動作。
-- **Widget描述**&#x200B;對應至`_meta["openai/widgetDescription"]`並摘要呈現的元件所顯示的內容，減少重複的旁白。
-
-[!DNL LLM Apps]將Widget說明套用為元件中繼資料。 請勿從處理常式傳回說明。
-
-### 設定可見度
-
-- **[!UICONTROL 公開給AI模型]**&#x200B;可讓模型選取動作。
-- **[!UICONTROL 在應用程式表面顯示為Widget]**&#x200B;會顯示設定的Widget。
-
-若是純文字動作，請選取&#x200B;**[!UICONTROL Widget中繼資料]** > **[!UICONTROL 型別]**&#x200B;下的&#x200B;**[!UICONTROL 無Widget]**。 可見性控制項不會選擇動作的Widget型別。
-
-### 新增輸入引數
-
-為處理常式接受的每個值新增一個引數。 每個引數都需要：
-
-- **名稱** — 處理常式收到的金鑰。
-- **型別** — 字串、數字、整數或布林值。
-- **描述** — 如何擷取值。
-- **必要** — 動作是否需要值。
+- **[!UICONTROL 引數名稱]** — 處理常式收到的金鑰。
+- **[!UICONTROL 型別]** — 字串、數字、整數、布林值、物件或檔案。
+- **[!UICONTROL 必要]** — 動作是否需要值。
+- **[!UICONTROL 描述]** — 如何擷取值。
 
 針對&#x200B;**搜尋產品**：
 
@@ -147,38 +111,70 @@ query
 
 使用穩定的引數名稱。 變更名稱也需要變更處理常式及其測試。
 
-### 設定分析 {#configure-analytics}
+### 設定LLM設定
 
-當您想要分析包含導致動作的對話摘要時，啟用&#x200B;**[!UICONTROL 收集使用者意圖]**。
+展開&#x200B;**[!UICONTROL LLM設定]**。 依預設，該區段會摺疊。
+
+![建立新動作 — LLM設定包含註解、OpenAI中繼資料狀態文字及可見度](/help/assets/guide-create-action/action-llm-settings.png)
+
+在&#x200B;**[!UICONTROL 註解]**&#x200B;下，只選取動作為True的提示：
+
+- **[!UICONTROL 破壞性提示]** — 動作可以刪除或永久變更資料。
+- **[!UICONTROL 等冪（相同的引數=沒有額外的效果）]** — 重複相同的要求會有相同的效果。
+- **[!UICONTROL 開放世界提示]** — 動作與外部系統通訊。
+- **[!UICONTROL 唯讀提示]** — 動作不會變更資料。
+
+例如，產品搜尋通常是唯讀、等冪和開放世界。
+
+在&#x200B;**[!UICONTROL OpenAI中繼資料]**&#x200B;底下，輸入動作執行時和完成時顯示的簡短訊息，每個訊息最多64個字元：
+
+```text
+Invoking status text: Searching products...
+Invoked status text: Products found
+```
+
+在&#x200B;**[!UICONTROL 可見度]**&#x200B;下：
+
+- **[!UICONTROL 公開給AI模型]**&#x200B;可讓模型選取動作。
+- **[!UICONTROL 在應用程式表面顯示為Widget]**&#x200B;會顯示設定的Widget。
+
+可見度不會選擇Widget型別。 若是純文字動作，請選取&#x200B;**[!UICONTROL LLM Widget詳細資料]** > **[!UICONTROL Widget型別]**&#x200B;下的&#x200B;**[!UICONTROL 無互動式UI]**。
+
+### 設定應用程式分析 {#configure-analytics}
+
+開啟&#x200B;**[!UICONTROL Application Insights]**。 **[!UICONTROL 依預設會選取「收集使用者意圖」]**：LLM平台會建立簡短、匿名化的摘要，說明使用者在執行動作時嘗試完成的內容。
 
 如果您設定自己的[!DNL Adobe Analytics]或[!DNL Customer Journey Analytics]，使用者意向也會傳送至該處。 請參閱[設定Adobe Analytics和Customer Journey Analytics](/help/guides/analytics-setup.md)。
 
-預設會啟用使用者意圖收集。 檢閱&#x200B;**[!UICONTROL 使用者意向描述]**，其中包含要求摘要的指示。 將指示限制在非敏感、匿名的目的，並在您的隱私權原則中說明您的資料收集。 說明最多可接受2,000個字元。
+請檢閱核取方塊下方的指示，該指示可指導摘要。 將其限製為非敏感、匿名的目的，並在您的隱私權政策中說明您的資料收集。 指示最多可接受2,000個字元。 清除&#x200B;**[!UICONTROL 收集使用者意圖]**&#x200B;以不收集摘要。
 
-![建立動作 — 使用者意圖分析](/help/assets/guide-create-action/action-analytics-user-intent.png)
+![建立新動作 — Application Insights包含收集使用者意圖和預設指示](/help/assets/guide-create-action/action-analytics-user-intent.png)
 
 如需完整的欄位定義，請參閱[動作和Widget欄位](/help/reference/reference-docs.md)。
 
 ## 設定Widget
 
-針對純文字動作，請開啟&#x200B;**[!UICONTROL Widget中繼資料]**&#x200B;並將&#x200B;**[!UICONTROL Type]**&#x200B;設定為&#x200B;**[!UICONTROL 無Widget]**。 然後略過其餘的Widget設定。
+開啟&#x200B;**[!UICONTROL LLM Widget詳細資料]**。 若是純文字動作，請選取&#x200B;**[!UICONTROL Widget型別]**&#x200B;下的&#x200B;**[!UICONTROL 無互動式UI]**，並略過其餘的Widget設定。
 
-開啟&#x200B;**[!UICONTROL Widget中繼資料]**。
+![建立新動作 — 已選取Edge Delivery Services區塊的LLM Widget詳細資料，範例範本URL](/help/assets/guide-create-action/widget-metadata.png)
 
-![建立動作 — Widget中繼資料](/help/assets/guide-create-action/widget-metadata.png)
+在&#x200B;**[!UICONTROL Widget資訊]**&#x200B;下，設定：
 
-設定：
-
-- **[!UICONTROL 型別]** — 為互動式Widget選取&#x200B;**[!UICONTROL Edge Delivery Services區塊]**。
+- **[!UICONTROL Widget型別]** — 為互動式Widget選取&#x200B;**[!UICONTROL Edge Delivery Services區塊]**。
 - **[!UICONTROL Widget網域]** — Widget的沙箱來源。 UI會根據應用程式提交和每個應用程式的唯一性來識別它；它與EDS頁面URL不同。
-- **偏好使用邊框** — 要求主機中的邊框容器。
+- **[!UICONTROL Widget說明]** — 在Widget呈現後，模型所顯示的內容，最多512個字元。
+
+Widget說明與動作說明不同：
+
+- **動作描述**&#x200B;可協助模型決定何時叫用動作。
+- **Widget描述**&#x200B;對應至`_meta["openai/widgetDescription"]`並摘要呈現的元件所顯示的內容，減少重複的旁白。
+
+[!DNL LLM Apps]將Widget說明套用為元件中繼資料。 請勿從處理常式傳回說明。
 
 展開&#x200B;**[!UICONTROL 範本URL]**&#x200B;並輸入：
 
 - **[!UICONTROL 指令碼URL]** — EDS Widget進入點。
 - **[!UICONTROL Widget URL]** — 此動作的已發佈EDS頁面。
-
-![建立新動作 — EDS Widget的指令碼和Widget URL](/help/assets/guide-create-action/widget-template-urls.png)
 
 典型的URL為：
 
@@ -190,15 +186,9 @@ Widget URL:
 https://main--<repo>--<owner>.aem.live/<widget-page>
 ```
 
-僅授予必要的瀏覽器許可權和CSP網域。
+在&#x200B;**[!UICONTROL CSP設定]**&#x200B;底下，僅新增資產和網路要求Widget需要的來源。 如果CSP不完整，載入外部資源的Widget可能不會呈現。
 
-只有在介面工具集需要瀏覽器功能（例如地理位置）時，才展開&#x200B;**[!UICONTROL 許可權（MCP特定）]**。 關閉未使用的許可權。
-
-![建立新動作 — 選擇性的瀏覽器許可權](/help/assets/guide-create-action/widget-permissions.png)
-
-在&#x200B;**[!UICONTROL CSP設定]**&#x200B;底下，新增資產和網路要求所需的來源。 如果CSP不完整，載入外部資源的Widget可能不會呈現。
-
-![建立新動作 — 內容安全性原則網域清單](/help/assets/guide-create-action/widget-csp.png)
+![建立新動作 — CSP設定包含資源、連線、框架、重新導向及基礎URI網域清單](/help/assets/guide-create-action/widget-csp.png)
 
 如果EDS專案或Widget頁面尚不存在，請完成[自攜EDS專案](/help/guides/bring-your-own-eds.md)，然後返回動作。
 
@@ -208,7 +198,7 @@ https://main--<repo>--<owner>.aem.live/<widget-page>
 
 儲存會建立中繼資料，但動作仍需要處理常式。
 
-當您重新開啟儲存的動作時，編輯器會有&#x200B;**[!UICONTROL LLM Widget詳細資料]**、**[!UICONTROL 動作詳細資料]**&#x200B;和&#x200B;**[!UICONTROL Analytics]**&#x200B;標籤。 若要儲存稍後的編輯，請選取&#x200B;**[!UICONTROL 儲存變更]**。 建立對話方塊和儲存的動作編輯器具有不同的版面。
+當您重新開啟儲存的動作時，編輯器會顯示相同的標籤。 若要儲存稍後的編輯，請選取&#x200B;**[!UICONTROL 儲存變更]**。
 
 ## 實作處理常式
 

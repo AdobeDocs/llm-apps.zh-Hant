@@ -1,7 +1,7 @@
 ---
-source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
+source-git-commit: 0276ae4e4627e49157911ad579a42c0e77045eee
 workflow-type: tm+mt
-source-wordcount: '2090'
+source-wordcount: '2314'
 ht-degree: 1%
 ---
 # 熒幕擷圖資訊清單
@@ -53,7 +53,7 @@ ht-degree: 1%
 | `build-choice.png` | 自動選取建置動作、輸入的公用網站，以及穩定的啟動控制項（若包含） | 動作 — 選擇自動產生並輸入公用網站 |
 | `generating.png` | 正在執行的產生、時間估計和移至動作 | 動作 — 產生執行中 |
 | `actions-ready-for-review.png` | 夾具動作名稱、稽核徽章和稽核控制項 | 動作 — 產生的動作已可供檢閱且未部署 |
-| `generated-action-review.png` | LLM Widget詳細資料、動作詳細資料、Analytics、產生的提取請求通知，以及標籤為已檢閱 | 產生的動作 — 核准前先檢查Widget和處理常式 |
+| `generated-action-review.png` | 動作詳細資料、LLM Widget詳細資料、Application Insights、ChatGPT擴充功能、**已推送分支**&#x200B;通知（自己的存放庫）和標籤為已檢閱。 上次擷取：2026-11-13， Stage， GitLab app；應用程式名稱已遮罩 | 產生的動作檢閱 — 已推送分支並標籤為已檢閱 |
 
 遮罩私人存放庫和提取請求連結。 裁切掉產生的個人或
 當文章只需要評論狀態時的聯絡詳細資訊。 不要選取
@@ -71,19 +71,16 @@ ht-degree: 1%
 
 | 檔案名稱 | 狀態與有用的內容 | 建議的替代文字 |
 |---|---|---|
-| `action-basic-info.png` | 搜尋產品、其衍生的識別碼、有用的說明和唯讀註解 | 建立新動作 — 基本資訊和註解 |
-| `action-analytics-user-intent.png` | 收集使用者意圖和預設的匿名摘要指示 | 建立新動作 — 檢閱使用者意圖集合 |
-| `widget-metadata.png` | Edge Delivery Services區塊型別和安全的範例沙箱來源 | 建立新動作 — Widget型別和沙箱網域 |
-| `widget-template-urls.png` | 範例指令碼和Widget URL | 建立新動作 — 指令碼和Widget URL |
-| `widget-permissions.png` | 選用的瀏覽器許可權，未使用的許可權關閉 | 建立新動作 — 瀏覽器許可權 |
-| `widget-csp.png` | 資源、連線、框架、重新導向和基礎URI網域控制項 | 建立新動作 — 內容安全性原則網域 |
+| `action-basic-info.png` | 動作詳細資料：搜尋產品、其代碼識別碼、說明，以及`category`和`query`引數 | 建立新動作 — 含有動作資訊和輸入引數的動作詳細資料 |
+| `action-llm-settings.png` | 展開的LLM設定：唯讀、等冪、開放世界註解、狀態文字、可見度 | 建立新動作 — LLM設定 |
+| `action-analytics-user-intent.png` | 應用程式分析：收集使用者意圖和預設指示 | 建立新動作 — Application Insights |
+| `widget-metadata.png` | LLM Widget詳細資料： Edge Delivery Services區塊，範例Widget網域、Widget說明和範本URL | 建立新動作 — LLM Widget詳細資料 |
+| `widget-csp.png` | 範本URL和CSP設定網域清單 | 建立新動作 — CSP設定 |
 
-現有的擷取在建立中顯示&#x200B;**動作**&#x200B;和&#x200B;**Widget中繼資料**
-對話方塊和&#x200B;**LLM Widget詳細資料**、**動作詳細資料**&#x200B;以及&#x200B;**Analytics**
-已儲存的編輯器。 目前實作同時有&#x200B;**ChatGPT擴充功能**
-流程；重新整理影像時，請驗證執行中UI中的標籤。 擷取
-配置程式實際使用的版面。 填寫範例欄位而不儲存，然後
-捨棄編輯。
+上次擷取：2026-11-13， Stage，對話方塊重構後(與動作編輯器相同的索引標籤：
+動作詳細資料、LLM Widget詳細資料、應用程式深入分析、ChatGPT擴充功能；許可權、
+偏好使用邊框，且「檔案引數」區段已移除)。 僅限範例值；對話方塊
+已取消而未儲存。 紅色輪廓是圖說文字。
 
 ## 驗證
 
@@ -226,6 +223,28 @@ LLM應用程式；其他專案皆連結至Experience League。 取代組織
 具有下列虛擬值： `example-org`、`demo.<suffix>`報表套裝，
 `00000000-0000-0000-0000-000000000000`、`0000…0001`、`user@example.com`和
 `Example User`.
+
+## 準備提交
+
+文章： `/help/guides/prepare-submission.md`
+
+輸出目錄： `help/assets/guide-submission/`
+
+| 檔案名稱 | 狀態與有用的內容 | 建議的替代文字 |
+|---|---|---|
+| `submission-card.png` | 生產部署後的應用程式頁面，透過設定準備提交卡片 | 準備提交 — 生產準備狀態和設定 |
+| `submission-setup.png` | 準備提交對話方塊、設定和準備、範例發佈者詳細資料以及兩個圖示皆已儲存 | 設定並準備 — 發佈者和法律詳細資訊、核准圖示和儲存變更 |
+| `submission-prepare.png` | 相同的對話方塊捲動以準備您的套件，整備顯示準備就緒，核取方塊清除 | 準備套件 — 準備就緒、確認核取方塊和準備套件 |
+| `submission-progress.png` | 在執行時顯示相同的對話方塊 | 準備進行中 — 進度列和開始時間 |
+| `submission-results.png` | 使用預留位置法律連結完成執行後的結果：準備工作需要注意，下載套件已停用 | 結果 — 準備摘要、下載報告、下載套件和下載錄製 |
+| `submission-test-cases.png` | 結果，測試案例，第一個案例概述 | 測試案例 — 包含其請求、預期行為和記錄狀態的檢閱案例 |
+| `submission-before-submit.png` | 結果，在您提交清單和PASS/WARN/FAIL檢查之前；在裁切下方執行ID | 提交之前 — 剩餘的詳細資訊、更新詳細資訊和封裝檢查 |
+
+在中繼2026-11-13上從部署到生產環境的應用程式擷取。 僅使用
+範例發行者值(`Frescopa Coffee (example)`， `https://www.example.com/...`)
+和預留位置圖示。 每次準備執行都會呼叫已部署的應用程式，並處理
+20分鐘；僅在「結果」畫面需要重新整理時開始一次。 遮罩MCP URL，
+在結果擷取中執行ID和應用程式名稱。
 
 ## 現有的擷取來源
 
