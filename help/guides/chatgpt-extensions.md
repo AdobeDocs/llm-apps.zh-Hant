@@ -108,7 +108,7 @@ ht-degree: 0%
 
 在&#x200B;**[!UICONTROL 顯示模式]**&#x200B;下：
 
-1. 將模型&#x200B;]**啟動時的**[!UICONTROL &#x200B;顯示設定為`inline`、`fullscreen`或&#x200B;**[!UICONTROL 無喜好設定]**。
+1. 將模型&#x200B;**啟動時的**&#x200B;顯示設定為`inline`、`fullscreen`或&#x200B;**[!UICONTROL 無喜好設定]**。
 1. 選取Widget的&#x200B;**[!UICONTROL 支援的資源顯示模式]**：內嵌、全熒幕或兩者。 保留兩者皆未勾選以使用主機預設值。
 1. 選擇&#x200B;**[!UICONTROL 初始資源顯示]**。 如果您選取了支援的模式，則必須包含初始模式。
 
