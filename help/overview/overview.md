@@ -17,7 +17,7 @@ ht-degree: 0%
 
 [!DNL Adobe LLM Apps]可讓您的品牌在受支援的AI助理（例如[!DNL ChatGPT]和[!DNL Claude]）內提供有用的動作，例如產品探索、可用性檢查或服務預訂。
 
->[!VIDEO](https://video.tv.adobe.com/v/3504875/?learn=on&enablevpops)
+>[!VIDEO](https://video.tv.adobe.com/v/3504884/?captions=chi_hant&learn=on&enablevpops)
 
 [!DNL LLM Apps]位於[experience.adobe.com/llm-apps](https://experience.adobe.com/llm-apps)。
 
