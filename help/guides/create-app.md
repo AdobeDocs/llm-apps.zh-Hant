@@ -77,7 +77,7 @@ ht-degree: 1%
 
 - 存取應用程式所屬的[!DNL Cloud Manager]程式。
 - 兩個存放庫，一個用於動作處理常式，另一個用於Widget。 空白的存放庫沒有問題，包括僅包含其Git主機建立的README的存放庫。
-- 兩個存放庫[都已新增至Cloud Manager](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-manager/content/managing-code/external-repositories)作為私人存放庫，其擁有權已驗證，且狀態為&#x200B;**就緒**。 [!DNL Cloud Manager]必須能夠寫入它們；唯讀存取權杖是不夠的。
+- 兩個存放庫[都已新增至Cloud Manager](https://experienceleague.adobe.com/zh-hant/docs/experience-manager-cloud-manager/content/managing-code/external-repositories)作為私人存放庫，其擁有權已驗證，且狀態為&#x200B;**就緒**。 [!DNL Cloud Manager]必須能夠寫入它們；唯讀存取權杖是不夠的。
 
 只會列出您自行託管的存放庫。 不支援[!DNL Cloud Manager]中由Adobe託管的存放庫。
 
