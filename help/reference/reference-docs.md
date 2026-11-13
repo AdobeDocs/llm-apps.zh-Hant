@@ -1,19 +1,17 @@
 ---
 title: 動作和Widget欄位
 description: Adobe LLM應用程式中動作中繼資料、引數、Widget、CSP和許可權的欄位定義。
-source-git-commit: 2892acf4b3042c296203377a06bc3ff80fd375a5
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '1257'
-ht-degree: 3%
+source-wordcount: '1273'
+ht-degree: 2%
 ---
 
 # 動作和Widget欄位 {#action-widget-configuration}
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 使用此頁面來查閱動作編輯器中的欄位。 如需建立步驟，請參閱[從頭開始建立動作](/help/guides/create-action.md)。
 
@@ -30,7 +28,7 @@ ht-degree: 3%
 | **[!UICONTROL 分析]** | 使用者意圖收集和指示 |
 | **[!UICONTROL ChatGPT延伸模組]** | 直接開啟的進入點、動作圖示、顯示偏好設定和撰寫者提及 |
 
-若要儲存您的編輯，請選取&#x200B;**[!UICONTROL 儲存變更]**。 正在等待檢閱的產生動作改為顯示&#x200B;**[!UICONTROL 標籤為已檢閱]**，這也會處理其產生的提取要求。
+若要儲存您的編輯，請選取&#x200B;**[!UICONTROL 儲存變更]**。 正在等待稽核的產生動作改為顯示&#x200B;**[!UICONTROL 標籤為已稽核]**，這也會合併其產生的提取請求或分支。
 
 ## 動作引數
 

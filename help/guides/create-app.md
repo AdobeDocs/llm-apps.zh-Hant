@@ -1,34 +1,33 @@
 ---
 title: 基礎架構設定
-description: 使用Adobe受管理基礎架構建立Adobe LLM應用程式，或提供兩個空白的GitHub存放庫供平台初始化。
-source-git-commit: 079eb2403f15a97842c5c336c03ec5bfe10de622
+description: 使用LLM應用程式受管理的基礎結構或您自己的存放庫新增到Cloud Manager，建立Adobe LLM應用程式。
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '1595'
-ht-degree: 0%
+source-wordcount: '1947'
+ht-degree: 1%
 ---
 
 # 基礎架構設定 {#create-first-app}
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 基礎架構是您應用程式的技術基礎：儲存其程式碼的存放庫，以及執行其動作處理常式並將其Widget傳送給使用者的服務。
 
 如[總覽](/help/overview/overview.md#key-concepts)中所述，**動作處理常式**&#x200B;會執行工作，例如尋找產品，而&#x200B;**Widget**&#x200B;會將結果呈現為交談中的互動式體驗。
 
-[!DNL LLM Apps]會將處理常式和Widget原始程式碼儲存在兩個不同的[!DNL GitHub]存放庫中：
+[!DNL LLM Apps]會將處理常式和Widget原始程式碼儲存在兩個不同的存放庫中：
 
 - **動作存放庫** — 包含伺服器端處理常式及其測試。
 - **Widget存放庫** — 包含互動式Widget的程式碼和樣式。
 
 例如，產品搜尋處理常式會擷取相符的產品，而其Widget會將它們顯示為產品卡。 存放庫會儲存該程式碼；Adobe I/O Runtime會執行已部署的處理常式，而Edge Delivery Services則會提供Widget。
 
-安裝精靈會準備這些存放庫，並連線應用程式所需的服務。 我們建議您從&#x200B;**Adobe受管理基礎結構**&#x200B;開始，這是最快速的開始方式。 Adobe會為您的動作處理常式和Widget建立並託管存放庫。 您不需要自行設定存放庫。
+安裝精靈會準備這些存放庫，並連線應用程式所需的服務。 從兩個選項中選擇一個：
 
-或者，在您自己的帳戶或組織中提供兩個空白的[!DNL GitHub]存放庫。 平台會使用必要的專案檔案將它們初始化，您不需要預先準備動作或Widget程式碼。
+- **[!DNL LLM Apps]受管理基礎結構**&#x200B;是最快的開始方式。 Adobe會為您的動作處理常式和Widget建立並託管存放庫，因此您不需要自行設定存放庫。
+- **您自己的存放庫**&#x200B;會將您應用程式的程式碼保留在您擁有的存放庫中，新增到[!DNL Cloud Manager]。 它們可以託管於[!DNL GitHub]、[!DNL GitHub Enterprise]、[!DNL GitLab]、[!DNL Bitbucket]或[!DNL Azure DevOps]。 平台會使用必要的專案檔案來初始化空白的存放庫，因此您不需要預先準備動作或Widget程式碼。
 
 **在本指南中：**&#x200B;瞭解如何選擇基礎結構選項，並使用安裝精靈建立您的應用程式。 安裝之後，繼續[建立動作](/help/guides/creating-actions.md)。
 
@@ -40,16 +39,16 @@ ht-degree: 0%
 
 **[!UICONTROL 建立您的LLM應用程式]**&#x200B;精靈從&#x200B;**[!UICONTROL 開始]**。 選擇如何設定技術環境。
 
-![建立您的LLM應用程式 — 在Adobe受管理基礎結構和連線您自己的存放庫之間選擇](/help/assets/guide-infrastructure/setup-choice.png)
+![建立您的LLM應用程式 — 開始使用讓我們處理它並使用我的Cloud Manager設定；紅色的大綱標籤自己的存放庫選項](/help/assets/guide-infrastructure/setup-choice.png)
 
 | 基礎架構選項 | 在精靈中選取 | 其含義 |
 |---|---|---|
-| **Adobe受管理基礎結構** | **[!UICONTROL 讓我們處理它]** | Adobe會為您的應用程式建立和管理存放庫和連線服務。 程式碼存取權可應要求提供。 |
-| **您自己的存放庫** | **[!UICONTROL 我將自行設定]** | 您提供兩個空白的GitHub存放庫，並透過精靈授與存取權。 平台會分別初始化一個動作處理常式和一個介面工具集。 |
+| **[!DNL LLM Apps]受管理基礎結構** | **[!UICONTROL 讓我們處理它]** | Adobe會為您的應用程式建立和管理存放庫和連線服務。 程式碼存取權可應要求提供。 |
+| **您自己的存放庫** | **[!UICONTROL 使用我的Cloud Manager設定]** | 您選取兩個新增至[!DNL Cloud Manager]的存放庫：一個用於動作處理常式，另一個用於Widget。 如果它們是空的，則平台會將其初始化。 |
 
 這兩個選項都支援稍後自動產生動作。 這兩個選項都不需要您手動寫入動作。
 
-## 使用Adobe管理基礎結構 {#adobe-managed-infrastructure}
+## 使用[!DNL LLM Apps]個受管理基礎結構 {#adobe-managed-infrastructure}
 
 使用此選項可讓Adobe為您的應用程式設定和管理存放庫和連線服務。 您不需要自行建立存放庫或安裝[!DNL GitHub]個App。
 
@@ -66,17 +65,34 @@ ht-degree: 0%
 
 安裝程式完成時，請繼續[建立動作](/help/guides/creating-actions.md)。
 
-## 連線您自己的存放庫 {#your-own-repositories}
+## 使用您自己的存放庫 {#your-own-repositories}
 
-選取&#x200B;**[!UICONTROL 我將自行設定]**，然後選取&#x200B;**[!UICONTROL 下一步]**。 此路徑包含四個精靈步驟：
+選取&#x200B;**[!UICONTROL 使用我的Cloud Manager設定]**，然後選取&#x200B;**[!UICONTROL 下一步]**。 此路徑包含四個精靈步驟：
 
 **開始執→動作基礎結構設定→Widget基礎結構設定→應用程式詳細資料。**
 
-您需要存取選取的存放庫和許可權，才能安裝或設定必要的[!DNL GitHub]應用程式。 對於組織擁有的存放庫，管理員可能需要核准存取權。
+[!DNL LLM Apps]使用您的Adobe帳戶透過[!DNL Cloud Manager]到達您的存放庫。 您未安裝[!DNL GitHub]應用程式。
 
-建立兩個空白的存放庫：一個用於動作處理常式，另一個用於Widget。 請勿使用README、授權或`.gitignore`初始化。 當您驗證精靈中的每個存放庫時，平台會新增所需的專案結構。
+### 開始之前 {#own-repositories-prerequisites}
 
-如果您已有相容的動作和EDS專案，您可以改為連線這些專案，但不需要現有的程式碼。
+- 存取應用程式所屬的[!DNL Cloud Manager]程式。
+- 兩個存放庫，一個用於動作處理常式，另一個用於Widget。 空白的存放庫沒有問題，包括僅包含其Git主機建立的README的存放庫。
+- 兩個存放庫[都已新增至Cloud Manager](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-manager/content/managing-code/external-repositories)作為私人存放庫，其擁有權已驗證，且狀態為&#x200B;**就緒**。 [!DNL Cloud Manager]必須能夠寫入它們；唯讀存取權杖是不夠的。
+
+只會列出您自行託管的存放庫。 不支援[!DNL Cloud Manager]中由Adobe託管的存放庫。
+
+#### 您的Widget存放庫是Edge Delivery Services網站 {#widget-repository-is-an-eds-site}
+
+Widget是從[!DNL Edge Delivery Services] (EDS)網站提供，您的Widget存放庫儲存該網站的程式碼。 確定Widget存放庫屬於EDS網站，或將會屬於。 有兩種方式可設定一個：
+
+- **任何Git提供者，請自備Git。** 在[!DNL Cloud Manager]中建立EDS網站，並使用&#x200B;**自備Git**&#x200B;將其連結到您的存放庫。 [!DNL Cloud Manager]然後將存放庫的程式碼同步至網站。 請在啟動精靈之前執行此動作。 參閱[自備Git](https://www.aem.live/developer/byo-git)。
+- **具有AEM程式碼同步的[!DNL GitHub]存放庫。** 自行設定EDS網站，如同[Edge Delivery Services教學課程](https://www.aem.live/developer/tutorial)。 精靈會引導您完成安裝AEM Code Sync，以及在驗證存放庫後檢查存取權。
+
+Widget步驟會偵測適用的情況。 請參閱[設定Widget基礎結構](#set-up-the-widget-infrastructure)。
+
+>[!TIP]
+>
+>即使貴公司已擁有EDS網站，請為您的[!DNL LLM Apps] Widget建立個別的EDS網站。
 
 >[!NOTE]
 >
@@ -86,38 +102,44 @@ ht-degree: 0%
 
 動作存放庫包含當LLM平台叫用動作時所執行的伺服器端處理常式與測試。
 
-1. 在&#x200B;**[!UICONTROL 動作來源]**&#x200B;底下，選取&#x200B;**[!UICONTROL GitHub]**。 其他程式碼來源目前無法使用。
-2. 回答&#x200B;**[!UICONTROL 您是否已建立GitHub存放庫？]**：
-   - 選取&#x200B;**[!UICONTROL 是，我會使用已建立的存放庫]**&#x200B;來連線相容的現有專案或空的存放庫。
-   - 選取&#x200B;**[!UICONTROL 我還沒有存放庫]**，然後選取&#x200B;**[!UICONTROL 在GitHub上建立存放庫]**，以建立空的動作存放庫。 之後請返回精靈。
-3. 將存放庫連線至Adobe LLM Apps [!DNL GitHub]應用程式：
-   - 如果未連線任何組織，請選取[在GitHub上安裝]。**&#x200B;**
-   - 如果組織已經連線，請選取&#x200B;**[!UICONTROL 連線存放庫]**&#x200B;並將存放庫新增到該安裝。
-4. 在[!DNL GitHub]上，選擇&#x200B;**[!UICONTROL 僅選取存放庫]**，並僅授與此應用程式使用的存放庫存取權。
-5. 返回精靈。 在&#x200B;**[!UICONTROL 選取存放庫]**&#x200B;下，選擇&#x200B;**[!UICONTROL 組織]**&#x200B;和&#x200B;**[!UICONTROL 存放庫]**。
-6. 選取&#x200B;**[!UICONTROL 驗證存放庫]**。 驗證會使用Adobe LLM應用程式範本初始化空白的存放庫。 現有的存放庫必須包含相容的動作專案。
-7. 驗證成功後，請選取&#x200B;**[!UICONTROL 下一步]**。
+1. 在&#x200B;**[!UICONTROL Cloud Manager程式]**&#x200B;下，選取包含動作存放庫的程式。
+2. 在&#x200B;**[!UICONTROL Cloud Manager存放庫]**&#x200B;下，選取動作存放庫。 如果遺失該清單，請在[!DNL Cloud Manager]中新增該清單，並附上&#x200B;**[!UICONTROL 前往Cloud Manager]**，然後重新整理清單。
+3. 選取&#x200B;**[!UICONTROL 驗證存放庫]**。 驗證會使用Adobe LLM應用程式範本初始化空白的存放庫。 現有的存放庫必須包含相容的動作專案。
+4. 當顯示&#x200B;**[!UICONTROL 已驗證的存放庫]**&#x200B;時，請選取&#x200B;**[!UICONTROL 下一步]**。
 
-![動作基礎結構設定 — 選擇GitHub並連線動作存放庫](/help/assets/guide-infrastructure/action-repository.png)
+![動作基礎結構設定 — 已選取Cloud Manager程式和存放庫，已驗證存放庫](/help/assets/guide-infrastructure/action-repository.png)
 
-如果組織或存放庫遺失，請使用&#x200B;**[!UICONTROL 連線其他組織]**&#x200B;或在其選擇器中連線其他存放庫&#x200B;**。**&#x200B;在[!DNL GitHub]上變更存取權後，選取&#x200B;**[!UICONTROL 重新整理組織和存放庫]**。
+平台會將產生的動作程式碼推送至此存放庫的分支。 選取&#x200B;**[!UICONTROL 標籤為已檢閱]**&#x200B;會合併分支。 請參閱[建立動作](/help/guides/creating-actions.md)。
 
-### 設定Widget基礎結構
+### 設定Widget基礎結構 {#set-up-the-widget-infrastructure}
 
-Widget是附加至動作（例如產品卡片或預訂表單）的可選視覺回應。 精靈會連線至[!DNL Edge Delivery Services] (EDS)存放庫來主控它們。
-
-使用相同的Adobe帳戶來存取[!DNL LLM Apps]、AEM網站存取權和DA寫入存取權。
-
-#### 連線Widget存放庫 {#connect-widget-repository}
+Widget是附加至動作（例如產品卡片或預訂表單）的可選視覺回應。 Edge Delivery Services (EDS)會從使用您Widget存放庫的網站提供這些服務。
 
 1. 在&#x200B;**[!UICONTROL Widget來源]**&#x200B;下，選取&#x200B;**[!UICONTROL 手動選取Widget存放庫]**。
-2. 在&#x200B;**[!UICONTROL 程式碼來源]**&#x200B;底下，選取&#x200B;**[!UICONTROL GitHub]**。
-3. 選擇您是否已有存放庫。 如果沒有，請選取&#x200B;**[!UICONTROL 在GitHub上建立存放庫]**，建立空白的Widget存放庫，然後返回精靈。
-4. 安裝或設定此存放庫的Adobe LLM Apps [!DNL GitHub]應用程式，就像您對動作存放庫所做的一樣。
-5. 選取其&#x200B;**[!UICONTROL 組織]**&#x200B;和&#x200B;**[!UICONTROL 存放庫]**。 請勿選取動作存放庫。
-6. 選取&#x200B;**[!UICONTROL 驗證存放庫]**。 驗證會使用AEM範本初始化空的存放庫。 現有的存放庫必須是相容的EDS專案。
 
-#### &#x200B;7. 設定AEM網站存取權 {#aem-site-access}
+   ![Widget基礎架構設定 — 手動選取Widget存放庫的Widget來源](/help/assets/guide-infrastructure/widget-source.png)
+
+2. 在&#x200B;**[!UICONTROL Cloud Manager程式]**&#x200B;底下，選取包含介面工具儲存庫的程式。 它可能與動作存放庫的程式不同。
+3. 在&#x200B;**[!UICONTROL Edge Delivery Services存放庫]**&#x200B;下，選取Widget存放庫。 請勿選取動作存放庫。
+4. 選取&#x200B;**[!UICONTROL 驗證存放庫]**。 驗證會使用AEM範本初始化空的存放庫。 現有的存放庫必須是相容的EDS專案。
+
+後續動作取決於託管Widget存放庫的位置。
+
+#### 其他提供者上的Widget存放庫（自備Git） {#widget-repository-byog}
+
+對於[!DNL GitLab]、[!DNL Bitbucket]、[!DNL Azure DevOps]或[!DNL GitHub Enterprise]上的存放庫，驗證會找到[!DNL Cloud Manager]連結到存放庫的EDS網站。 精靈會在&#x200B;**[!UICONTROL Edge Delivery Services網站]**&#x200B;下顯示網站。
+
+![Widget基礎架構設定 — Widget存放庫已驗證，且Cloud Manager將其同步至](/help/assets/guide-infrastructure/widget-repository.png)的Edge Delivery Services網站
+
+[!DNL Cloud Manager]會將存放庫的程式碼同步至該網站，因此您不需要AEM程式碼同步。 選取&#x200B;**[!UICONTROL 下一步]**。
+
+如果驗證報告未連結任何網站，請使用&#x200B;**自備Git**&#x200B;將存放庫連結到[!DNL Cloud Manager]中的EDS網站，然後再次驗證。 參閱[自備Git](https://www.aem.live/developer/byo-git)。
+
+#### GitHub上的Widget存放庫 {#widget-repository-github}
+
+[!DNL GitHub]存放庫使用AEM程式碼同步來發佈其程式碼。 驗證後，精靈會顯示&#x200B;**[!UICONTROL 安裝AEM程式碼同步]**。 使用相同的Adobe帳戶來存取[!DNL LLM Apps]、AEM網站存取權和DA寫入存取權。
+
+##### 設定AEM網站存取權 {#aem-site-access}
 
 **新安裝：**&#x200B;選取&#x200B;**[!UICONTROL 安裝AEM程式碼同步]**，並授與它存取Widget存放庫的許可權。 完成安裝確認頁面上的安裝精靈，將自己新增為網站管理員。
 
@@ -125,7 +147,7 @@ Widget是附加至動作（例如產品卡片或預訂表單）的可選視覺�
 
 將`<org>`和`<site>`取代為您的AEM組織和網站名稱。 您的網站管理員可以確認這些值。
 
-#### &#x200B;8. 授予DA寫入許可權 {#da-write-access}
+##### 授予DA寫入許可權 {#da-write-access}
 
 針對新網站和現有網站，請要求DA組織管理員：
 
@@ -141,7 +163,7 @@ AEM網站角色不授予DA寫入許可權。 您不需要整個組織的寫入�
 
 如需設定DA許可權的詳細資訊，請參閱[許可權和安全性](https://www.aem.live/docs/ew/administering/permissions)。
 
-#### &#x200B;9. 驗證AEM設定 {#validate-aem-setup}
+##### 驗證AEM設定 {#validate-aem-setup}
 
 1. 返回[!DNL LLM Apps]並選取&#x200B;**[!UICONTROL 驗證AEM設定]**。
 2. 當顯示&#x200B;**[!UICONTROL AEM安裝程式已驗證]**&#x200B;時，請選取&#x200B;**[!UICONTROL 下一步]**。
@@ -156,20 +178,26 @@ AEM網站角色不授予DA寫入許可權。 您不需要整個組織的寫入�
 
 兩個基礎結構選項都已完成，並顯示&#x200B;**[!UICONTROL 應用程式詳細資料]**。
 
-![應用程式詳細資料 — 輸入應用程式名稱、選取AEM程式並選擇分析資料區域](/help/assets/guide-infrastructure/app-details.png)
+![應用程式詳細資料 — 輸入的LLM應用程式名稱、從Cloud Manager存放庫設定的AEM程式，以及Application Insights資料區域](/help/assets/guide-infrastructure/app-details.png)
 
 1. 輸入&#x200B;**[!UICONTROL LLM應用程式名稱]**。 使用可識別品牌或體驗的名稱，例如&#x200B;*Frescopa咖啡*。
-2. 選取應用程式所屬的&#x200B;**[!UICONTROL AEM程式]**。 如果您只能存取一個程式，精靈會自動選取該程式。
-3. 在&#x200B;**[!UICONTROL Analytics資料區域]**&#x200B;底下，選擇&#x200B;**[!UICONTROL 美國(US)]**&#x200B;或&#x200B;**[!UICONTROL 歐洲(EU)]**。
+2. 選取應用程式所屬的&#x200B;**[!UICONTROL AEM程式]**。 如果您只能存取一個程式，精靈會自動選取該程式。 使用您自己的存放庫時，程式是動作存放庫的程式，不能在此變更。
+3. 在&#x200B;**[!UICONTROL 應用程式見解資料區域]**&#x200B;下，選擇&#x200B;**[!UICONTROL 美國(US)]**&#x200B;或&#x200B;**[!UICONTROL 歐洲(EU)]**。
 4. 選取&#x200B;**[!UICONTROL 建立應用程式]**。
 
 >[!IMPORTANT]
 >
->應用程式建立後，就無法變更AEM程式和分析資料區域。 分析區域會決定應用程式的分析資料儲存位置。
+>應用程式建立後，無法變更AEM程式和應用程式見解資料區域。 區域會決定應用程式的Application Insights資料儲存位置。
 
 如果沒有可用的AEM程式，請向您的管理員要求存取權。 如果載入程式失敗，請選取&#x200B;**[!UICONTROL 重試載入程式]**。
 
-精靈會在建立後開啟應用程式頁面。 使用Adobe受管基礎架構，請等待基礎架構設定完成後再繼續。
+精靈會在建立後開啟應用程式頁面。 使用[!DNL LLM Apps]個受管理的基礎結構，請等待基礎結構設定完成後再繼續。
+
+若要稍後檢查存放庫，請開啟應用程式的&#x200B;**[!UICONTROL 設定]**。 **[!UICONTROL 存放庫]**&#x200B;區段會顯示每個存放庫的程式和名稱，以及針對使用自攜Git的Widget存放庫，其EDS網站和來源。 應用程式建立後，便無法變更存放庫。
+
+![應用程式設定 — 含範本和Edge Delivery Services存放庫的存放庫區段，包括連結的網站和來源](/help/assets/guide-infrastructure/settings-repositories.png)
+
+先前使用Adobe LLM Apps [!DNL GitHub]應用程式建立的應用程式可繼續使用現有的存放庫。
 
 ## 下一步：建立動作
 

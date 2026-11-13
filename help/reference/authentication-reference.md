@@ -1,9 +1,9 @@
 ---
 title: 驗證參考
 description: Adobe LLM應用程式中一般使用者驗證的欄位定義、權杖需求、探索端點、處理常式API及LLM平台行為。
-source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '1428'
+source-wordcount: '1442'
 ht-degree: 2%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 2%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 您可以在此頁面查詢驗證欄位與合約。 如需安裝指示，請參閱[使用您自己的身分識別提供者來驗證一般使用者](/help/guides/authentication.md)。
 

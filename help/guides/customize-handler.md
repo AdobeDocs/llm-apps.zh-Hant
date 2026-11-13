@@ -1,9 +1,9 @@
 ---
 title: 自訂產生的動作處理常式
 description: 瞭解Adobe LLM應用程式處理常式合約、取代產生的範例資料，並讓處理常式輸出符合其Widget。
-source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '880'
+source-wordcount: '895'
 ht-degree: 0%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 平台會為每個產生的動作建立工作處理常式。 處理常式一開始會傳回範例資料，以測試完整的體驗。
 
@@ -21,7 +19,7 @@ ht-degree: 0%
 
 ## 尋找產生的處理常式
 
-開啟在[基礎結構設定](/help/guides/create-app.md)期間連線的處理常式存放庫。 如果您使用Adobe受管基礎架構，請先請求程式碼存取權，然後再繼續。
+開啟在[基礎結構設定](/help/guides/create-app.md)期間連線的處理常式存放庫。 如果您使用[!DNL LLM Apps]受管理基礎結構，請先要求程式碼存取權，然後再繼續。
 
 ```text
 actions/
@@ -38,7 +36,7 @@ test/
     └── <action-slug>.test.js
 ```
 
-使用產生的提取請求來找出確切的檔案。 資料夾概要(Slug)使用連字型大小：平台會在`actions/search-products/`下產生代碼識別碼為`search_products`的動作。 執行階段會辨識斷字表單以及完全符合識別碼的資料夾。
+使用產生的提取請求或分支來找出確切的檔案。 資料夾概要(Slug)使用連字型大小：平台會在`actions/search-products/`下產生代碼識別碼為`search_products`的動作。 執行階段會辨識斷字表單以及完全符合識別碼的資料夾。
 
 編輯產生的`index.js`和任何關聯的範例資料。 請勿變更執行階段檔案，例如`entry.js`。
 

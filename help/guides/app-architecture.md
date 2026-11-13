@@ -1,9 +1,9 @@
 ---
 title: 應用程式如何連線
 description: 瞭解LLM應用程式的三個部分、它們在對話中的運作方式，以及在何處進行變更。
-source-git-commit: af83670aebde1e6f73585c89a891bc7f5e92fb3a
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '573'
+source-wordcount: '587'
 ht-degree: 0%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 **LLM應用程式**&#x200B;將您品牌的服務帶入AI對話中。 例如，客戶要求您提供咖啡推薦，您的應用程式找到相符的產品，而助理會顯示結果。
 
@@ -23,7 +21,7 @@ ht-degree: 0%
 
 一個應用程式可群組數個相關動作，例如&#x200B;*瀏覽產品*、*比較產品*&#x200B;和&#x200B;*尋找商店*。 每個動作都有各自的設定、處理常式及選用的Widget。 新增動作不需要其他存放庫配對。
 
-具有互動式Widget的應用程式包含三個部分：動作設定、處理常式程式碼和Widget程式碼。 您管理[!DNL LLM Apps]中的設定。 處理常式和Widget程式碼存在於兩個不同的[!DNL GitHub]存放庫中。
+具有互動式Widget的應用程式包含三個部分：動作設定、處理常式程式碼和Widget程式碼。 您管理[!DNL LLM Apps]中的設定。 處理常式和Widget程式碼存在於兩個不同的存放庫中。
 
 ```text
 ┌───────────────────────┐   ┌───────────────────────┐   ┌───────────────────────┐

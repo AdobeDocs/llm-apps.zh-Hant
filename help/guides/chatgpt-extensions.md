@@ -1,9 +1,9 @@
 ---
 title: 設定ChatGPT擴充功能
 description: 設定僅限ChatGPT的進入點、動作圖示、顯示偏好設定和撰寫者提及，以及需求和疑難排解。
-source-git-commit: caf0a247e481e1b6e833ade63c5b243a5b7b22ec
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '1710'
+source-wordcount: '1724'
 ht-degree: 0%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 **這些是僅限ChatGPT的擴充功能。** 他們未在[!DNL Claude]或其他LLM平台中設定功能。 您的應用程式仍可透過其標準動作和Widget在這些平台中運作。
 
@@ -110,7 +108,7 @@ ht-degree: 0%
 
 在&#x200B;**[!UICONTROL 顯示模式]**&#x200B;下：
 
-1. 將模型&#x200B;**啟動時的**&#x200B;顯示設定為`inline`、`fullscreen`或&#x200B;**[!UICONTROL 無喜好設定]**。
+1. 將模型&#x200B;]**啟動時的**[!UICONTROL &#x200B;顯示設定為`inline`、`fullscreen`或&#x200B;**[!UICONTROL 無喜好設定]**。
 1. 選取Widget的&#x200B;**[!UICONTROL 支援的資源顯示模式]**：內嵌、全熒幕或兩者。 保留兩者皆未勾選以使用主機預設值。
 1. 選擇&#x200B;**[!UICONTROL 初始資源顯示]**。 如果您選取了支援的模式，則必須包含初始模式。
 

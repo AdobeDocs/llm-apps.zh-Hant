@@ -1,9 +1,9 @@
 ---
 title: 將您的LLM應用程式測試為ChatGPT外掛程式
 description: 從您的Adobe LLM應用程式MCP伺服器URL建立ChatGPT外掛程式，並在交談中測試。
-source-git-commit: 2892acf4b3042c296203377a06bc3ff80fd375a5
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '627'
+source-wordcount: '641'
 ht-degree: 0%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps]目前在Beta中。
->
->此處顯示的功能、工作流程和UI不一定代表產品的最終狀態。 若要加入Beta，請傳送電子郵件至llm-apps-beta@adobe.com。
+>所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 部署後，您的LLM應用程式會公開MCP伺服器URL。 將此URL新增至[!DNL ChatGPT]作為外掛程式，然後測試產生的動作和Widget。
 
