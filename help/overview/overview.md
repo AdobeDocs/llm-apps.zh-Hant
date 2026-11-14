@@ -1,17 +1,13 @@
 ---
 title: Adobe LLM應用程式概觀
 description: 瞭解什麼是Adobe LLM應用程式、其運作方式，以及如何開始建立您的應用程式。
-source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
+source-git-commit: 07bcd58b3aab70b03f62523b5b25f30f4b6d7004
 workflow-type: tm+mt
-source-wordcount: '642'
-ht-degree: 0%
+source-wordcount: '596'
+ht-degree: 1%
 ---
 
 # Adobe LLM應用程式 — 概觀 {#adobe-llm-apps-an-overview}
-
->[!IMPORTANT]
->
->所有AEM Sites Cloud Service客戶都可使用LLM應用程式來開發及管理自己的應用程式。 一旦計數開始，每個應用程式呼叫都會計入客戶的AEM Sites內容請求。 Adobe會在計量生效前宣告計量速率和開始日期。
 
 ## 什麼是[!DNL Adobe LLM Apps]？
 
