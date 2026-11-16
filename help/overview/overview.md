@@ -1,10 +1,10 @@
 ---
 title: Adobe LLM應用程式概觀
 description: 瞭解什麼是Adobe LLM應用程式、其運作方式，以及如何開始建立您的應用程式。
-source-git-commit: 07bcd58b3aab70b03f62523b5b25f30f4b6d7004
+source-git-commit: 5a0959012e11cc46850cb5efd6e48e5258e54b0f
 workflow-type: tm+mt
-source-wordcount: '596'
-ht-degree: 1%
+source-wordcount: '604'
+ht-degree: 0%
 ---
 
 # Adobe LLM應用程式 — 概觀 {#adobe-llm-apps-an-overview}
@@ -15,7 +15,7 @@ ht-degree: 1%
 
 >[!VIDEO](https://video.tv.adobe.com/v/3504884/?captions=chi_hant&learn=on&enablevpops)
 
-[!DNL LLM Apps]位於[experience.adobe.com/llm-apps](https://experience.adobe.com/llm-apps)。
+您可以從[[!DNL AEM Experience Hub]](https://experience.adobe.com/experiencemanager/)開啟[!DNL LLM Apps]，或直接移至[experience.adobe.com/llm-apps](https://experience.adobe.com/llm-apps)。
 
 
 ## 您可以使用[!DNL LLM Apps]做什麼
